@@ -15,13 +15,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AddlogPage {
 
-  onTask:boolean = false;  
+  onTask:boolean = false;   
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
   }
 
   onChangeTask()  { this.onTask=true;    }
-
+ 
   GotoNext(){
      
   }

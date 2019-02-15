@@ -18,7 +18,7 @@ import { AddtasknewPage } from '../pages/addtasknew/addtasknew';
 })
 export class MyApp {
    
-  rootPage:any = AddlogPage;                  
+  rootPage:any = SigninPage;                       
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
