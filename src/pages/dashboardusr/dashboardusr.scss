@@ -1,0 +1,113 @@
+page-dashboardusr {
+
+
+    .toolbar-background-md {
+        border-color: map-get($HeaderList, BorderColor);    
+        background: map-get($HeaderList, BackgroundC); 
+    }
+
+    .content-md { 
+        color: map-get($ContentColor, DarkSlate); 
+        background-color: map-get($ContentColor,bgcolor);      
+    }
+
+    .toolbar-title-md   { 
+        padding: 0 12px;
+        font-size: 14px;
+        font-weight: bold;
+        color: map-get($colors, whitecolor);  
+        font-family: $Lato-regular;     
+    }
+   
+    .scroll-content{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .gridcl{
+        padding-left: 24px !important;
+        padding-right: 24px !important;  
+    }
+
+    .item-md {
+        padding-left: 0px;
+    }
+
+    .button-md {  
+        box-shadow:none;
+        -webkit-box-shadow:none;    
+        height: 4.6rem;
+        border-radius: 32px;   
+      }
+
+      .img-menu {
+        width: 25px; 
+        margin-left: 20px;
+      }
+       
+      .img-notify {
+        width: 24px;
+        margin-right: 9px;
+      }
+      .btn-fullbg{
+        background-image: linear-gradient($content-btn1,$content-btn2);   
+      }
+      .button-outline-md {
+        width: 99%;
+        margin-top: 10px;
+        border-color: $content-btn1;
+        color: $content-btn1;  
+      } 
+      .chartCl {
+        height: 250px !important;
+        width: 525px !important;  
+        margin-left: -86px; 
+        margin-top: 55px; 
+      }
+      .timeleft {
+        position: absolute;
+        margin-top: 109px;
+        margin-left: 133px;
+        font-size: 22px;  
+        font-family:  $Lato-black;
+      }
+        
+     .p-hourleft  {
+        margin-top: -21px;
+        margin-left: 44px;
+        color: map-get($ContentColor,PColor); 
+        font-family: $Lato-medium;
+      }
+      .p-hourlog {
+        margin-top: -21px;
+        margin-left: 44px;
+        color: map-get($ContentColor,PColor); 
+        font-family: $Lato-medium; 
+      }
+      .div-bglog {
+        width: 29.77px;
+        height: 18.61px;
+        background: map-get($ContentColor,DivBoxGreen); 
+      }
+      .div-bgleft {
+        width: 29.77px;
+        height: 18.61px;
+        background: map-get($ContentColor,DivBoxOrgange);  
+      }
+      .rows-hours {
+        margin-top: 35px;
+        margin-left: 22px;
+      }
+      .rows-plans {
+        margin-top: 21px;
+        } 
+   
+        .p-plans {
+            color: map-get($ContentColor,PColor); 
+            font-family: $Lato-heavy; 
+            font-size: 14px;   
+        }  
+    .rows-btnlog {
+        margin-top: 24px;  
+    }
+}

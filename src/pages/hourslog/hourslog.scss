@@ -1,9 +1,8 @@
-page-notification {
-
-      
-    .toolbar-background-md { 
+page-hourslog {
+   
+    .toolbar-background-md {
         border-color: map-get($HeaderList, BorderColor);    
-        background: map-get($HeaderList, BackgroundC);  
+        background: map-get($HeaderList, BackgroundC); 
     }
 
     .content-md { 
@@ -29,7 +28,7 @@ page-notification {
         padding-right: 24px !important;  
     }
 
-    .item-md {
+    .item-content {  
      padding-left: 0px;   
      border-left: 4px solid map-get($ContentColor,itemleftborder); 
     //  -webkit-box-shadow: 0 8px 6px -9px #ccc; 
@@ -38,13 +37,43 @@ page-notification {
     border-bottom: 2px solid #c8c5c5; 
     margin-bottom: 8px;    
     }
+
+    .item-header {
+        padding-left: 0px;    
+       border-bottom: 2px solid #c8c5c5;    
+       margin-bottom: 8px;   
+    }
+
     .p-txt {
-        padding-left: 10px;  
+        padding-left: 10px; 
+        width: 80%;
+    float: left; 
+    font-family: $Lato-medium;  
+    }
+    .p-txtRight {
+        padding-left: 13px;
+        font-family: $Lato-medium;  
     }
 
     .item-block {
         min-height: 6.4rem; 
     }
 
+    .MainDiv {
+        width: 100%;
+    }
+    .SubDivLeft {
+        width: 80%; 
+        float: left;
+        font-size: 16px;
+        font-family: $Lato-heavy;
+        padding-left: 10px; 
+    }
+    .SubDivRight {
+        width: 20%; 
+        float: left; 
+        font-size: 16px;
+        font-family: $Lato-heavy;  
+    }
 
 }

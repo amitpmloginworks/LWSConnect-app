@@ -36,9 +36,38 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  whitecolor:	#ffffff
 );
 
+
+$ContentColor: (     
+	DarkSlate:#464646,
+	bgcolor:#F6FAFD ,
+	PColor: #464646,
+	DivBoxOrgange  :#FF6182, 
+	DivBoxGreen : #4BF3F3,
+	itemleftborder: #008ED8,
+	BorderColor: #AAAAAA,
+	itemColor: #46476A,
+    itemBgWhite: #fff
+);
+
+$ContentBg: ( 
+	DarkSlate:#464646 
+);
+
+
+$HeaderList: (  
+	BorderColor: #333333,
+	BackgroundC:#333333
+);
+
+
+// for content  button  color gradiant ..   
+ 
+$content-btn1:#00408A;
+$content-btn2:#0060D3;  
 
 // App iOS Variables
 // --------------------------------------------------
@@ -72,6 +101,7 @@ $colors: (
 @import "ionic.ionicons";
 
 
+
 @font-face {
 	font-family: Lato;
 	src: url("../assets/fonts/Latofonts/Lato-Regular.ttf");
@@ -102,18 +132,21 @@ $colors: (
 	src: url("../assets/fonts/Latofonts/Lato-Medium.ttf");
 }
 
-
 @font-face {
 	font-family: Lato-Regular;
 	src: url("../assets/fonts/Latofonts/Lato-Regular.ttf");
 }
 
- 
 
-@font-face {
-	font-family: heavy; 
-	src: url("../assets/fonts/heavyfonts/ArmWrestler.ttf");
-}
+
+$Lato-regular: "Lato-Regular"; 
+$Lato-medium: "Lato-Medium"; 
+$Lato-heavy: "Lato-Heavy";
+$Lato-semiBold: "Lato-SemiBold";  
+$Lato-bold: "Lato-Bold";  
+$Lato-black: "Lato-Black"; 
+$Lato: "Lato";    
+   
 
 // Fonts
 // --------------------------------------------------

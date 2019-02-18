@@ -15,6 +15,8 @@ import { NotificationPage } from '../pages/notification/notification';
 
 import { AddtaskPage } from '../pages/addtask/addtask';   
 import { AddtasknewPage } from '../pages/addtasknew/addtasknew';  
+import { DashboardusrPage } from '../pages/dashboardusr/dashboardusr';  
+import { HourslogPage } from '../pages/hourslog/hourslog';  
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { AddtasknewPage } from '../pages/addtasknew/addtasknew';
     DashboardPage,
     NotificationPage,
     AddtaskPage,
-    AddtasknewPage
+    AddtasknewPage,
+    DashboardusrPage,
+    HourslogPage
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,9 @@ import { AddtasknewPage } from '../pages/addtasknew/addtasknew';
     DashboardPage,
     NotificationPage,
     AddtaskPage,
-    AddtasknewPage 
+    AddtasknewPage,
+    DashboardusrPage ,
+    HourslogPage  
   ],
   providers: [
     StatusBar,

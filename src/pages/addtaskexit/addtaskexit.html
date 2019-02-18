@@ -1,5 +1,5 @@
 <!--
-  Generated template for the AddtaskPage page.
+  Generated template for the AddtaskexitPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -9,7 +9,7 @@
 
 <ion-header no-shadow no-border>
     <ion-navbar > 
-      <ion-title text-center>CREATE A TASK</ion-title>      
+      <ion-title text-center>CREATE A TASK FOR EXISTING CLIENT</ion-title>      
     </ion-navbar>
   </ion-header>
   
@@ -19,7 +19,17 @@
     <ion-grid class="gridcl">
        
         <ion-list margin-top>
-
+  
+            <img class="img-user" src="assets/imgs/newimg/group543.png">     
+            <ion-item>    
+              <ion-label floating *ngIf="onTask" [ngStyle]="(onTask)?{'display':'none'}:{ }">Search for Client</ion-label>   
+              <ion-label *ngIf="!onTask">Search for Client</ion-label>  
+               <ion-select [(ngModel)]="TaskSelect" interface="popover" [ngStyle]="(onTask)?{'margin-top':'6px','margin-left':'10px'}:{}" #C (ionChange)="onChangeTask()">   
+                 <ion-option value="IPU">IPU</ion-option>
+                 <ion-option value="ILR">ILR</ion-option>  
+               </ion-select>
+            </ion-item>
+  
 
             <img class="img-pass" src="assets/imgs/newimg/group545.png">   
             <ion-item class="item-pass">    
@@ -41,7 +51,7 @@
                   <img class="imgagesrc-img" src="assets/imgs/newimg/group546.png">   
               </div>
               <div class="textsec"> 
-                  <p no-padding no-margin style="margin-left: 17%;margin-top: 13px;color: #4D7390;">Enter Subject</p>   
+                  <p no-padding no-margin style="margin-left: 17%;margin-top: 13px;">Enter Subject</p>
               </div>  
           </div>    
   
@@ -73,3 +83,4 @@
   </ion-content>
       
   
+
