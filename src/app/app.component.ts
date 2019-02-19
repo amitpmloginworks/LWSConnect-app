@@ -14,13 +14,18 @@ import { AddtaskPage } from '../pages/addtask/addtask';
 import { AddtasknewPage } from '../pages/addtasknew/addtasknew';
 import { DashboardusrPage } from '../pages/dashboardusr/dashboardusr';  
 
-import { HourslogPage } from '../pages/hourslog/hourslog';      
+import { HourslogPage } from '../pages/hourslog/hourslog';   
+import { UpgradeplanPage } from '../pages/upgradeplan/upgradeplan'; 
+import { TaskPage } from '../pages/task/task';   
+ 
+import { TaskallPage } from '../pages/taskall/taskall';    
+import { TasksearchPage } from '../pages/tasksearch/tasksearch';     
 
 @Component({   
   templateUrl: 'app.html'
 })
-export class MyApp {  
-  rootPage:any = AddtaskPage;                                  
+export class MyApp {   
+  rootPage:any = TaskallPage;                                              
   //    https://xd.adobe.com/spec/3234571d-52da-4f25-74c0-ab1f150a5bea-4405/          // agent
   //      https://xd.adobe.com/spec/65ae4756-638a-4422-75bf-25cbe38ea275-139f/         // user
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {

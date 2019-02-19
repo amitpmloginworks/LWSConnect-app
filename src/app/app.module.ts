@@ -16,7 +16,12 @@ import { NotificationPage } from '../pages/notification/notification';
 import { AddtaskPage } from '../pages/addtask/addtask';   
 import { AddtasknewPage } from '../pages/addtasknew/addtasknew';  
 import { DashboardusrPage } from '../pages/dashboardusr/dashboardusr';  
-import { HourslogPage } from '../pages/hourslog/hourslog';  
+import { HourslogPage } from '../pages/hourslog/hourslog'; 
+import { UpgradeplanPage } from '../pages/upgradeplan/upgradeplan';  
+import { TaskPage } from '../pages/task/task'; 
+   
+import { TaskallPage } from '../pages/taskall/taskall';   
+import { TasksearchPage } from '../pages/tasksearch/tasksearch';  
 
 @NgModule({
   declarations: [
@@ -30,7 +35,11 @@ import { HourslogPage } from '../pages/hourslog/hourslog';
     AddtaskPage,
     AddtasknewPage,
     DashboardusrPage,
-    HourslogPage
+    HourslogPage,
+    UpgradeplanPage,
+    TaskPage,
+    TaskallPage,
+    TasksearchPage
   ],
   imports: [
     BrowserModule,
@@ -48,7 +57,11 @@ import { HourslogPage } from '../pages/hourslog/hourslog';
     AddtaskPage,
     AddtasknewPage,
     DashboardusrPage ,
-    HourslogPage  
+    HourslogPage ,
+    UpgradeplanPage ,
+    TaskPage ,
+    TaskallPage,
+    TasksearchPage   
   ],
   providers: [
     StatusBar,
