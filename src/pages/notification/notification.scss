@@ -10,13 +10,18 @@ page-notification {
         color: map-get($ContentColor, DarkSlate); 
         background-color: map-get($ContentColor,bgcolor);      
     }
+    .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default {
+        color: #fff;
+        background-color: transparent;
+    }
 
     .toolbar-title-md   {
         padding: 0 12px;
         font-size: 14px;
         font-weight: bold;
         color: map-get($colors, whitecolor);  
-        font-family: $Lato-regular;     
+        font-family: $Lato-regular; 
+        margin-right: 65px;     
     }
    
     .scroll-content{

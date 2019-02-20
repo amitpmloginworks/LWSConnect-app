@@ -2,6 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js'; 
 
+import { UpgradeplanmorePage } from '../upgradeplanmore/upgradeplanmore';  
+import { UpgradeplanPage } from '../upgradeplan/upgradeplan';
+import { NotificationPage } from '../notification/notification';   
+
 /**
  * Generated class for the DashboardusrPage page.
  *
@@ -14,14 +18,26 @@ import { Chart } from 'chart.js';
   selector: 'page-dashboardusr',
   templateUrl: 'dashboardusr.html',
 })
-export class DashboardusrPage {
-
+export class DashboardusrPage {   
+    
   @ViewChild('doughnutCanvas') doughnutCanvas;
   doughnutChart: any;  
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
  
   }
  
+  AdditionalBtn(){
+    this.navCtrl.push(UpgradeplanmorePage);
+  }
+  UpgradeBtn(){
+    this.navCtrl.push(UpgradeplanPage);  
+  }
+
+  NotifyBtn(){  
+    this.navCtrl.push(NotificationPage);
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad DashboardusrPage'); 
     this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {

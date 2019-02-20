@@ -23,6 +23,11 @@ import { TaskPage } from '../pages/task/task';
 import { TaskallPage } from '../pages/taskall/taskall';   
 import { TasksearchPage } from '../pages/tasksearch/tasksearch';  
 
+import { PaymentPage } from '../pages/payment/payment';    
+import { ProfilePage } from '../pages/profile/profile'; 
+
+import { UpgradeplanmorePage } from '../pages/upgradeplanmore/upgradeplanmore';   
+
 @NgModule({
   declarations: [
     MyApp,
@@ -39,7 +44,10 @@ import { TasksearchPage } from '../pages/tasksearch/tasksearch';
     UpgradeplanPage,
     TaskPage,
     TaskallPage,
-    TasksearchPage
+    TasksearchPage,
+    PaymentPage,
+    ProfilePage,
+    UpgradeplanmorePage
   ],
   imports: [
     BrowserModule,
@@ -60,8 +68,11 @@ import { TasksearchPage } from '../pages/tasksearch/tasksearch';
     HourslogPage ,
     UpgradeplanPage ,
     TaskPage ,
-    TaskallPage,
-    TasksearchPage   
+    TaskallPage, 
+    TasksearchPage ,
+    PaymentPage,
+    ProfilePage,
+    UpgradeplanmorePage   
   ],
   providers: [
     StatusBar,

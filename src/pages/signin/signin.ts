@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ForgetpassPage } from '../forgetpass/forgetpass';
-import { AddlogPage } from '../addlog/addlog';  
+import { AddlogPage } from '../addlog/addlog'; 
+import { DashboardusrPage } from '../dashboardusr/dashboardusr';    
 
 /**
  * Generated class for the SigninPage page.
@@ -26,7 +27,7 @@ export class SigninPage {
   }
 
   GotoNext(user,pass) {  
-    this.navCtrl.setRoot(AddlogPage);    
+    this.navCtrl.setRoot(DashboardusrPage);         
   }
 
   ionViewDidLoad() {

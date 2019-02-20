@@ -14,7 +14,7 @@
       </ion-buttons>
     <ion-title text-center>DASHBOARD</ion-title> 
 <ion-buttons end> 
-        <button ion-button icon-only>     
+        <button ion-button icon-only (click)="NotifyBtn()">       
           <img  class="img-notify" src="assets/imgs/newimg/notification.png">
         </button>
 </ion-buttons>
@@ -22,7 +22,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-grid class="gridcl">
+  <ion-grid class="gridcl"> 
   
 
       <canvas #doughnutCanvas class="chartCl"> </canvas>      
@@ -46,13 +46,13 @@
 
       <ion-row no-margin no-padding class="rows-btnlog">     
           <ion-col col-12 no-margin no-padding>         
-             <button ion-button full class="btn-fullbg" (click)="GotoNext()">BUY ADDITIONAL HOURS</button>   
+             <button ion-button full class="btn-fullbg" (click)="AdditionalBtn()">BUY ADDITIONAL HOURS</button>   
           </ion-col>
       </ion-row>   
 
       <ion-row no-margin no-padding>       
           <ion-col col-12 no-margin no-padding>     
-             <button ion-button outline (click)="GotoNext()">UPGRADE PLAN</button>   
+             <button ion-button outline (click)="UpgradeBtn()">UPGRADE PLAN</button>       
           </ion-col>
       </ion-row>    
 
