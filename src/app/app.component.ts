@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -29,8 +29,9 @@ import { UpgradeplanmorePage } from '../pages/upgradeplanmore/upgradeplanmore';
 @Component({   
   templateUrl: 'app.html'
 })
-export class MyApp {   
-  rootPage:any = PaymentPage;                                                       
+export class MyApp {  
+  @ViewChild(Nav)nav:Nav  
+  rootPage:any = SigninPage;                                                         
   //    https://xd.adobe.com/spec/3234571d-52da-4f25-74c0-ab1f150a5bea-4405/          // agent
   //      https://xd.adobe.com/spec/65ae4756-638a-4422-75bf-25cbe38ea275-139f/         // user
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
@@ -41,5 +42,19 @@ export class MyApp {
       splashScreen.hide();
     });
   }
+
+  ProfileBtn(){ 
+    this.nav.setRoot(ProfilePage);  
+  }
+  CreateBtn(){
+    this.nav.setRoot(AddtaskPage);     
+  }
+  AllTaskBtn(){
+    this.nav.setRoot(TaskallPage);  
+  }
+  LogoutBtn(){
+    this.nav.setRoot(SigninPage);  
+  }
+
 }
 

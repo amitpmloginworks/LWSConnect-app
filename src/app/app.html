@@ -1,1 +1,148 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-menu  id="authenticated" side="left" type="overlay" persistent="true" [content]="content">    
+        <ion-content >
+
+            <ion-item no-lines>
+                <button menuClose="authenticated" clear ion-button (click)="CreateBtn()"> 
+                   <img src="assets/imgs/newimg/path369.png" style="width: 6%; margin-left: -79px;" /> 
+                  <label style="margin-left: 10px; color: #fff; font-family: Lato-Regular;">Create a Task</label>
+                </button>
+            </ion-item>
+   
+            <ion-item no-lines>
+                    <button menuClose="authenticated" clear ion-button (click)="AllTaskBtn()"> 
+                       <img src="assets/imgs/newimg/move.png" style="width: 6%; margin-left: -45px;" /> 
+                      <label style="margin-left: 10px; color: #fff; font-family: Lato-Regular;">All Tasks</label> 
+                      <div class="notification2"><div class="notification1">1</div></div>
+                      <div class="notification4"><div class="notification3">1</div></div>
+                    </button> 
+            </ion-item>
+                <ion-item no-lines>
+                        <button menuClose="authenticated" clear ion-button (click)="ProfileBtn()"> 
+                           <img src="assets/imgs/newimg/settings.png" style="width: 6%; margin-left: -79px;" /> 
+                          <label style="margin-left: 10px; color: #fff; font-family: Lato-Regular;">Profile Settings</label>
+                        </button>
+                    </ion-item>
+                    <ion-item no-lines>
+                            <button menuClose="authenticated" clear ion-button (click)="LogoutBtn()">     
+                               <img src="assets/imgs/newimg/exits.png" style="width: 6%; margin-left: -130px;" /> 
+                              <label style="margin-left: 10px; color: #fff; font-family: Lato-Regular;">Logout</label>
+                            </button>
+                        </ion-item>
+   
+        </ion-content>
+
+        <style>
+                .item-md .item-button {
+                  color:#fff;
+                  font-family: "Lato-Bold";
+                  font-size:16px;
+                  text-transform: inherit;
+                }
+                .item-ios .item-button {
+                  color:#fff;
+                  font-family: "Lato-Bold";
+                  font-size:16px;
+                  text-transform: inherit;
+                }
+                .scroll-content {
+                  top:35px ! important;
+                }
+                ion-menu[type=overlay] {
+                  z-index: 80;
+                  margin-top: 56px;
+              } 
+              .md ion-menu[type=overlay] .menu-inner {
+                  width: 72%;
+              }
+              .content-md {
+              background-color: rgba(0,0,0,0.5);
+              }
+              .content-md[_ngcontent-c0] {
+              margin-top: 0px !important;
+              }
+              .item-md {
+              padding-left: 0;
+              padding-right: 0;
+              position: relative;
+              font-size: 1.6rem;
+              font-weight: normal;
+              text-transform: none;
+              color: #fff;
+              background-color: rgba(0,0,0,0.5);
+              }
+          .notification2 {
+              background: #ffc01d;
+              width: 7%;
+              border: 1px solid #fff;
+              margin-left: 17px;
+              border-radius: 92px;
+              height: 18px;
+          }
+              .notification1 {
+              background: #FFC01D;
+              margin-top: 2px;
+              border-radius: 92px;
+              font-size: 10px;
+              font-family: Lato-Bold;
+              }
+          
+              .notification4 {
+              background: #0049A3;  
+              width: 7%;
+              border: 1px solid #fff;
+              margin-left: 17px;
+              border-radius: 92px;
+              height: 18px;
+          }
+              .notification3 {
+              background: #0049A3;
+              margin-top: 2px;
+              border-radius: 92px;
+              font-size: 10px;
+              font-family: Lato-Bold;
+              }
+          
+              .label-md {
+               margin: 0px !important;
+          }
+          </style>
+</ion-menu>
+
+
+<ion-menu [content]="content"  class="menu-style" side="right" id="menu2" width="335"  >
+    <ion-content style="margin-top: 40px;">  
+        <ion-list no-lines  style="margin-bottom: 45px;"> 
+                <ion-item>    
+                        <ion-label style="margin-left: 18px !important;">Open</ion-label>  
+                         <ion-select [(ngModel)]="OpenTask" interface="popover" >   
+                           <ion-option value="IPU">IPU</ion-option>
+                           <ion-option value="ILR">ILR</ion-option>  
+                         </ion-select>
+                </ion-item>
+                <ion-item style="padding-bottom: 16px;">       
+                        <ion-label style="margin-left: 18px !important;">Power BI Visualization</ion-label>  
+                         <ion-select [(ngModel)]="PowerBI" interface="popover" >   
+                           <ion-option value="IPU">IPU</ion-option>  
+                           <ion-option value="ILR">ILR</ion-option>  
+                         </ion-select>
+                </ion-item>  
+            <button menuClose="menu2" ion-item (click)="openPage()" >   
+              <img src="assets/imgs/newimg/ticket.png" style="margin-bottom: -4px;  width: 24px !important;margin-right: 20px;margin-left: 16px;">   
+              <div style="margin-top: -22px;margin-left: 52px;">Ticket <br>#552</div> 
+            </button>  
+            <button menuClose="menu2" ion-item (click)="openPage()">  
+                    <img src="assets/imgs/newimg/calendar.png" style="margin-bottom: -4px;  width: 24px !important;margin-right: 20px;margin-left: 16px;">   
+                    <div style="margin-top: -22px;margin-left: 52px;">Created <br>Today at 11:41 AM</div> 
+                  </button>
+
+                  <button menuClose="menu2" ion-item (click)="openPage()">  
+                        <img src="assets/imgs/newimg/passage.png" style="margin-bottom: -4px;  width: 24px !important;margin-right: 20px;margin-left: 16px;">   
+                        <div style="margin-top: -22px;margin-left: 52px;">Updated <br>Updated 3 hours ago</div> 
+                      </button>  
+        </ion-list>  
+ 
+    </ion-content>
+    <style>  
+    </style>
+ </ion-menu>

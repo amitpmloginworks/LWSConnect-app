@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { TaskPage } from '../task/task';  
 
 /**
  * Generated class for the TaskallPage page.
@@ -17,6 +18,11 @@ export class TaskallPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
+
+  GoToNext(){
+    this.navCtrl.push(TaskPage); 
+  }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TaskallPage');

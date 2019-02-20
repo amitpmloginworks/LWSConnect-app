@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
+import { PaymentPage } from '../payment/payment';  
 
 /**
  * Generated class for the UpgradeplanPage page.
@@ -28,6 +29,9 @@ showImage() {
  
 }    
 
+GotoNext(){
+  this.navCtrl.push(PaymentPage);
+}  
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UpgradeplanPage');
