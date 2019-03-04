@@ -53,17 +53,24 @@ $ContentColor: (
 	itemBgWhite: #fff,
 	PColor1 :#60647D,
 	pColor2:  #333333 ,
-	PDesc:#858585   
+	PDesc:#858585,   
+ 
+	PColorc: #527DA3, 
 );
 
-$ContentBg: ( 
+$ContentBg: (    
 	DarkSlate:#464646 
 );
 
 
 $HeaderList: (  
-	BorderColor: #333333,
-	BackgroundC:#333333
+	// BorderColor: #333333,
+	// BackgroundC:#020202,  
+	BorderColor: #527DA3, 
+	BackgroundC:#527DA3, 
+	BackgroundC1:#527DA3,
+
+	ColorWhite:#FFF
 );
 
 
@@ -71,6 +78,8 @@ $HeaderList: (
  
 $content-btn1:#00408A;
 $content-btn2:#0060D3;  
+$content-btnWhite:#fff;  
+$content-btn3:#527DA3;
 
 
 // App iOS Variables

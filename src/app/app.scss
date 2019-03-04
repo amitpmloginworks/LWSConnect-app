@@ -19,3 +19,14 @@
 .md .menu-inner {
     background-color: rgba(0,0,0,0.5) !important;
 }
+
+.loading-md .loading-wrapper {
+    border-radius: 2px;
+    max-width: 280px;
+    max-height: 90%;
+    color: rgba(0, 0, 0, 0.5);  
+    background: none !important; 
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important; 
+    padding: 24px !important;
+}

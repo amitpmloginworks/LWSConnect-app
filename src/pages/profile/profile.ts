@@ -14,8 +14,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
-
+  onCountry:boolean=false;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+  onChangeCountry(){
+    this.onCountry=true; 
   }
 
   ionViewDidLoad() {

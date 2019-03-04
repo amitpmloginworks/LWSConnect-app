@@ -28,7 +28,7 @@
     <ion-col col-12 no-margin no-padding>
       <p class="contenttittle" no-margin no-padding>Welcome to our support ticket system</p> 
     </ion-col>
-  </ion-row>
+  </ion-row>    
 </ion-grid>
 
 
@@ -37,16 +37,16 @@
   <ion-list margin-top>
       <img class="img-user" src="assets/imgs/newimg/group543.png">   
     <ion-item>    
-       <ion-input type="text" [(ngModel)]="username" placeholder="Email ID"></ion-input>  
+       <ion-input type="text" [(ngModel)]="EmailID" placeholder="Email ID"></ion-input>  
     </ion-item>      
     <img class="img-pass" src="assets/imgs/newimg/group542.png">  
     <ion-item class="item-pass">  
-       <ion-input type="password" [(ngModel)]="password" placeholder="Password"></ion-input> 
+       <ion-input type="password" [(ngModel)]="Password" placeholder="Password"></ion-input> 
     </ion-item>
   </ion-list>     
   <ion-row no-margin no-padding margin-bottom>   
     <ion-col col-12 no-margin no-padding>  
-       <button ion-button full (click)="GotoNext(username,password)">LOGIN</button>
+       <button ion-button full (click)="GotoNext(EmailID,Password)">LOGIN</button>
     </ion-col>
   </ion-row>
    </ion-grid>

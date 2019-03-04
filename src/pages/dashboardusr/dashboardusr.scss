@@ -2,10 +2,10 @@ page-dashboardusr {
 
 
     .toolbar-background-md {
-        border-color: map-get($HeaderList, BorderColor);    
-        background: map-get($HeaderList, BackgroundC); 
+        border-color: map-get($HeaderList, BackgroundC1);    
+        background: map-get($HeaderList, BackgroundC1); 
     }
-
+ 
     .content-md { 
         color: map-get($ContentColor, DarkSlate); 
         background-color: map-get($ContentColor,bgcolor);      
@@ -15,7 +15,7 @@ page-dashboardusr {
         padding: 0 12px;
         font-size: 14px;
         font-weight: bold;
-        color: map-get($colors, whitecolor);  
+        color: map-get($HeaderList,ColorWhite);  
         font-family: $Lato-regular;     
     }
    
@@ -55,9 +55,19 @@ page-dashboardusr {
       .button-outline-md {
         width: 99%;
         margin-top: 10px;
-        border-color: $content-btn1;
-        color: $content-btn1;  
+        border-color: $content-btn3;
+        color: $content-btn3; 
+        font-family: $Lato-heavy;
       } 
+
+      .btnOptions { 
+        width: 99%;
+        margin-top: 10px;
+        border-color: $content-btn1;
+        color: $content-btnWhite;
+        background: $content-btn3;
+      }
+
       .chartCl {
         height: 250px !important;
         width: 525px !important;  
@@ -102,12 +112,20 @@ page-dashboardusr {
         margin-top: 21px;
         } 
    
-        .p-plans {
-            color: map-get($ContentColor,PColor); 
+        .p-plans { 
+            color: map-get($ContentColor,PColorc);  
             font-family: $Lato-heavy; 
-            font-size: 14px;   
+            font-size: 14px;  
+            margin-top: 22px; 
         }  
-    .rows-btnlog {
-        margin-top: 24px;  
+    .rows-btnlog { 
+        margin-top: 5px;  
+        margin-bottom: 70px;
     }
+
+    .btn-img {   
+      box-shadow:none;background-color: #F6FAFD;height: 10.0rem; -webkit-box-shadow:none;
+  }
+
+
 }

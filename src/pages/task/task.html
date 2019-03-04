@@ -12,18 +12,43 @@
   </ion-header> 
 
 <ion-content >
-    <ion-grid class="gridcl">    
+    <ion-grid class="gridcl">  
+        <div *ngFor="let tasklists of tasklistArr;let i= index;">
         <ion-row no-padding no-margin class="rows-header">
-          <ion-col col-12 no-padding no-margin text-center>    
-            <div class="col-maindiv">       
-               <div class="col-subdiv1"><img src="assets/imgs/newimg/wall-clock.png" class="img-clock"></div>
-               <div class="col-subdiv2"><p no-padding no-margin class="p-span">Hours Logged: 40 hrs</p></div>
+          <ion-col col-12 no-padding no-margin  text-center>    
+            <div class="col-maindiv">           
+               <div class="col-subdiv1"></div>
+               <div class="col-subdiv2"><p no-padding no-margin class="p-span">Monday, January 28, 2019</p></div>
+               <div class="col-subdiv3"></div>
             </div>   
           </ion-col>
+        </ion-row>   
+    <ion-list>  
+        <ion-row no-padding no-margin *ngFor="let message of tasklists.second_array; let i=index;">
+                <ion-col col-2 no-padding no-margin *ngIf="message.hands == 2"  [ngStyle]="(i != 0) ? { 'margin-top': '17px' } : {  } ">  
+                        <img src="assets/icon/deafault_men.jpg" class="img-profile" >     
+                </ion-col>
+        <ion-col col-10 no-padding no-margin *ngIf="message.hands == 2" [ngStyle]="(i != 0) ? { 'margin-top': '17px' } : {  } ">  
+            <p no-padding no-margin class="Leftheadermsg">
+                {{ message.comment_author+", "+message.posttime }}
+            </p> 
+                <ion-item no-padding no-margin [ngClass]="message.styleClass">
+                        <p text-wrap class="message-detail" no-padding no-margin >{{message.comment_author}} </p> 
+                </ion-item>
+        </ion-col>  
+            <ion-col col-12 no-padding no-margin *ngIf="message.hands == 1" [ngStyle]="(i != 0) ? { 'margin-top': '17px' } : {  } " >  
+                <p no-padding no-margin class="Rightheadermsg"> {{ message.posttime }}</p> <br>      
+            <ion-item no-padding no-margin [ngClass]="message.styleClass">
+                <p text-wrap class="message-detail" no-padding no-margin >{{message.comment_author}} </p> 
+            </ion-item>
+            </ion-col>
         </ion-row>
+    </ion-list>
+</div>
 
 
-        <div class="MainDiv">
+     
+        <!-- <div class="MainDiv">
             <div class="imagesec">
                 <p class="p-imagesec">P</p>    
             </div>
@@ -35,25 +60,34 @@
           <div style="padding-top: 35px;"> 
               <p class="p-MainDiv1" no-padding no-margin>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>  
           </div>
-      </div>  
+      </div>  -->
+      
+      
+
      </ion-grid> 
 </ion-content>
-<ion-footer no-padding no-margin> 
-    <ion-row no-margin no-padding class="gridcl">  
+<ion-footer no-padding no-margin>  
+    <ion-row no-margin no-padding class="gridcl" margin-bottom>  
         <ion-col col-12 no-margin no-padding>  
-            <div class="MainDivTxt1"> 
+
+            <!-- <div class="MainDivTxt1"> 
                 <div style="padding-top: 10px;"> 
                     <ion-item class="item-txtarea"> 
                         <ion-textarea rows="5" placeholder="Type your reply"></ion-textarea>  
                     </ion-item> 
                     <img class="icon-imgtxtarea" src="assets/imgs/newimg/group553_18px.png">      
                 </div>
-            </div> 
-
-           <button class="btn-play" ion-button full (click)="GotoNext()">REPLY TO TASK
-              <img src="assets/imgs/newimg/group471.png" class="img-btnfooter">   
-           </button> 
+            </div>   -->   
+  
             
+<div style="width:100%;">   
+    <div style="width:96%;float: left;">
+        <button class="btn-play" ion-button full (click)="GotoNext()">REPLY</button>
+     </div>
+    <div style="width:19%;float: right;">    
+        <img src="assets/imgs/newimg/group671.png" class="img-btnfooter">
+    </div>
+</div>
         </ion-col>
       </ion-row>  
 </ion-footer>

@@ -62,9 +62,13 @@ page-profile {
         border-radius: 32px !important;
         width: 98%;
         margin-left: 4px !important;
-        background-image: linear-gradient($content-btn1,$content-btn2);  
+       // background-image: linear-gradient($content-btn1,$content-btn2);  
         height: 4.6rem;
         font-family: $Lato-heavy; 
+         
+        border-color: $content-btn1;
+        color: $content-btnWhite;
+        background: $content-btn3; 
       }
 
       .list-md {
@@ -145,7 +149,7 @@ page-profile {
         background-image: url(../assets/imgs/newimg/arrow-down15.png);
         width: 17px !important;
         height: 10px !important;
-        left: 33px;
+        left: 15px;
         top: 56%;
         margin-top: 3px !important;
         position: absolute;
@@ -238,6 +242,11 @@ page-profile {
         .img-profile  {
             width: 41%;
             margin-bottom: 16px;
+        }
+
+        .item-passhalf {
+            margin-top: 24px;
+            text-indent: 5px; 
         }
    
 }

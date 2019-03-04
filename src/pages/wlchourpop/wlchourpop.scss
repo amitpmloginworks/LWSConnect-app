@@ -1,0 +1,74 @@
+page-wlchourpop {
+    .div-main{
+        width: 96%;
+        border-radius: 6px;
+        margin: auto;
+        margin-top: 100%;   
+    }
+
+    .content-md{   
+        background-color: rgba(0,0,0,0.7);
+    }
+    .content-ios{    
+        background-color: rgba(0,0,0,0.7);
+    }
+
+    .button-md {
+        background-color: #FFFFFF;
+        color: #00408A;
+        font-size: 17px;
+        font-family: "Lato-Black";  
+        box-shadow: none !important;  
+        -webkit-box-shadow: none !important; 
+    }
+    .button-ios {  
+       background-color: #FFFFFF;
+       color: #00408A; 
+       font-size: 17px;
+       font-family: "Lato-Black";
+       box-shadow: none !important;
+       -webkit-box-shadow: none !important;  
+    }
+
+    .rowbtn {  
+    
+    margin: auto;
+    border: 1px solid #FFFFFF;
+    min-height: 6rem;
+    border-radius: 25px;
+    }
+
+    .p-text {
+       color: #363636;
+       text-align: left;
+       font-size:15px;  
+       font-family:"Lato-Regular";    
+    }
+    .divinner1 {
+        width: 26%;
+        float: left;
+        text-align: right;
+    }
+.divinner2 {
+    width: 50%;
+    float: left;
+    }
+    .divinner3 {
+        color: #fff;
+    width: 70%;
+    font-size: 18px;
+    margin-top: -18px;  
+    }
+
+    .rowstop {
+      padding-top: 18%;
+    }
+
+    @media only screen and (min-height:732px){     
+        .rowstop {
+            padding-top: 11.5%; 
+          }
+    }
+
+
+}

@@ -15,13 +15,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AddtaskPage {
   onTask:boolean = false;  
-  onTaskPower:boolean = false;
+  onTaskPower:boolean = false; 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
   }
 
-  onChangeTask()  { this.onTask=true;    }
+  onChangeTask()  { this.onTask=true;    }  
+
   onChangeTaskPower() { this.onTaskPower=true;   } 
-  GotoNext(){
+
+  GotoNext()  {
      
   }
    

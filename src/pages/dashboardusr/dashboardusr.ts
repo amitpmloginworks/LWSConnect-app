@@ -6,6 +6,13 @@ import { UpgradeplanmorePage } from '../upgradeplanmore/upgradeplanmore';
 import { UpgradeplanPage } from '../upgradeplan/upgradeplan';
 import { NotificationPage } from '../notification/notification';   
 
+import FusionCharts from 'fusioncharts/core'
+ 
+// include chart from viz folder - import ChartType from fusioncharts/viz/[ChartType];
+import Column2D from 'fusioncharts/viz/column2d'; 
+import Doughnut2d from 'fusioncharts/viz/doughnut2d'; 
+import { AddtaskPage } from '../addtask/addtask';
+
 /**
  * Generated class for the DashboardusrPage page.
  *
@@ -23,30 +30,127 @@ export class DashboardusrPage {
   @ViewChild('doughnutCanvas') doughnutCanvas;
   doughnutChart: any;  
 
+   
   constructor(public navCtrl: NavController, public navParams: NavParams) {
  
   }
  
-  AdditionalBtn(){
-    this.navCtrl.push(UpgradeplanmorePage);
+  CreateBtn() {     
+    this.navCtrl.push(AddtaskPage); 
   }
   UpgradeBtn(){
     this.navCtrl.push(UpgradeplanPage);  
   }
-
   NotifyBtn(){  
     this.navCtrl.push(NotificationPage);
+  }  
+ 
+ChartjsCall(){
+    // add chart as dependency - FusionCharts.addDep(ChartType);
+FusionCharts.addDep(Doughnut2d);  
+// instantiate the chart.
+var chartInstance = new FusionCharts({
+      type: 'doughnut2d',  
+      renderAt: 'chart-container',
+      width: '100%', 
+      height: '50%', 
+      dataFormat: 'json',
+      dataSource: {
+        "chart": {  
+          "numberPrefix": "$",
+          "bgColor": "#ffffff",
+          "startingAngle": "310",
+          "showLegend": "1",
+          "defaultCenterLabel": "Total revenue: $64.08K",
+          "centerLabelBold": "1",
+          "showTooltip": "0",
+          "decimals": "0",
+       
+        },
+        "data": [{
+          "label": "Food",
+          "value": "285040"
+        }, {
+          "label": "Apparels",
+          "value": "146330"
+        }]
+      }  
+  // type: 'doughnut2d', 
+  // renderAt: "chart-container", 
+  // width: "600",
+  // height: "400",
+  // dataFormat: "json",
+  // dataSource: {
+  //     chart: {
+  //       caption: "Countries With Most Oil Reserves [2017-18]",
+  //       subcaption: "In MMbbl = One Million barrels"
+  //     },
+  //     data: [
+  //       { label: "Venezuela", value: "290000" },
+  //       { label: "Saudi", value: "260000" },
+  //       { label: "Canada", value: "180000" },
+  //       { label: "Iran", value: "140000" },
+  //       { label: "Russia", value: "115000" },
+  //       { label: "UAE", value: "100000" },
+  //       { label: "US", value: "30000" },
+  //       { label: "China", value: "30000" }
+  //     ]
+  //   }
+
+
+
+
+});
+// render the chart
+chartInstance.render();
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DashboardusrPage'); 
+   
+
+    this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
+      type: 'doughnut',
+      data: {
+        labels: ["Red", "Blue"],  
+        datasets: [{
+        
+          data: [
+            // { "label": "name","value":"75" },{ "label": "name1","value":"25" }
+            "25","5"   
+          ], 
+          backgroundColor:['#4DD8A0','#fff']
+        }]    
+      },
+      options: {
+        legend: {
+          display: true, 
+          position :top
+        },
+        tooltips: {
+          enabled: true
+        },
+        title: {
+          display: false,
+          fontStyle: 'bold',
+          fontSize: 9    
+        },
+        cutoutPercentage : 40        
+      },
+    });  
+  }     
+
+  ChartDoughtnut(){
     this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
       type: 'doughnut',
       data: {
         datasets: [{
-          data: [80,50], 
+          data: [
+            "25","75" 
+          ], 
           backgroundColor: [
-            '#4BF3F3','#FF6182' 
+            '#FFF','linear-gradient(#4DD8A0,#AAE37D)' 
           ]
         }]    
       },
@@ -63,9 +167,11 @@ export class DashboardusrPage {
           fontStyle: 'bold',
           fontSize: 9    
         },
-        cutoutPercentage : 75        
+        cutoutPercentage : 40        
       },
     });
   }
+
+
 
 }

@@ -66,8 +66,11 @@ page-tasksearch {
         border-radius: 32px !important;
         width: 98%;
         margin-left: 4px !important;
-        background-image: linear-gradient($content-btn1,$content-btn2);  
+       // background-image: linear-gradient($content-btn1,$content-btn2);  
         height: 4.6rem;
+        border-color: $content-btn1;
+            color: $content-btnWhite;
+            background: $content-btn3;
       }
 
       .list-md {
@@ -232,7 +235,7 @@ page-tasksearch {
         text-align: center; 
         }
 
-        textarea.text-input {
+        textarea.text-input {   
             display: block;
             margin-top: 10px;
             text-indent: 12px;

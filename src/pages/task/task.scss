@@ -18,7 +18,7 @@ page-task {
         color: map-get($ContentColor, itemBgWhite);
         //margin-right: 75px;
     } 
-    .scroll-content{  
+    .scroll-content{    
         padding-left: 0px !important;
         padding-right: 0px !important;
     }
@@ -27,7 +27,7 @@ page-task {
         padding-right: 24px !important;  
     }
     .rows-header{
-        margin-top: 19px;
+        margin-top: 2px;
     }
     .img-clock {
         width: 23%;
@@ -42,30 +42,43 @@ page-task {
         width:100%; 
     }
     .col-subdiv1 {
-        width: 33%;
+        width: 25%;
         float: left;
-        text-align: right;
+        height: 1px;
+        margin-top: 13px;
+        background: #ADADAD;
     }
     .col-subdiv2 {
-        width: 41%;
+        width: 50%;
         float: left;
+        text-align: center;
+    }
+    .col-subdiv3 {
+        width: 25%;
+        float: left;
+        height: 1px;
+        margin-top: 13px;
+        background: #ADADAD;  
     }
 
     .btn-play {
         box-shadow:none;
         -webkit-box-shadow:none;
         border-radius: 55px !important;
-        width: 99%;  
+        width: 100%;   
         font-family: $Lato-medium;  
-        font-size: 16px; 
-        background-image: linear-gradient($content-btn1,$content-btn2);  
+        font-size: 14px;  
+        color:$content-btnWhite;
+        background:$content-btn3;    
+       // background-image: linear-gradient($content-btn3,$content-btn3);  
         height: 6rem; 
+        z-index: -1;
     }
     .img-btnfooter {
-        width: 20%;
-        float: right;
-        margin-right: -35%;
-        margin-left: 18%;
+        display: block;
+        width: 100%;
+        margin-top: -64px;
+        margin-left: 1px;      
     }
 
     
@@ -238,6 +251,83 @@ page-task {
                     color:#ADADAD; 
                   } 
 
+
+
+
+
+  
+// chat msg css
+
+.chat-message {
+    border-radius: 5px;
+    display: inline-block;
+    padding-top: 8px;
+    padding-bottom: 12px;
+    position: relative;
+}
+.chat-message:before { 
+    // content: "\00a0";
+    // display: block;
+    // height: 16px;
+    // width: 9px;
+    // position: absolute;
+    // bottom: -7.5px;
+}
+.chat-message.right {
+    background-color: #E9F6FF;  
+    float: right;
+    max-width: 81%; 
+  
+}
+.chat-message.right:before {
+   // background-color: #488aff;
+   // right: 10px;
+    //-webkit-transform: rotate(118deg) skew(-5deg);
+    //transform: rotate(118deg) skew(-5deg);
+}
+.chat-message.left {
+    background-color: #E9F6FF;
+    float: left;
+    max-width: 100%;
+    margin-left: 0px !important;
+    padding-left: 9px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+    }
+.chat-message.left:before {
+   // background-color: #E9F6FF;
+    //color: #000000;  
+    //left: 10px;
+   // -webkit-transform: rotate(70deg) skew(5deg);
+   // transform: rotate(70deg) skew(5deg);
+}
+.message-detail {
+    font-family: $Lato-regular; 
+    font-size: 14px;  
+    color: #000000; 
+}
+.label-md {
+    margin: 9px 6px 4px 0px;
+} 
+.Leftheadermsg {
+    font-family: $Lato-regular; 
+    font-size: 14px;  
+    color: #ADADAD;     
+}
+.Rightheadermsg {
+    font-family: $Lato-regular; 
+    font-size: 14px;  
+    color: #ADADAD; 
+    float: right;   
+}
+.img-profile  {
+    width: 70%;
+    border-radius: 50%; 
+}
+.list-md {
+    margin: 10px 0 11px;
+}
+   
 
      
 }

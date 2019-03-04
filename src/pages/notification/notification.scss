@@ -36,12 +36,12 @@ page-notification {
 
     .item-md {
      padding-left: 0px;   
-     border-left: 4px solid map-get($ContentColor,itemleftborder); 
+     //border-left: 4px solid map-get($ContentColor,itemleftborder); 
     //  -webkit-box-shadow: 0 8px 6px -9px #ccc; 
     //  -moz-box-shadow: 0 8px 6px -9px #817f7f;  
     //  box-shadow: 0 10px 7px -9px #817f7f;
-    border-bottom: 2px solid #c8c5c5; 
-    margin-bottom: 8px;    
+    border-bottom: 1px solid #c8c5c5; 
+    //margin-bottom: 8px;     
     }
     .p-txt {
         padding-left: 10px;  
@@ -49,6 +49,10 @@ page-notification {
 
     .item-block {
         min-height: 6.4rem; 
+    }
+
+    .item-md [item-left], .item-md [item-right], .item-md [item-start], .item-md [item-end] {
+        margin:0px !important;  
     }
 
 

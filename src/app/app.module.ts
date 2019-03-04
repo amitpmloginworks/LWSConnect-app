@@ -3,6 +3,8 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal'; 
+import { HttpModule } from '@angular/http'; 
 
 import { MyApp } from './app.component';
 
@@ -18,15 +20,16 @@ import { AddtasknewPage } from '../pages/addtasknew/addtasknew';
 import { DashboardusrPage } from '../pages/dashboardusr/dashboardusr';  
 import { HourslogPage } from '../pages/hourslog/hourslog'; 
 import { UpgradeplanPage } from '../pages/upgradeplan/upgradeplan';  
-import { TaskPage } from '../pages/task/task'; 
-   
+import { TaskPage } from '../pages/task/task';  
 import { TaskallPage } from '../pages/taskall/taskall';   
 import { TasksearchPage } from '../pages/tasksearch/tasksearch';  
-
 import { PaymentPage } from '../pages/payment/payment';    
 import { ProfilePage } from '../pages/profile/profile'; 
+import { UpgradeplanmorePage } from '../pages/upgradeplanmore/upgradeplanmore';
+import { WelcomescreenPage } from '../pages/welcomescreen/welcomescreen'; 
+import { WlchourpopPage } from '../pages/wlchourpop/wlchourpop'; 
 
-import { UpgradeplanmorePage } from '../pages/upgradeplanmore/upgradeplanmore';   
+import { SecurityProvider } from '../providers/security/security';   
 
 @NgModule({
   declarations: [
@@ -47,10 +50,13 @@ import { UpgradeplanmorePage } from '../pages/upgradeplanmore/upgradeplanmore';
     TasksearchPage,
     PaymentPage,
     ProfilePage,
-    UpgradeplanmorePage
+    UpgradeplanmorePage,
+    WelcomescreenPage,
+    WlchourpopPage
   ],
   imports: [
     BrowserModule,
+    HttpModule,  
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -68,16 +74,20 @@ import { UpgradeplanmorePage } from '../pages/upgradeplanmore/upgradeplanmore';
     HourslogPage ,
     UpgradeplanPage ,
     TaskPage ,
-    TaskallPage, 
-    TasksearchPage ,
+    TaskallPage,   
+    TasksearchPage , 
     PaymentPage,
     ProfilePage,
-    UpgradeplanmorePage   
+    UpgradeplanmorePage,
+    WelcomescreenPage ,
+    WlchourpopPage      
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    PayPal,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    SecurityProvider
   ]
 })
 export class AppModule {}

@@ -21,38 +21,53 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding>   
+    <!-- <div id="chart-container"></div>   -->
   <ion-grid class="gridcl"> 
-  
 
-      <canvas #doughnutCanvas class="chartCl"> </canvas>      
-   
-<div class="timeleft">30 hours</div> 
-  
-<ion-row no-margin no-padding class="rows-hours">
+      <ion-row no-margin no-padding>
+          <ion-col col-7 no-margin no-padding>  
+           </ion-col>       
+          <ion-col col-5 no-margin no-padding> 
+             <button ion-button outline (click)="CreateBtn()" style="border-radius: 8px;">CREATE A TASK</button>       
+          </ion-col>    
+      </ion-row>  
+
+
+     <canvas #doughnutCanvas class="chartCl" chart-labels="labels"> </canvas>         
+<!-- <div class="timeleft">30 hours</div>  -->
+<!-- <ion-row no-margin no-padding class="rows-hours">
     <ion-col no-margin no-padding col-6 >    
       <div class="div-bglog"></div> <p no-margin no-padding class="p-hourlog">25 hours logged</p> 
     </ion-col>
     <ion-col no-margin no-padding col-6 > 
         <div class="div-bgleft"></div> <p no-margin no-padding class="p-hourleft">5 hours left</p>
     </ion-col>
-</ion-row>
+</ion-row> -->
 
-<ion-row no-margin no-padding class="rows-plans">
+<!-- <ion-row no-margin no-padding class="rows-plans">
     <ion-col no-margin no-padding col-12 text-center >      
        <p no-margin no-padding class="p-plans">Current plan expires in 30 days</p>   
     </ion-col>
-</ion-row>
+</ion-row> -->
 
       <ion-row no-margin no-padding class="rows-btnlog">     
-          <ion-col col-12 no-margin no-padding>         
-             <button ion-button full class="btn-fullbg" (click)="AdditionalBtn()">BUY ADDITIONAL HOURS</button>   
+          <ion-col col-12 no-margin no-padding text-center>         
+             <!-- <button ion-button full class="btn-fullbg" (click)="AdditionalBtn()">
+               BUY ADDITIONAL HOURS  
+              </button>    -->    
+              <button ion-button no-margin no-padding class="btn-img" (click)="navigatetoschooldetails()" >
+                  <img src="assets/imgs/newimg/group652.png" style="width: 77%;" >  
+              </button>  
           </ion-col>
       </ion-row>   
 
-      <ion-row no-margin no-padding>       
-          <ion-col col-12 no-margin no-padding>     
-             <button ion-button outline (click)="UpgradeBtn()">UPGRADE PLAN</button>       
+      <ion-row no-margin no-padding>
+          <ion-col col-7 no-margin no-padding>
+            <p no-margin no-padding class="p-plans">Current plan expires in 5 days</p>
+           </ion-col>       
+          <ion-col col-5 no-margin no-padding> 
+             <button ion-button outline (click)="UpgradeBtn()" class="btnOptions">OPTIONS</button>       
           </ion-col>
       </ion-row>    
 

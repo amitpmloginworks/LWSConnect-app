@@ -23,8 +23,8 @@
 
             <img class="img-pass" src="assets/imgs/newimg/group545.png">   
             <ion-item class="item-pass">    
-              <ion-label floating *ngIf="onTaskPower" [ngStyle]="(onTaskPower)?{'display':'none'}:{ }">Power Bi Visualization</ion-label> 
-              <ion-label *ngIf="!onTaskPower">Power Bi Visualization</ion-label>  
+              <ion-label floating *ngIf="onTaskPower" [ngStyle]="(onTaskPower)?{'display':'none'}:{ }">Category*</ion-label> 
+              <ion-label *ngIf="!onTaskPower">Category*</ion-label>   
                <ion-select [(ngModel)]="PowerSelect" interface="popover" [ngStyle]="(onTaskPower)?{'margin-top':'6px','margin-left':'10px'}:{}" #C (ionChange)="onChangeTaskPower()">   
                  <ion-option value="IPU">IPU</ion-option>
                  <ion-option value="ILR">ILR</ion-option>  
@@ -32,24 +32,27 @@
             </ion-item>
 
 
-      
+            <img class="img-pass" src="assets/imgs/newimg/group546.png">  
+            <ion-item class="item-pass">    
+               <ion-input type="text" [(ngModel)]="password" placeholder="Title*"></ion-input> 
+            </ion-item>
   
           
     
-          <div class="MainDiv">
+          <!-- <div class="MainDiv">  
               <div class="imagesec">
                   <img class="imgagesrc-img" src="assets/imgs/newimg/group546.png">   
-              </div>
+              </div>  
               <div class="textsec"> 
                   <p no-padding no-margin style="margin-left: 17%;margin-top: 13px;color: #4D7390;">Enter Subject</p>   
               </div>  
-          </div>    
+          </div> -->      
   
           <div class="MainDiv1"> 
   
-            <div style="padding-top: 35px;"> 
+            <div >  
                 <ion-item class="item-txtarea"> 
-                    <ion-textarea rows="5" placeholder="Please describe your problem here."></ion-textarea>
+                    <ion-textarea rows="5" placeholder="Please add task details here."></ion-textarea>
                 </ion-item> 
                 <img class="icon-imgtxtarea" src="assets/imgs/newimg/group553_18px.png">      
             </div>
@@ -62,7 +65,7 @@
   
         <ion-row no-margin no-padding margin-bottom>   
           <ion-col col-12 no-margin no-padding>    
-             <button ion-button full (click)="GotoNext()">CREATE A TASK</button>  
+             <button ion-button full (click)="GotoNext()">GO</button>  
           </ion-col>
         </ion-row>
          

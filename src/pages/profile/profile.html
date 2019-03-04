@@ -18,7 +18,7 @@
     
   <ion-grid class="gridcl">
      
-      <ion-list style="margin-top: 36px;"> 
+      <ion-list style="margin-top: 36px;margin-bottom: 73px;">   
 
 <ion-row no-padding no-margin >
 <ion-col col-12 no-padding no-margin text-center>    
@@ -28,15 +28,45 @@
 
           <img class="img-pass" src="assets/imgs/newimg/group551.png">      
           <ion-item class="item-pass">     
-             <ion-input type="text" [(ngModel)]="username" placeholder="peter07@abc.com"></ion-input>  
+             <ion-input type="email" [(ngModel)]="email" placeholder="peter07@abc.com"></ion-input>  
           </ion-item>   
-
+ 
 
           <img class="img-pass" src="assets/imgs/newimg/group544.png">      
           <ion-item class="item-pass">     
-             <ion-input type="text" [(ngModel)]="username" placeholder="Mobile Number"></ion-input>  
+             <ion-input type="number" [(ngModel)]="mobile" placeholder="Mobile Number"></ion-input>  
+          </ion-item>  
+ 
+          <img class="img-pass" src="assets/imgs/newimg/group544.png">      
+          <ion-item class="item-pass">     
+             <ion-input type="text" [(ngModel)]="home" placeholder="Street Address"></ion-input>  
           </ion-item>  
 
+          <ion-row no-padding no-margin>
+            <ion-col no-padding no-margin col-6 style="padding-right: 7px;"> 
+             <ion-item class="item-passhalf" style="text-indent: 14px;">      
+                <ion-label floating *ngIf="onCountry" [ngStyle]="(onCountry)?{'display':'none'}:{ }">Country</ion-label> 
+                <ion-label *ngIf="!onCountry">Country</ion-label>  
+                 <ion-select [(ngModel)]="CountrySelect" interface="popover" [ngStyle]="(onCountry)?{'margin-top':'6px','margin-left':'10px'}:{}" #C (ionChange)="onChangeCountry()">   
+                   <ion-option value="India">India</ion-option>
+                 </ion-select>
+              </ion-item>  
+            </ion-col> 
+           
+            <ion-col no-padding no-margin col-6 style="padding-left: 7px;"> 
+              <ion-item class="item-passhalf">         
+                <ion-input type="text" [(ngModel)]="state" placeholder="State"></ion-input>  
+             </ion-item>    
+            </ion-col>
+          </ion-row>
+
+          <ion-row no-padding no-margin>
+            <ion-col no-padding no-margin col-6 style="padding-right: 7px;">  
+              <ion-item class="item-passhalf" >     
+                <ion-input type="text" [(ngModel)]="zipcode" placeholder="Zip"></ion-input>  
+             </ion-item>  
+            </ion-col>
+          </ion-row>
 
        
       </ion-list> 
