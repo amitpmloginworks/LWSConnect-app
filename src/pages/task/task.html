@@ -12,14 +12,15 @@
   </ion-header> 
 
 <ion-content >
+     
     <ion-grid class="gridcl">  
         <div *ngFor="let tasklists of tasklistArr;let i= index;">
         <ion-row no-padding no-margin class="rows-header">
           <ion-col col-12 no-padding no-margin  text-center>    
-            <div class="col-maindiv">           
-               <div class="col-subdiv1"></div>
-               <div class="col-subdiv2"><p no-padding no-margin class="p-span">Monday, January 28, 2019</p></div>
-               <div class="col-subdiv3"></div>
+            <div class="col-maindiv">              
+               <div class="col-subdiv1" [ngStyle]="(tasklists.modifydate == 'Today') ? { 'width': '42%' } : {  } "></div>
+               <div class="col-subdiv2" [ngStyle]="(tasklists.modifydate == 'Today') ? { 'width': '16%' } : {  } "><p no-padding no-margin class="p-span">{{ tasklists.modifydate }}</p></div>
+               <div class="col-subdiv3" [ngStyle]="(tasklists.modifydate == 'Today') ? { 'width': '42%' } : {  } "></div>
             </div>   
           </ion-col>
         </ion-row>   
@@ -30,16 +31,22 @@
                 </ion-col>
         <ion-col col-10 no-padding no-margin *ngIf="message.hands == 2" [ngStyle]="(i != 0) ? { 'margin-top': '17px' } : {  } ">  
             <p no-padding no-margin class="Leftheadermsg">
-                {{ message.comment_author+", "+message.posttime }}
+                {{ message.comment_author+", "+message.posttime }} 
             </p> 
                 <ion-item no-padding no-margin [ngClass]="message.styleClass">
-                        <p text-wrap class="message-detail" no-padding no-margin >{{message.comment_author}} </p> 
+                        <!-- <p text-wrap class="message-detail" no-padding no-margin > 
+                            {{message.comment_author}} 
+                        </p>  -->
+                         <!-- <div id="content_data" class="message-detail" [innerHTML]="message.comment_content | htmlbypas:message.comment_content:true">   </div>     -->
+                         <div  class="message-detail" [innerHTML]="message.comment_content | htmlbypas:'html'"></div>      
                 </ion-item>
         </ion-col>  
             <ion-col col-12 no-padding no-margin *ngIf="message.hands == 1" [ngStyle]="(i != 0) ? { 'margin-top': '17px' } : {  } " >  
                 <p no-padding no-margin class="Rightheadermsg"> {{ message.posttime }}</p> <br>      
             <ion-item no-padding no-margin [ngClass]="message.styleClass">
-                <p text-wrap class="message-detail" no-padding no-margin >{{message.comment_author}} </p> 
+                <!-- <p text-wrap class="message-detail" no-padding no-margin >         </p>  -->  
+                <!-- <div id="content_data" class="message-detail" [innerHTML]="message.comment_content | htmlbypas:message.comment_content:true">   </div>    -->  
+               <div  class="message-detail" [innerHTML]="message.comment_content | htmlbypas:'html'"></div>   
             </ion-item>
             </ion-col>
         </ion-row>
@@ -69,22 +76,22 @@
 <ion-footer no-padding no-margin>  
     <ion-row no-margin no-padding class="gridcl" margin-bottom>  
         <ion-col col-12 no-margin no-padding>  
-
-            <!-- <div class="MainDivTxt1"> 
-                <div style="padding-top: 10px;"> 
+    
+        <div class="MainDivTxt1"> 
+                <div style="padding-top: 10px;">    
                     <ion-item class="item-txtarea"> 
-                        <ion-textarea rows="5" placeholder="Type your reply"></ion-textarea>  
+                        <ion-textarea rows="5" [(ngModel)]="replyarea" placeholder="Type your reply"></ion-textarea>  
+                         
                     </ion-item> 
                     <img class="icon-imgtxtarea" src="assets/imgs/newimg/group553_18px.png">      
                 </div>
-            </div>   -->   
-  
+        </div>  
             
 <div style="width:100%;">   
-    <div style="width:96%;float: left;">
-        <button class="btn-play" ion-button full (click)="GotoNext()">REPLY</button>
+    <div style="width:96%;float: left;" (click)="SendReply()">
+        <button class="btn-play" ion-button full >REPLY</button>     
      </div>
-    <div style="width:19%;float: right;">    
+    <div style="width:19%;float: right;" menuToggle="right">      
         <img src="assets/imgs/newimg/group671.png" class="img-btnfooter">
     </div>
 </div>

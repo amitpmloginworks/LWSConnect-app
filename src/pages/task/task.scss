@@ -132,10 +132,10 @@ page-task {
                 border-radius: 70px;
                 margin-top: 18px;
             }
-            .MainDivTxt1 {
-                border-right: 1px solid #CECECE;  
-                border-left: 1px solid #CECECE;
-                border-bottom: 1px solid #CECECE;
+            .MainDivTxt1 { 
+                // border-right: 1px solid #CECECE;  
+                // border-left: 1px solid #CECECE;
+                // border-bottom: 1px solid #CECECE;
                 width: 100%;
                 min-height: 12.4rem;
                 border-radius: 16px; 
@@ -146,26 +146,23 @@ page-task {
             .icon-imgtxtarea {    
                 position: absolute;
                 z-index: 1000;
-                right: 11%;
+                right: 4%;
                 margin-top: -30px; 
                 float: right;
             }
  
             .item-txtarea{
-                border-radius: 20px !important;
+                border-radius: 10px !important;  
                 border:none; 
                 padding-left: 0px !important;
-                color: #46476A;
+                color: #ADADAD;  
                 background-color: #fff;
                 font-size: 14px !important;
                 text-indent: 50px;
-                border: 1px solid #fff !important;  
+                border: 1px solid #707070 !important;   
             }
           
-            textarea.text-input {   
-                display: block;
-                margin-top: 10px;    
-            }
+      
 
             .p-name {
                 color: #4D7390;
@@ -184,25 +181,29 @@ page-task {
             }
 
 
- 
+            textarea.text-input {   
+                display: block;
+                margin-top: 10px;    
+            }
+
             textarea::-webkit-input-placeholder {
                 color: #ADADAD !important;
-                text-align: center;
+                text-align: left;
             }
                  
                 textarea:-moz-placeholder { /* Firefox 18- */
                 color: #ADADAD !important; 
-                text-align: center; 
+                text-align: left; 
                 }
                  
                 textarea::-moz-placeholder {  /* Firefox 19+ */
                 color: #ADADAD !important;
-                text-align: center;  
+                text-align: left;  
                 }
                  
                 textarea:-ms-input-placeholder {  
                 color: #ADADAD !important;   
-                text-align: center; 
+                text-align: left; 
                 }
         
                 textarea.text-input {
@@ -253,7 +254,7 @@ page-task {
 
 
 
-
+  
 
   
 // chat msg css

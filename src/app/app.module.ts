@@ -30,6 +30,7 @@ import { WelcomescreenPage } from '../pages/welcomescreen/welcomescreen';
 import { WlchourpopPage } from '../pages/wlchourpop/wlchourpop'; 
 
 import { SecurityProvider } from '../providers/security/security';   
+import { HtmlbypasPipe } from '../pipes/htmlbypas/htmlbypas';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { SecurityProvider } from '../providers/security/security';
     ProfilePage,
     UpgradeplanmorePage,
     WelcomescreenPage,
-    WlchourpopPage
+    WlchourpopPage,
+    HtmlbypasPipe
   ],
   imports: [
     BrowserModule,

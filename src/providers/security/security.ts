@@ -38,11 +38,21 @@ loginCheck(username,password)  {
 
 }
 
-MyTaskDetail(postid)  {    
+MyTaskDetail(postid)  {        
   let headers = new Headers({ 'content-type': 'application/json'})
   let requestOptions=new RequestOptions({headers:headers})
   let param=JSON.stringify({  postid:postid, userid:localStorage['userid']  })   
   return this.http.post(ENV.mainApi + '/mytask',param,requestOptions).timeout(ENV.timeout).map((data)=>{  
+    return data.json(); 
+  },  err => {  console.error('Oops:', err.message);  }
+  )
+}
+
+MyTaskDetailBtn(postid,postcontent)  {    
+  let headers = new Headers({ 'content-type': 'application/json'})
+  let requestOptions=new RequestOptions({headers:headers})
+  let param=JSON.stringify({  postid:postid, userid:localStorage['userid'],postcontent:postcontent  })   
+  return this.http.post(ENV.mainApi + '/mytaskreply',param,requestOptions).timeout(ENV.timeout).map((data)=>{  
     return data.json(); 
   },  err => {  console.error('Oops:', err.message);  }
   )
