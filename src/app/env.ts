@@ -12,8 +12,13 @@ const HTTP_TIMEOUT: number = 60000;
     }
 
     export const Live:Enviroment={   
-	    mainApi:'http://10.0.0.67:5000', 
+	    mainApi:'http://10.0.0.67:3555',  
+	    timeout: HTTP_TIMEOUT  
+    }
+
+    export const Livefinal:Enviroment={   
+	    mainApi:'http://182.156.204.228:3555',  
 	    timeout: HTTP_TIMEOUT  
     }
   
-    export const ENV:Enviroment=Live;   
+    export const ENV:Enviroment=Livefinal;   

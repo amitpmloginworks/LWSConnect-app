@@ -4,8 +4,8 @@ page-task {
         background: map-get($HeaderList, BackgroundC); 
     }
     .content-md { 
-        color: map-get($ContentColor, DarkSlate); 
-        background-color: map-get($ContentColor,bgcolor);   
+        //color: map-get($ContentColor, DarkSlate); 
+        background-color: map-get($ContentColor,itemBgWhite);     
         //background-image: url('../assets/imgs/newimg/books-outline1.png');        
     }
 
@@ -13,10 +13,10 @@ page-task {
 
     .toolbar-title-md   {
         padding: 0 12px;
-        font-size: 14px;
-        font-weight: bold;
+        font-size: 13px;
         color: map-get($ContentColor, itemBgWhite);
-        //margin-right: 75px;
+        font-family:$Lato-regular;
+        margin-right: 60px;
     } 
     .scroll-content{    
         padding-left: 0px !important;
@@ -35,21 +35,21 @@ page-task {
     .p-span {
         margin-top: 6px;
         font-size: 12px;
-        color: map-get($ContentColor, pColor2);
+        color: map-get($ContentColor, pchathead);
         font-family: $Lato-regular;
     }
     .col-maindiv {
         width:100%; 
     }
     .col-subdiv1 {
-        width: 25%;
+        width: 28%;
         float: left;
         height: 1px;
         margin-top: 13px;
         background: #ADADAD;
     }
     .col-subdiv2 {
-        width: 50%;
+        width: 47%;
         float: left;
         text-align: center;
     }
@@ -66,19 +66,20 @@ page-task {
         -webkit-box-shadow:none;
         border-radius: 55px !important;
         width: 100%;   
-        font-family: $Lato-medium;  
+        font-family: $Lato-heavy;  
         font-size: 14px;  
         color:$content-btnWhite;
         background:$content-btn3;    
        // background-image: linear-gradient($content-btn3,$content-btn3);  
-        height: 6rem; 
+        height: 4.4rem; 
         z-index: -1;
+        margin-left: 5px;
     }
     .img-btnfooter {
-        display: block;
-        width: 100%;
-        margin-top: -64px;
-        margin-left: 1px;      
+           display: block;
+    width: 77%;
+    margin-top: -48px;
+    margin-left: 6px;
     }
 
     
@@ -127,26 +128,27 @@ page-task {
 
             .MainDivTxt {
                 border: 1px solid #ACDBFF;
-                width: 100%;
-                min-height: 4.6rem;
+                width: 100%;  
                 border-radius: 70px;
-                margin-top: 18px;
+                margin-bottom: 8px;
+                
             }
             .MainDivTxt1 { 
                 // border-right: 1px solid #CECECE;  
                 // border-left: 1px solid #CECECE;
                 // border-bottom: 1px solid #CECECE;
-                width: 100%;
-                min-height: 12.4rem;
-                border-radius: 16px; 
-                margin-bottom: 24px; 
+                width: 95%;
+                border-radius: 16px;
+                margin-bottom: 8px;
+                margin-left: 7px;
+                
             }
 
 
             .icon-imgtxtarea {    
                 position: absolute;
                 z-index: 1000;
-                right: 4%;
+                right: 6%;
                 margin-top: -30px; 
                 float: right;
             }
@@ -209,7 +211,7 @@ page-task {
                 textarea.text-input {
                     display: block;
                     margin-top: 10px;
-                    text-indent: 12px;
+                    
                 } 
 
                 .item-md.item-input.input-has-focus .item-inner {
@@ -260,10 +262,12 @@ page-task {
 // chat msg css
 
 .chat-message {
-    border-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
     display: inline-block;
-    padding-top: 8px;
-    padding-bottom: 12px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     position: relative;
 }
 .chat-message:before { 
@@ -277,8 +281,8 @@ page-task {
 .chat-message.right {
     background-color: #E9F6FF;  
     float: right;
-    max-width: 81%; 
-  
+    max-width: 84%;
+    margin-left: 51px;
 }
 .chat-message.right:before {
    // background-color: #488aff;
@@ -313,16 +317,18 @@ page-task {
 .Leftheadermsg {
     font-family: $Lato-regular; 
     font-size: 14px;  
-    color: #ADADAD;     
+    color: #ADADAD; 
+    margin-bottom: 3px;    
 }
 .Rightheadermsg {
     font-family: $Lato-regular; 
     font-size: 14px;  
     color: #ADADAD; 
-    float: right;   
+    float: right;  
+    margin-bottom: 3px;  
 }
 .img-profile  {
-    width: 70%;
+    width: 80%;
     border-radius: 50%; 
 }
 .list-md {
@@ -330,5 +336,38 @@ page-task {
 }
    
 
+.item-md.item-block .item-inner {
+    padding-right: 8px;
+    padding-left: 10px;
+    border-bottom: none;
+}
+
+
+.text-input {
+    display: block;
+    margin-top: 10px;
+    text-indent: 3px;
+}
+
+@media only screen and (max-height:732px) {
+    .img-btnfooter {
+        display: block;
+        width: 75%;
+        margin-top: -48px;
+        margin-left: 9px; 
+    } 
+}
+
+.label-md {
+    margin : 0px !important;
+}
+
+.bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default {
+    color: #fff;
+}
+    
+ion-footer {
+    background: #fff;  
+}
      
 }

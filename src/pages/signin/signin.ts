@@ -45,14 +45,14 @@ export class SigninPage {
               console.log(result.getdata[0].ID)  
               localStorage['loginactive']="loginusr";
                 localStorage['userid']=result.getdata[0].ID;        
-                  this.navCtrl.setRoot(DashboardusrPage);       
+                  this.navCtrl.setRoot(DashboardusrPage);         
          } 
          else {
            this.toastCtrl.create({ message: `Please Enter Valid credentials!`, duration: 4000, position: 'top' }).present(); return;
          }
        }, err => {
-         console.log("err", err);
-         loading.dismiss();  
+         console.log("err", err); 
+         loading.dismiss();    
          //this.toastCtrl.create({ message: `Please Enter valid credentials!!`, duration: 4000, position: 'top' }).present(); return;
        }); 
   }

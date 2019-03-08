@@ -31,7 +31,7 @@ import { WelcomescreenPage } from '../pages/welcomescreen/welcomescreen';
 export class MyApp {  
   @ViewChild(Nav)nav:Nav 
      
-  rootPage:any = TaskPage;                                                                                  
+  rootPage:any = SigninPage;                                                                                     
 
   //  https://xd.adobe.com/spec/65ae4756-638a-4422-75bf-25cbe38ea275-139f/   // user 
 
@@ -41,6 +41,17 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+
+          
+        if(localStorage['loginactive']=="" || localStorage['loginactive']==null ) { 
+           this.nav.setRoot(SigninPage);   
+        }
+        else  {  
+             this.nav.setRoot(DashboardusrPage);   
+        }
+    
+
+
     });
   }
 
@@ -54,6 +65,7 @@ export class MyApp {
     this.nav.setRoot(TaskallPage);  
   }
   LogoutBtn(){
+    localStorage.clear(); 
     this.nav.setRoot(SigninPage);  
   }
 

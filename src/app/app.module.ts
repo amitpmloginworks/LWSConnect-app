@@ -4,7 +4,11 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal'; 
-import { HttpModule } from '@angular/http'; 
+import { HttpModule } from '@angular/http';
+
+import { Camera } from '@ionic-native/camera';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
 
 import { MyApp } from './app.component';
 
@@ -88,6 +92,10 @@ import { HtmlbypasPipe } from '../pipes/htmlbypas/htmlbypas';
     StatusBar,
     SplashScreen,
     PayPal,
+    File,
+    FileTransfer,
+    FileTransferObject,
+    Camera,  
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SecurityProvider
   ]

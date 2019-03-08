@@ -26,11 +26,11 @@
         </ion-row>   
     <ion-list>  
         <ion-row no-padding no-margin *ngFor="let message of tasklists.second_array; let i=index;">
-                <ion-col col-2 no-padding no-margin *ngIf="message.hands == 2"  [ngStyle]="(i != 0) ? { 'margin-top': '17px' } : {  } ">  
-                        <img src="assets/icon/deafault_men.jpg" class="img-profile" >     
+                <ion-col col-2 no-padding no-margin *ngIf="message.hands == 2"  [ngStyle]="(i != 0) ? { 'margin-top': '17px' } : {  } ">    
+                        <img src="assets/icon/download.png" class="img-profile" >     
                 </ion-col>
         <ion-col col-10 no-padding no-margin *ngIf="message.hands == 2" [ngStyle]="(i != 0) ? { 'margin-top': '17px' } : {  } ">  
-            <p no-padding no-margin class="Leftheadermsg">
+            <p no-padding no-margin class="Leftheadermsg" >
                 {{ message.comment_author+", "+message.posttime }} 
             </p> 
                 <ion-item no-padding no-margin [ngClass]="message.styleClass">
@@ -38,7 +38,7 @@
                             {{message.comment_author}} 
                         </p>  -->
                          <!-- <div id="content_data" class="message-detail" [innerHTML]="message.comment_content | htmlbypas:message.comment_content:true">   </div>     -->
-                         <div  class="message-detail" [innerHTML]="message.comment_content | htmlbypas:'html'"></div>      
+                         <div  class="message-detail" [innerHTML]="message.comment_content | htmlbypas:'html'" text-wrap></div>      
                 </ion-item>
         </ion-col>  
             <ion-col col-12 no-padding no-margin *ngIf="message.hands == 1" [ngStyle]="(i != 0) ? { 'margin-top': '17px' } : {  } " >  
@@ -46,7 +46,7 @@
             <ion-item no-padding no-margin [ngClass]="message.styleClass">
                 <!-- <p text-wrap class="message-detail" no-padding no-margin >         </p>  -->  
                 <!-- <div id="content_data" class="message-detail" [innerHTML]="message.comment_content | htmlbypas:message.comment_content:true">   </div>    -->  
-               <div  class="message-detail" [innerHTML]="message.comment_content | htmlbypas:'html'"></div>   
+               <div  class="message-detail" [innerHTML]="message.comment_content | htmlbypas:'html'" text-wrap></div>    
             </ion-item>
             </ion-col>
         </ion-row>
@@ -74,24 +74,23 @@
      </ion-grid> 
 </ion-content>
 <ion-footer no-padding no-margin>  
-    <ion-row no-margin no-padding class="gridcl" margin-bottom>  
+    <ion-row no-margin no-padding class="gridcl" style="margin-bottom: 5px;" >  
         <ion-col col-12 no-margin no-padding>  
     
-        <div class="MainDivTxt1"> 
+        <div class="MainDivTxt1" id="clmsg" style="display: none;">    
                 <div style="padding-top: 10px;">    
                     <ion-item class="item-txtarea"> 
-                        <ion-textarea rows="5" [(ngModel)]="replyarea" placeholder="Type your reply"></ion-textarea>  
-                         
-                    </ion-item> 
-                    <img class="icon-imgtxtarea" src="assets/imgs/newimg/group553_18px.png">      
+                        <ion-textarea rows="5" [(ngModel)]="replyarea" placeholder="Type your reply"></ion-textarea>   
+                    </ion-item>   
+                    <img class="icon-imgtxtarea" src="assets/imgs/newimg/group553_18px.png" (click)="uploadpicture()">        
                 </div>
         </div>  
             
 <div style="width:100%;">   
     <div style="width:96%;float: left;" (click)="SendReply()">
         <button class="btn-play" ion-button full >REPLY</button>     
-     </div>
-    <div style="width:19%;float: right;" menuToggle="right">      
+     </div>   
+    <div style="width:19%;float: right;" menuToggle="right" >      
         <img src="assets/imgs/newimg/group671.png" class="img-btnfooter">
     </div>
 </div>

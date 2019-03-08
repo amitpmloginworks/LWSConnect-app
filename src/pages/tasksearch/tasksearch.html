@@ -43,8 +43,8 @@
                 <ion-label floating *ngIf="onTaskPower" [ngStyle]="(onTaskPower)?{'display':'none'}:{ }">Status</ion-label> 
                 <ion-label *ngIf="!onTaskPower">Status</ion-label>  
                  <ion-select [(ngModel)]="PowerSelect" interface="popover" [ngStyle]="(onTaskPower)?{'margin-top':'6px','margin-left':'10px'}:{}" #C (ionChange)="onChangeTaskPower()">   
-                   <ion-option value="IPU">IPU</ion-option>
-                   <ion-option value="ILR">ILR</ion-option>  
+                   <ion-option value="open">Open</ion-option>
+                   <ion-option value="close">Close</ion-option>   
                  </ion-select>
               </ion-item>
 
@@ -65,8 +65,8 @@
                 <ion-label floating *ngIf="onTaskPower" [ngStyle]="(onTaskPower)?{'display':'none'}:{ }">Category</ion-label> 
                 <ion-label *ngIf="!onTaskPower">Category</ion-label>    
                  <ion-select [(ngModel)]="PowerSelect" interface="popover" [ngStyle]="(onTaskPower)?{'margin-top':'6px','margin-left':'10px'}:{}" #C (ionChange)="onChangeTaskPower()">   
-                   <ion-option value="IPU">IPU</ion-option>
-                   <ion-option value="ILR">ILR</ion-option>  
+                   <ion-option value="28">Power BI Visualization</ion-option>
+                   <ion-option value="29">Google Data Studio</ion-option>    
                  </ion-select>
               </ion-item>
 
