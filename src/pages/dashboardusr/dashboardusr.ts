@@ -109,18 +109,20 @@ chartInstance.render();
   ionViewDidLoad() {
     console.log('ionViewDidLoad DashboardusrPage'); 
    
-
+    let gradient = this.doughnutCanvas.nativeElement.getContext('2d').createLinearGradient(170, 227, 125,0.1);
+    gradient.addColorStop(0, 'green');
+    gradient.addColorStop(1, 'white');
     this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
       type: 'doughnut',
       data: {
-        labels: ["Red", "Blue"],  
+        labels: ["Red","white"],  
         datasets: [{
         
           data: [
             // { "label": "name","value":"75" },{ "label": "name1","value":"25" }
             "25","5"   
           ], 
-          backgroundColor:['#4DD8A0','#fff']
+          backgroundColor:[gradient,"#ffff"]
         }]    
       },
       options: {
@@ -138,7 +140,8 @@ chartInstance.render();
         },
         cutoutPercentage : 40        
       },
-    });  
+    }); 
+    
   }     
 
   ChartDoughtnut(){
@@ -170,6 +173,8 @@ chartInstance.render();
         cutoutPercentage : 40        
       },
     });
+   
+   
   }
 
 

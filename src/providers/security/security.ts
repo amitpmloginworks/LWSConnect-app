@@ -58,6 +58,27 @@ MyTaskDetailBtn(postid,postcontent)  {
   )
 }
 
+Categorylist()  {    
+  let headers = new Headers({ 'content-type': 'application/json'})
+  let requestOptions=new RequestOptions({headers:headers})
+  let param=JSON.stringify({ userid:localStorage['userid'] })    
+  return this.http.post(ENV.mainApi + '/taskcat',param,requestOptions).timeout(ENV.timeout).map((data)=>{  
+    return data.json(); 
+  },  err => {  console.error('Oops:', err.message);  }
+  )
+}
+
+CreateTask(postcontent,posttitle,postcat)  {   
+
+  let headers = new Headers({ 'content-type': 'application/json'})
+  let requestOptions=new RequestOptions({headers:headers})
+  let param=JSON.stringify({ userid:localStorage['userid'],postcontent:postcontent,posttitle:posttitle,postcat:postcat })    
+  return this.http.post(ENV.mainApi + '/taskcreate',param,requestOptions).timeout(ENV.timeout).map((data)=>{  
+    return data.json(); 
+  },  err => {  console.error('Oops:', err.message);  }
+  )
+}
+
 
 
 }

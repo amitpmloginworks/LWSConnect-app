@@ -12,13 +12,13 @@ page-addtask {
         color: map-get($ContentColor, itemColor);
         background-color: map-get($ContentColor, itemBgWhite);
         font-size: 14px !important;
-        text-indent: 50px;   
+        text-indent: 50px;    
     }
       
 
     .content-md { 
         color: map-get($ContentColor, DarkSlate); 
-        background-color: map-get($ContentColor,bgcolor);   
+        background-color: map-get($ContentColor,itemBgWhite);    
         //background-image: url('../assets/imgs/newimg/books-outline1.png');        
     }
 
@@ -30,9 +30,9 @@ page-addtask {
     .toolbar-title-md   {
         padding: 0 12px;
         font-size: 14px;
-        font-weight: bold;
         color: map-get($ContentColor, itemBgWhite);
         margin-right: 65px;
+        font-family: $Lato-regular;
     }
    
     .scroll-content{
@@ -82,47 +82,51 @@ page-addtask {
 
   
     .item-pass { 
-        margin-top: 18px;    
+        margin-top: 13px;   
+        text-indent: 45px; 
+    }
+    .item-user {
+         
     }
 
     .item-md.item-input.input-has-focus .item-inner {
         box-shadow: none !important;
-        color:#ADADAD;
+        color: #464646 !important; 
       }
       
       .list-md .item-input.input-has-focus:last-child {
         box-shadow: none !important;
-        color:#ADADAD;
+        color: #464646 !important;
       }
       
       .list-md .item-input.input-has-focus:last-child .item-inner {
         box-shadow: none;
-        color:#ADADAD;
+        color: #464646 !important;
       }
       
       .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner {
         box-shadow: none !important;
-        color:#ADADAD;
+        color: #464646 !important;
       }
       
       .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child {
         box-shadow: none !important;
-        color:#ADADAD;
+        color: #464646 !important;
       }
       
       .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child .item-inner {
         box-shadow: none;
-        color:#ADADAD;
+        color: #464646 !important;
       }
       
       .item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus) .item-inner {
         box-shadow: none !important;
-        color:#ADADAD;
+        color: #464646 !important;
       }
       
       .list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):last-child {  
         box-shadow: none !important;
-        color:#ADADAD; 
+        color: #464646 !important;
       }
 
           
@@ -139,7 +143,7 @@ page-addtask {
         position: absolute;
         z-index: 1000;
         left: 32px;
-        margin-top: 30px;   
+        margin-top: 25px;  
     } 
 
     .select-md .select-icon {
@@ -185,21 +189,20 @@ page-addtask {
     .icon-imgtxtarea {    
         position: absolute;
         z-index: 1000;
-        right: 11%;
+        right: 9%; 
         margin-top: -29px;
         float: right;
     }
 
    
 
-    .item-txtarea{
+    .item-txtarea {
         border-radius: 20px !important;
         border:none; 
         padding-left: 0px !important;
         color: #46476A;
         background-color: #fff;
         font-size: 14px !important;
-        text-indent: 5px;
         border: 1px solid #fff !important;  
     }
   
@@ -219,35 +222,55 @@ page-addtask {
         margin-top: 13px;   
     }
 
-    textarea::-webkit-input-placeholder {
-        color: #ADADAD !important;
-        text-align: center;   
+        textarea::-webkit-input-placeholder {
+        color: #464646 !important;  
+        text-indent: 10px;
         }
          
         textarea:-moz-placeholder { /* Firefox 18- */
-        color: #ADADAD !important; 
-        text-align: center; 
+        color: #464646 !important;  
+        text-indent: 10px;
         }
          
         textarea::-moz-placeholder {  /* Firefox 19+ */
-        color: #ADADAD !important;
-        text-align: center;  
+        color: #464646 !important;  
+        text-indent: 10px;
         }
-         
+          
         textarea:-ms-input-placeholder {  
-        color: #ADADAD !important;   
-        text-align: center; 
+        color: #464646 !important;   
+        text-indent: 10px;  
         }
 
         textarea.text-input {
             display: block;
             margin-top: 10px;
-            text-indent: 5px;  
+            margin-left: 22px;
         }
 
         .text-input  {
             width: 92% !important;
         }
+
+        .text-input::-moz-placeholder {
+            color: #464646 !important;   
+          }
+          
+          .text-input:-ms-input-placeholder {
+            color: #464646 !important;   
+          }
+          
+          .text-input::-webkit-input-placeholder {
+            text-indent: 0;
+            color: #464646 !important;    
+          }
+      .ionlistcl {
+          margin-top: 18px;
+      }
+
+      .select-text {
+        margin-left: 30px;
+      }
 
 
 }

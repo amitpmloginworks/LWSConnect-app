@@ -5,40 +5,32 @@
   Ionic pages and navigation.
 -->
 
-
-
 <ion-header >
     <ion-navbar > 
       <ion-title text-center>CREATE A TASK</ion-title>      
     </ion-navbar>
-  </ion-header>
+</ion-header>
   
   <ion-content > 
-  
     
-    <ion-grid class="gridcl">
+    <ion-grid class="gridcl">  
        
-        <ion-list margin-top>
+        <ion-list class="ionlistcl">  
 
-
-            <img class="img-pass" src="assets/imgs/newimg/group545.png">   
-            <ion-item class="item-pass">    
+            <img class="img-user" src="assets/imgs/newimg/group545.png">   
+            <ion-item class="item-user">    
               <ion-label floating *ngIf="onTaskPower" [ngStyle]="(onTaskPower)?{'display':'none'}:{ }">Category*</ion-label> 
-              <ion-label *ngIf="!onTaskPower">Category*</ion-label>   
+              <ion-label *ngIf="!onTaskPower" style="color: #464646;">Category*</ion-label>    
                <ion-select [(ngModel)]="PowerSelect" interface="popover" [ngStyle]="(onTaskPower)?{'margin-top':'6px','margin-left':'10px'}:{}" #C (ionChange)="onChangeTaskPower()">   
-                 <ion-option value="IPU">IPU</ion-option>
-                 <ion-option value="ILR">ILR</ion-option>  
+                 <ion-option [value]="item.term_id" *ngFor="let item of SelectArr">{{ item.name }}</ion-option>       
                </ion-select>
             </ion-item>
 
-
             <img class="img-pass" src="assets/imgs/newimg/group546.png">  
             <ion-item class="item-pass">    
-               <ion-input type="text" [(ngModel)]="password" placeholder="Title*"></ion-input> 
+               <ion-input type="text" [(ngModel)]="title" placeholder="Title*"></ion-input> 
             </ion-item>
   
-          
-    
           <!-- <div class="MainDiv">  
               <div class="imagesec">
                   <img class="imgagesrc-img" src="assets/imgs/newimg/group546.png">   
@@ -52,15 +44,13 @@
   
             <div >  
                 <ion-item class="item-txtarea"> 
-                    <ion-textarea rows="5" placeholder="Please add task details here."></ion-textarea>
+                    <ion-textarea rows="5" [(ngModel)]="contents" placeholder="Please add task details here."></ion-textarea>
                 </ion-item> 
                 <img class="icon-imgtxtarea" src="assets/imgs/newimg/group553_18px.png">      
             </div>
   
-  
           </div>   
   
-         
         </ion-list> 
   
         <ion-row no-margin no-padding margin-bottom>   
@@ -70,9 +60,5 @@
         </ion-row>
          
     </ion-grid>
-  
-  
-      
+     
   </ion-content>
-      
-  

@@ -11,7 +11,7 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
 import { NotificationPage } from '../pages/notification/notification';   
 
 import { AddtaskPage } from '../pages/addtask/addtask';    
-import { AddtasknewPage } from '../pages/addtasknew/addtasknew';
+import { AddtasknewPage } from '../pages/addtasknew/addtasknew'; 
 import { DashboardusrPage } from '../pages/dashboardusr/dashboardusr';  
 
 import { HourslogPage } from '../pages/hourslog/hourslog';   
@@ -29,9 +29,7 @@ import { WelcomescreenPage } from '../pages/welcomescreen/welcomescreen';
   templateUrl: 'app.html'
 })
 export class MyApp {  
-  @ViewChild(Nav)nav:Nav 
-     
-  rootPage:any = SigninPage;                                                                                     
+  @ViewChild(Nav)nav:Nav   
 
   //  https://xd.adobe.com/spec/65ae4756-638a-4422-75bf-25cbe38ea275-139f/   // user 
 
@@ -41,16 +39,13 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-
-          
+ 
         if(localStorage['loginactive']=="" || localStorage['loginactive']==null ) { 
            this.nav.setRoot(SigninPage);   
         }
         else  {  
-             this.nav.setRoot(DashboardusrPage);   
+             this.nav.setRoot(DashboardusrPage);     
         }
-    
-
 
     });
   }
