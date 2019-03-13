@@ -44,7 +44,7 @@ export class MyApp {
            this.nav.setRoot(SigninPage);   
         }
         else  {  
-             this.nav.setRoot(DashboardusrPage);     
+             this.nav.setRoot(DashboardusrPage);       
         }
 
     });
@@ -54,10 +54,10 @@ export class MyApp {
     this.nav.setRoot(ProfilePage);  
   }
   CreateBtn(){
-    this.nav.setRoot(AddtaskPage);     
+    this.nav.push(AddtaskPage);     
   }
-  AllTaskBtn(){
-    this.nav.setRoot(TaskallPage);  
+  AllTaskBtn(){ 
+    this.nav.push(TaskallPage);  
   }
   LogoutBtn(){
     localStorage.clear(); 

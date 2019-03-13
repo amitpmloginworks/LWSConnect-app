@@ -80,5 +80,16 @@ CreateTask(postcontent,posttitle,postcat)  {
 }
 
 
+tasklist(){    
+  let headers = new Headers({ 'content-type': 'application/json'})
+  let requestOptions=new RequestOptions({headers:headers})
+  let param=JSON.stringify({ userid:localStorage['userid'] })    
+  return this.http.post(ENV.mainApi + '/tasklist',param,requestOptions).timeout(ENV.timeout).map((data)=>{  
+    return data.json();   
+  },  err => {  console.error('Oops:', err.message);  }
+  )
+}
+
+
 
 }

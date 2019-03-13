@@ -8,6 +8,7 @@ import { TimerObservable } from 'rxjs/observable/TimerObservable';
 import { Camera } from '@ionic-native/camera';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
+import { FileChooser } from '@ionic-native/file-chooser';  
 
 /**
  * Generated class for the TaskPage page.
@@ -26,17 +27,16 @@ export class TaskPage {
   chats = [];
   tasklistArr=[]; 
   taskID:any;   
-  myString 
+  PostTitle 
   replyarea
   chattimes:any;  
   count:number =0;
-  profilepic:any;
+  profilepic:any;     
   imgUrl:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl : ViewController,public loadingCtrl: LoadingController, public toastCtrl:ToastController, public security :SecurityProvider, public http:Http,public filetransfer: FileTransfer,public camera:Camera,public actionSheetCtrl:ActionSheetController) {
-    this.imgUrl=this.security.ImageUrlLink();
-    //localStorage['userid']=152;    
-    this.taskID=716;        
-    this.myString = "Pipes are super cool";
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl : ViewController,public loadingCtrl: LoadingController, public toastCtrl:ToastController, public security :SecurityProvider, public http:Http,public filetransfer: FileTransfer,public camera:Camera,public actionSheetCtrl:ActionSheetController,private fileChooser: FileChooser) {
+    this.imgUrl=this.security.ImageUrlLink();  
+    this.taskID=this.navParams.get("taskID");          
+    this.PostTitle = this.navParams.get("PostTitle");
     this.ChatRefresh();       
   }
 
@@ -70,10 +70,25 @@ export class TaskPage {
         
          this.camera1()
         }
+      },
+      {
+        text: 'Upload File',
+        handler: () => {
+         this.uploadFile()
+        }
       }]
     })
     actionsheet.present(); 
   }
+
+  uploadFile(){
+    this.fileChooser.open()
+    .then(uri => { console.log(uri);   
+      this.profilepic=uri;  
+    })  
+    .catch(e => console.log(e));
+  }
+
 
   gallery() {
     this.camera.getPicture({
@@ -87,9 +102,7 @@ export class TaskPage {
       correctOrientation: true
     }).then((imageData) => {
       this.profilepic=imageData
-      this.ProfileImageUp(imageData)
     }, (err) => {
-    alert(err)
     })
   }
   
@@ -107,13 +120,11 @@ export class TaskPage {
     correctOrientation: true
   }).then((imageData) => {
     this.profilepic=imageData
-    this.ProfileImageUp(imageData)  
   }, (err) => {
-    alert(err)
   })
   }
 
-ProfileImageUp(imgData) {
+ProfileImageUp(imgData,commentID) {
 /*
     const filetransfers: FileTransferObject = this.filetransfer.create();
     let options: FileUploadOptions = {
@@ -143,16 +154,15 @@ ProfileImageUp(imgData) {
       const filetransfers: FileTransferObject = this.filetransfer.create();
       let options: FileUploadOptions = {
         fileKey: 'file',
-        fileName: 'filename.jpg',
-        chunkedMode: false,    
-        mimeType: "multipart/form-data",
+        fileName: imgData,     
+       // mimeType: "multipart/form-data",
         params: {
           userid:localStorage['userid'],
-          email : "hello file",
+          commentID : commentID,
           image : imgData
         }
       }
-
+   
       filetransfers.upload(imgData,this.imgUrl+'/imageUpload',options).then((data) => {
         let imgProfile= JSON.parse(data.response).image;
           console.log(data); 
@@ -207,10 +217,13 @@ ProfileImageUp(imgData) {
     }  
       var taskcontent="<p>"+this.replyarea+"</p>";  
       let loading=this.loadingCtrl.create({ spinner: 'hide', content: `<img src="assets/imgs/loading1.gif" style="height:100px!important">`, cssClass: 'transparent' })  
-      loading.present();    
+      loading.present();      
          this.security.MyTaskDetailBtn(this.taskID,taskcontent).subscribe(result => {    
             loading.dismiss();   
             if (result.status === 200) { 
+              if(this.profilepic !="" || this.profilepic != undefined){ 
+                this.ProfileImageUp(this.profilepic,result.commentID);   
+              } 
               document.getElementById("clmsg").style.display="none";  
               this.replyarea = "";
               //this.toastCtrl.create({ message: result.message, duration: 4000, position: 'top' }).present(); 

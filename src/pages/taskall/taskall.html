@@ -7,7 +7,7 @@
 
 <ion-header >
     <ion-navbar > 
-      <ion-title text-center>ALL TASKS</ion-title> 
+      <ion-title text-center>TASKS</ion-title>  
       <ion-buttons end> 
           <button ion-button icon-only>     
             <img  class="img-notify" src="assets/imgs/newimg/search.png">
@@ -17,19 +17,19 @@
 </ion-header> 
  
 <ion-content>
-    <ion-grid class="gridcl"> 
+    <ion-grid class="gridcl">    
         <ion-list>      
-            <ion-item (click)="GoToNext()">            
+            <ion-item (click)="GoToNext(items.PostID,items.PostTitle)" *ngFor="let items of taskallarr;let i = index;">            
                 <ion-avatar item-start>  
                     <img src="assets/icon/deafault_men.jpg">
                   </ion-avatar>
                   <div class="name-maindiv">
-                    <div class="name-subdiv1"><p no-padding no-margin class="name-p">PETER</p> </div>
+                    <div class="name-subdiv1"><p no-padding no-margin class="name-p">{{ items.Usrauther }}</p> </div>
                     <div class="name-subdiv2">0</div>
                   </div> <br> 
-                  <p no-padding no-margin text-wrap class="p-desc">Lorem Ipsum is simply dummy text of the printing and typesetting…</p>
-                  <p no-padding no-margin class="p-assignto">Assigned to: Nishant Garg</p>  
-                  <p no-padding no-margin class="p-lastseen">Last updated: Friday, 7 Dec 2018, 12:38</p>
+                  <p no-padding no-margin text-wrap class="p-desc">{{ items.PostTitle }}</p>
+                  <p no-padding no-margin class="p-assignto">Assigned to: {{ items.TermName }}</p>  
+                  <p no-padding no-margin class="p-lastseen">Last updated: {{ items.PostDate  }}</p>
             </ion-item>
           </ion-list>   
     </ion-grid>

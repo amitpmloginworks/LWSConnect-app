@@ -55,7 +55,7 @@
                   margin-top: 56px;
               } 
               .md ion-menu[type=overlay] .menu-inner {
-                  width: 72%;
+                  width: 72%;    
               }
               .content-md {
               background-color: rgba(0,0,0,0.5);
@@ -114,16 +114,16 @@
 
 <ion-menu [content]="content"  class="menu-style" side="right" id="menu2" width="335"  >
     <ion-content style="margin-top: 40px;">  
-        <ion-list no-lines  style="margin-bottom: 45px;"> 
+        <ion-list no-lines  > 
                 <ion-item>    
-                        <ion-label style="margin-left: 18px !important;">Open</ion-label>  
+                        <ion-label style="margin-left: 18px !important;" class="txtright">Open</ion-label>  
                          <ion-select [(ngModel)]="OpenTask" interface="popover" >   
                            <ion-option value="IPU">IPU</ion-option>
                            <ion-option value="ILR">ILR</ion-option>  
                          </ion-select>
                 </ion-item>
-                <ion-item style="padding-bottom: 16px;">       
-                        <ion-label style="margin-left: 18px !important;">Power BI Visualization</ion-label>  
+                <ion-item >        
+                        <ion-label style="margin-left: 18px !important;" class="txtright">Power BI Visualization</ion-label>  
                          <ion-select [(ngModel)]="PowerBI" interface="popover" >   
                            <ion-option value="IPU">IPU</ion-option>  
                            <ion-option value="ILR">ILR</ion-option>  
@@ -131,20 +131,59 @@
                 </ion-item>  
             <button menuClose="menu2" ion-item (click)="openPage()" >   
               <img src="assets/imgs/newimg/ticket.png" style="margin-bottom: -4px;  width: 24px !important;margin-right: 20px;margin-left: 16px;">   
-              <div style="margin-top: -22px;margin-left: 52px;">Ticket <br>#552</div> 
+              <div style="margin-top: -22px;margin-left: 52px;" class="txtright">Ticket <br>#552</div> 
             </button>  
             <button menuClose="menu2" ion-item (click)="openPage()">  
                     <img src="assets/imgs/newimg/calendar.png" style="margin-bottom: -4px;  width: 24px !important;margin-right: 20px;margin-left: 16px;">   
-                    <div style="margin-top: -22px;margin-left: 52px;">Created <br>Today at 11:41 AM</div> 
+                    <div style="margin-top: -22px;margin-left: 52px;" class="txtright">Created <br>Today at 11:41 AM</div> 
                   </button>
 
                   <button menuClose="menu2" ion-item (click)="openPage()">  
                         <img src="assets/imgs/newimg/passage.png" style="margin-bottom: -4px;  width: 24px !important;margin-right: 20px;margin-left: 16px;">   
-                        <div style="margin-top: -22px;margin-left: 52px;">Updated <br>Updated 3 hours ago</div> 
-                      </button>  
+                        <div style="margin-top: -22px;margin-left: 52px;" class="txtright">Updated <br>Updated 3 hours ago</div>   
+                      </button> 
+
+                      <button menuClose="menu2" ion-item (click)="openPage()">  
+                        <img src="assets/imgs/newimg/passage.png" style="margin-bottom: -4px;  width: 24px !important;margin-right: 20px;margin-left: 16px;">   
+                        <div style="margin-top: -22px;margin-left: 52px;color:#CBB2A0" class="txtright">Send Transcript to your<br>Email</div>   
+                      </button> 
+                      
+                       
         </ion-list>  
  
     </ion-content>
-    <style>  
+    <style> 
+    .select-md .select-icon {
+        position: relative;
+        margin-right: 32px;
+        margin-top: -9px;
+        width: 12px !important;
+        height: 16px !important; 
+    }
+
+    .select-md .select-icon .select-icon-inner {
+        background-image: url(../assets/imgs/newimg/arrow-down15.png);
+        width: 17px !important;
+        height: 10px !important;
+        left: 33px;
+        top: 56%;
+        margin-top: 3px !important;
+        position: absolute;
+        border-top: none !important;
+        border-right: none !important;
+        border-left: none !important;
+        color: #999;
+        pointer-events: none;
+    } 
+    .item-cover {
+      width: 90%;
+    margin-left: 6%;
+    border-bottom: 1px solid #707070;
+    }
+
+    .content-md[_ngcontent-c0][_ngcontent-c0] {
+    margin-top: 0px !important;
+    background: #000;
+    }
     </style>
  </ion-menu>

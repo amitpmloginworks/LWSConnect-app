@@ -9,6 +9,8 @@ import { HttpModule } from '@angular/http';
 import { Camera } from '@ionic-native/camera';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
+import { FileChooser } from '@ionic-native/file-chooser';
+
 
 import { MyApp } from './app.component';
 
@@ -96,6 +98,7 @@ import { HtmlbypasPipe } from '../pipes/htmlbypas/htmlbypas';
     FileTransfer,
     FileTransferObject,
     Camera,  
+    FileChooser, 
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SecurityProvider
   ]

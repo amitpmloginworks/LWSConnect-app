@@ -35,7 +35,7 @@ export class SigninPage {
   }
 
 
-  GotoNext(EmailID,Pass) {          
+  GotoNext(EmailID,Pass) {            
     let loading=this.loadingCtrl.create({ spinner: 'hide', content: `<img src="assets/imgs/loading1.gif" style="height:100px!important">`, cssClass: 'transparent' })  
     loading.present();    
        this.security.loginCheck(EmailID,Pass).subscribe(result => {    
