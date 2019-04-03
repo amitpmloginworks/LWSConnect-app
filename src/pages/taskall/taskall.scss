@@ -1,8 +1,8 @@
 page-taskall {
 
     .toolbar-background-md {
-        border-color: map-get($HeaderList, BackgroundC); 
-        background: map-get($HeaderList, BackgroundC); 
+        border-color: map-get($HeaderList, BackgroundC1);  
+        background: map-get($HeaderList, BackgroundC1); 
     }
     .content-md { 
         color: map-get($ContentColor, DarkSlate); 
@@ -92,7 +92,7 @@ page-taskall {
     }
     .p-lastseen {
         font-family: $Lato-medium;  
-        font-size: 12px;
+        font-size: 11px; 
         color:map-get($ContentColor , DarkSlate ); 
     }
     .item-md {
@@ -102,12 +102,28 @@ page-taskall {
     }
    
     .label-md {
-        margin: 13px 0px 13px 0;
+        margin: 9px 0px 9px 0;
     }
 
     .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default {
         color: #fff;
         background-color: transparent;
+    }
+
+    .row {
+        padding-left: 0px;
+        border-left: 2px solid #eceaea;   
+        border-top: 2px solid #eceaea;
+        border-right: 2px solid #eceaea;
+       border-bottom: 2px solid #c8c5c5; 
+       margin-bottom: 8px; 
+       min-height: 6.4rem; 
+    }
+    .p-norecord {
+        font-size: 16px;
+        padding-top: 13px;
+        color: #464646; 
+        font-family: $Lato-bold;   
     }
 
 

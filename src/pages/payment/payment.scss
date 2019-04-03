@@ -12,7 +12,7 @@ page-payment {
         color: map-get($ContentColor, itemColor);
         background-color: map-get($ContentColor, itemBgWhite);
         font-size: 14px !important;
-        text-indent: 50px;   
+        text-indent: 42px;  
     }
      
     .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default {
@@ -22,8 +22,7 @@ page-payment {
 
     .content-md { 
         color: map-get($ContentColor, DarkSlate); 
-        background-color: map-get($ContentColor,bgcolor);   
-        //background-image: url('../assets/imgs/newimg/books-outline1.png');        
+        background-color: map-get($ContentColor,itemBgWhite);          
     }
 
   
@@ -31,9 +30,8 @@ page-payment {
     .toolbar-title-md   {
         padding: 0 12px;
         font-size: 14px;
-        font-weight: bold;
         color: map-get($ContentColor, itemBgWhite);
-        font-family: $Lato-heavy; 
+        font-family: $Lato-regular; 
         margin-right: 67px;
     }
    
@@ -70,6 +68,8 @@ page-payment {
   
     .item-pass { 
         margin-top: 24px;  
+        height: 3.7rem;
+        min-height: 3.7rem;  
     }
 
     .item-md.item-input.input-has-focus .item-inner {
@@ -126,7 +126,7 @@ page-payment {
         position: absolute;
         z-index: 1000;
         left: 32px;
-        margin-top: 36px; 
+        margin-top: 31px;   
     } 
    
     .MainDiv {
@@ -199,12 +199,14 @@ page-payment {
             font-family: $Lato-medium;
         }
         .rows-headersub {
-            margin-top: 50px; 
+            margin-top: 22px;   
         }
 
         .cols-total {
-            margin-top: 29px;
-            border-bottom: 1px solid #cecbcb;
+            margin-top: 20px;
+            padding-top: 6px;
+            background-color: #F3F3F3;
+            border-bottom: 1px solid #cecbcb;  
         }
         .p-paytotal {
             color: #464646;
@@ -230,10 +232,15 @@ page-payment {
             color: #464646;
             font-size: 12px;
             font-family: $Lato-medium;
+            text-transform: lowercase; 
         }
 
         .btn-img {   
             box-shadow:none;background-color: #F6FAFD;height: 10.0rem; -webkit-box-shadow:none;
         }
+
+        .list-md {
+            margin: -5px 0 32px;
+        } 
    
 }

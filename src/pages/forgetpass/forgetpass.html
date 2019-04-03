@@ -23,23 +23,34 @@
         </ion-col>
       </ion-row>
       
-      </ion-grid>
+      </ion-grid>   
 
       <div class="contcolorWhite">     
         <ion-grid class="gridcl">
-      <ion-list margin-top> 
+
+            <ion-row no-margin no-padding>       
+                <ion-col col-12 no-margin no-padding text-center>
+                  <p no-margin no-padding class="errmsgcl">{{ErrMsg}}</p>   
+                </ion-col>
+            </ion-row>
+               
+            <form [formGroup]="validation"> 
+      <ion-list margin-top>   
         <img class="arrow-gender-down" src="assets/imgs/newimg/group540.png"> 
            
-        <ion-item>
-           <ion-input type="text" value="" [(ngModel)]="username" placeholder="Email ID"></ion-input>  
+        <ion-item>   
+           <ion-input type="email" value="" [(ngModel)]="emailid" placeholder="Email ID" formControlName="EmailID"
+           [class.invalid]="!validation.controls.EmailID.valid && (validation.controls.EmailID.dirty|| submitAttempt)"></ion-input>  
         </ion-item> 
-        
+        <p *ngIf="!validation.controls.EmailID.valid && (validation.controls.EmailID.dirty|| submitAttempt)" class="errormsg">*Please enter a valid email address.</p>
     
       </ion-list>     
-    
+    </form>
+
+
       <ion-row no-margin no-padding margin-bottom>   
-        <ion-col col-12 no-margin no-padding>    
-           <button ion-button full (click)="GotoNext(username,password)">RESET</button>
+        <ion-col col-12 no-margin no-padding>      
+           <button ion-button full (click)="GotoNext()" [disabled]="!validation.valid">RESET</button>
         </ion-col>
       </ion-row> 
     </ion-grid>
@@ -59,8 +70,8 @@
            
           <div class="div-footer">  
             <ion-row no-padding no-margin class="div-footer-rows">    
-              <ion-col col-12 text-center no-padding no-margin>     
-                <p no-padding no-margin>Product of : <a class="a-tittle" (click)="register()" no-padding no-margin> Loginworks Softwares Inc.</a></p>
+              <ion-col col-12 text-center no-padding no-margin>        
+                <p no-padding no-margin>Product of : <a class="a-tittle" (click)="GotoLoginworks()" no-padding no-margin> Loginworks Softwares Inc.</a></p>
               </ion-col>
             </ion-row>
           </div>

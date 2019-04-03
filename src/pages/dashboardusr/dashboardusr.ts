@@ -13,6 +13,14 @@ import Column2D from 'fusioncharts/viz/column2d';
 import Doughnut2d from 'fusioncharts/viz/doughnut2d'; 
 import { AddtaskPage } from '../addtask/addtask';
 
+import { Http, Headers, RequestOptions } from '@angular/http';
+import{SecurityProvider}from'../../providers/security/security'      
+import { TimerObservable } from 'rxjs/observable/TimerObservable'; 
+
+import { TasksegmentPage } from '../tasksegment/tasksegment'; 
+import { TaskpopupPage } from '../taskpopup/taskpopup'; 
+import { BuyadditionalPage } from '../buyadditional/buyadditional';   
+
 /**
  * Generated class for the DashboardusrPage page.
  *
@@ -30,16 +38,29 @@ export class DashboardusrPage {
   @ViewChild('doughnutCanvas') doughnutCanvas;
   doughnutChart: any;  
 
-   
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  BalanceHours
+  TotalHours
+  constructor(public navCtrl: NavController, public navParams: NavParams, public security :SecurityProvider, public http:Http) {
  
+    
+ 
+
+
+  }
+  
+  itempending() {
+    this.navCtrl.push(TasksegmentPage);     
+  }
+
+  btnOptions(){
+     
   }
  
   CreateBtn() {     
-    this.navCtrl.push(AddtaskPage); 
+    this.navCtrl.push(AddtaskPage);  
   }
   UpgradeBtn(){
-    this.navCtrl.push(UpgradeplanPage);  
+    this.navCtrl.push(BuyadditionalPage);     
   }
   NotifyBtn(){  
     this.navCtrl.push(NotificationPage);
@@ -107,38 +128,52 @@ chartInstance.render();
 
 
   ionViewDidLoad() {
+     
     console.log('ionViewDidLoad DashboardusrPage'); 
-   
-    let gradient = this.doughnutCanvas.nativeElement.getContext('2d').createLinearGradient(170, 227, 125,0.1);
-    gradient.addColorStop(0,'#fff'); 
-    gradient.addColorStop(1, 'green');
-    this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
-      type: 'doughnut',
-      data: {
-        labels: ["white","Red",],  
-        datasets: [{ 
-          data: [
-            "20","30"    
-          ], 
-          backgroundColor:["#ffffff",gradient]
-        }]    
-      },
-      options: {
-        legend: {
-          display: true, 
-          position :top
-        },
-        tooltips: {
-          enabled: true
-        },
-        title: {
-          display: false,
-          fontStyle: 'bold',
-          fontSize: 9    
-        },
-        cutoutPercentage : 40        
-      },
-    }); 
+    this.security.dashboard().subscribe(result => {      
+      if (result.status === 200) {
+        this.TotalHours=result.TotalHours; this.BalanceHours=result.BalanceHours;
+        let firstlbl=" Hours left";
+        let secondlbl=" Hours logged";          
+        //let gradient = this.doughnutCanvas.nativeElement.getContext('2d').createLinearGradient(170, 227, 125,0.1);
+        //gradient.addColorStop(0,'green');       
+        //gradient.addColorStop(1, 'green');     
+        let gradient = this.doughnutCanvas.nativeElement.getContext('2d').createLinearGradient(77, 216, 160,0.1);
+         gradient.addColorStop(0,'#AAE37D');     
+         gradient.addColorStop(1, '#4DD8A0');    
+         this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
+           type: 'doughnut',
+           data: {
+           //  labels: [ firstlbl, secondlbl],    
+             datasets: [{   
+               data: [ this.BalanceHours, this.TotalHours ],   
+               //data: [ "5", "15" ],     
+               backgroundColor:["#EFEFEF",gradient]  
+             }]    
+           },
+           options: {
+             legend: {
+               display: true, 
+               position :top
+             },
+             tooltips: { 
+               enabled: false
+             },
+             title: {
+               display: false,
+               fontStyle: 'bold',
+               fontSize: 9    
+             },
+             cutoutPercentage : 40        
+           },
+         }); 
+        }    
+      else {    } 
+   }, err => {  console.log("err", err);   }
+  );
+
+  
+
     
   }     
 

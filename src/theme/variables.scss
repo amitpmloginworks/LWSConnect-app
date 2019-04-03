@@ -41,7 +41,7 @@ $colors: (
 );
 
 
-$ContentColor: (     
+$ContentColor: (         
 	DarkSlate:#464646,
 	bgcolor:#F6FAFD ,
 	PColor: #464646,
@@ -57,7 +57,9 @@ $ContentColor: (
  
 	PColorc: #527DA3, 
 
-	pchathead: #ADADAD
+	pchathead: #ADADAD,
+
+	atitle:#A28671
 );
 
 $ContentBg: (    
@@ -67,10 +69,11 @@ $ContentBg: (
 
 $HeaderList: (  
 	// BorderColor: #333333,
-	// BackgroundC:#020202,  
-	BorderColor: #527DA3, 
-	BackgroundC:#527DA3, 
-	BackgroundC1:#527DA3,
+	// BackgroundC:#020202, 
+ 
+	BorderColor: #A28671, 
+	BackgroundC:#A28671, 
+	BackgroundC1:#A28671, 
 
 	ColorWhite:#FFF
 );
@@ -81,7 +84,7 @@ $HeaderList: (
 $content-btn1:#00408A;
 $content-btn2:#0060D3;  
 $content-btnWhite:#fff;  
-$content-btn3:#527DA3;
+$content-btn3:#A28671;
 
 
 // App iOS Variables
@@ -128,6 +131,11 @@ $content-btn3:#527DA3;
 }
 
 @font-face {
+	font-family: Lucida-Handwriting-Italic;
+	src: url("../assets/fonts/Lucida-Handwriting-Italic.ttf"); 
+}
+
+@font-face {
 	font-family: Lato-Bold;
 	src: url("../assets/fonts/Latofonts/Lato-Bold.ttf");
 }
@@ -152,15 +160,23 @@ $content-btn3:#527DA3;
 	src: url("../assets/fonts/Latofonts/Lato-Regular.ttf");
 }
 
+@font-face {
+	font-family: Lato-Bold;
+	src: url("../assets/fonts/Latofonts/Lato-Bold.ttf");
+}
 
 
+$Lato-bold:"Lato-Bold";
 $Lato-regular: "Lato-Regular"; 
 $Lato-medium: "Lato-Medium"; 
 $Lato-heavy: "Lato-Heavy";
 $Lato-semiBold: "Lato-SemiBold";  
 $Lato-bold: "Lato-Bold";  
 $Lato-black: "Lato-Black"; 
-$Lato: "Lato";    
+$Lato: "Lato"; 
+
+$Lucida-Handwriting-Italic: "Lucida-Handwriting-Italic"; 
+ 
    
 
 // Fonts

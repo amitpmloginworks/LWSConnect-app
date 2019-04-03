@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, LoadingController, ToastController, Content, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, LoadingController, ToastController, Content, ActionSheetController, Events } from 'ionic-angular';
 
 import { Http, Headers, RequestOptions } from '@angular/http';
 import{SecurityProvider}from'../../providers/security/security'  
@@ -8,7 +8,10 @@ import { TimerObservable } from 'rxjs/observable/TimerObservable';
 import { Camera } from '@ionic-native/camera';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
-import { FileChooser } from '@ionic-native/file-chooser';  
+import { FileChooser } from '@ionic-native/file-chooser'; 
+import { FileOpener } from '@ionic-native/file-opener'; 
+
+import { FilePath } from '@ionic-native/file-path';
 
 /**
  * Generated class for the TaskPage page.
@@ -33,11 +36,18 @@ export class TaskPage {
   count:number =0;
   profilepic:any;     
   imgUrl:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl : ViewController,public loadingCtrl: LoadingController, public toastCtrl:ToastController, public security :SecurityProvider, public http:Http,public filetransfer: FileTransfer,public camera:Camera,public actionSheetCtrl:ActionSheetController,private fileChooser: FileChooser) {
+
+  imgmetatitle:any ="";
+  txtboolean:boolean=false;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl : ViewController,public loadingCtrl: LoadingController, public toastCtrl:ToastController, public security :SecurityProvider, public http:Http,public filetransfer: FileTransfer,public camera:Camera,public actionSheetCtrl:ActionSheetController,private fileChooser: FileChooser,public file:File,private fileOpener: FileOpener,public events: Events,public filePath: FilePath) {
     this.imgUrl=this.security.ImageUrlLink();  
     this.taskID=this.navParams.get("taskID");          
     this.PostTitle = this.navParams.get("PostTitle");
-    this.ChatRefresh();       
+      localStorage["taskID"]=this.taskID;     
+      this.events.publish('taskid:tskid',this.taskID, Date.now());  
+       
+      this.chattimes =TimerObservable.create(0, (3*1000)).subscribe(t => {  this.ChatRefresh();  });  
+    
   }
 
   ChatRefresh() {  
@@ -83,8 +93,20 @@ export class TaskPage {
 
   uploadFile(){
     this.fileChooser.open()
-    .then(uri => { console.log(uri);   
-      this.profilepic=uri;  
+    .then(uri => { console.log(uri); 
+
+       // get file path
+       this.filePath.resolveNativePath(uri)
+       .then(file => {
+         console.log("file==",file)    
+         //alert('file'+JSON.stringify(file));
+         let filePath: string = file;
+         this.profilepic=filePath;   
+         this.imgmetatitle=file.split('file:///storage/emulated/0/Download/')[1]; 
+       })
+       .catch(err => console.log(err));
+  
+      
     })  
     .catch(e => console.log(e));
   }
@@ -166,12 +188,12 @@ ProfileImageUp(imgData,commentID) {
       filetransfers.upload(imgData,this.imgUrl+'/imageUpload',options).then((data) => {
         let imgProfile= JSON.parse(data.response).image;
           console.log(data); 
-        alert(data); 
-        alert(JSON.parse(data.response));  
-        alert(imgProfile);  
-        }, (err) => {
-          alert('error'+JSON.stringify(err));  
-          alert(err);  
+        //alert(data); 
+        //alert(JSON.parse(data.response));  
+        //alert(imgProfile);  
+        }, (err) => {  
+          //alert('error'+JSON.stringify(err));  
+          //alert(err);  
         }) 
 
 
@@ -179,10 +201,10 @@ ProfileImageUp(imgData,commentID) {
 
 
   GetData() {
-    let loading=this.loadingCtrl.create({ spinner: 'hide', content: `<img src="assets/imgs/loading1.gif" style="height:100px!important">`, cssClass: 'transparent' })  
-    loading.present();    
+   // let loading=this.loadingCtrl.create({ spinner: 'hide', content: `<img src="assets/imgs/loading1.gif" style="height:100px!important">`, cssClass: 'transparent' })  
+   // loading.present();    
        this.security.MyTaskDetail(this.taskID).subscribe(result => {    
-          loading.dismiss();   
+          //loading.dismiss();   
           if (result.status === 200) { 
               this.tasklistArr=result.final_array 
               setTimeout(() => {   this.content.scrollToBottom(300);  }, 1000);           
@@ -192,7 +214,7 @@ ProfileImageUp(imgData,commentID) {
          }
        }, err => {
          console.log("err", err);
-         loading.dismiss();  
+         //loading.dismiss();  
          //this.toastCtrl.create({ message: `Please Enter valid credentials!!`, duration: 4000, position: 'top' }).present(); return;
        }); 
   }
@@ -210,24 +232,35 @@ ProfileImageUp(imgData,commentID) {
 
  }
 
+ MobCheck(vale) {
+   if(vale.length==0) {
+    this.txtboolean=false;
+    return; 
+   }
+   else{
+    this.txtboolean=true;  
+   }
+ }   
+
  SendServer(){
   if(this.replyarea =="" || this.replyarea == undefined){
+    this.txtboolean=false; 
     //this.toastCtrl.create({ message: `Please enter your message.`, duration: 4000, position: 'top' }).present();
     return; 
     }  
       var taskcontent="<p>"+this.replyarea+"</p>";  
-      let loading=this.loadingCtrl.create({ spinner: 'hide', content: `<img src="assets/imgs/loading1.gif" style="height:100px!important">`, cssClass: 'transparent' })  
-      loading.present();      
+     // let loading=this.loadingCtrl.create({ spinner: 'hide', content: `<img src="assets/imgs/loading1.gif" style="height:100px!important">`, cssClass: 'transparent' })  
+      //loading.present();      
          this.security.MyTaskDetailBtn(this.taskID,taskcontent).subscribe(result => {    
-            loading.dismiss();   
+           // loading.dismiss();   
             if (result.status === 200) { 
               if(this.profilepic !="" || this.profilepic != undefined){ 
                 this.ProfileImageUp(this.profilepic,result.commentID);   
               } 
               document.getElementById("clmsg").style.display="none";  
-              this.replyarea = "";
+              this.replyarea = "";     
               //this.toastCtrl.create({ message: result.message, duration: 4000, position: 'top' }).present(); 
-              this.chattimes =TimerObservable.create(0, (3*1000)).subscribe(t => {  this.ChatRefresh();     }); 
+            // this.chattimes =TimerObservable.create(0, (3*1000)).subscribe(t => {  this.ChatRefresh(); }); 
               return;        
            } 
            else {
@@ -235,13 +268,32 @@ ProfileImageUp(imgData,commentID) {
            }
          }, err => {
            console.log("err", err);
-           loading.dismiss();  
+           //loading.dismiss();  
            //this.toastCtrl.create({ message: `Please Enter valid credentials!!`, duration: 4000, position: 'top' }).present(); return;
          }); 
  }
 
   ionViewWillLeave() {   
     this.chattimes.unsubscribe();
+  }
+
+  GotoNext1(filepaths,titles,extensions){
+    let fileName=''
+    let apptypes=''; 
+    fileName=titles; 
+    if(extensions==".pdf")      {      apptypes= 'application/pdf';     }
+    if(extensions==".doc")      {     apptypes = 'application/msword';  }
+    if(extensions==".docx")     {   
+       apptypes ='application/vnd.openxmlformats-officedocument.wordprocessingml.document'   
+    }
+    let filespath=this.file.dataDirectory
+    const fileTransfer: FileTransferObject = this.filetransfer.create();       
+    fileTransfer.download(filepaths,filespath + fileName, true).then((entry) => {
+      let url1 =entry.toURL();
+      this.fileOpener.open(url1, apptypes).then(() =>  {   }
+    ).catch(e => {   } );
+    }, (error) => {   
+    });
   }
 
   ionViewDidLoad() {   

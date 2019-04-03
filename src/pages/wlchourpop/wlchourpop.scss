@@ -1,16 +1,16 @@
 page-wlchourpop {
-    .div-main{
-        width: 96%;
+    .div-main{ 
+        width: 98%;
         border-radius: 6px;
         margin: auto;
-        margin-top: 100%;   
+        margin-top: 115%;
     }
 
     .content-md{   
-        background-color: rgba(0,0,0,0.7);
+        background-color: rgba(0,0,0,0.4);
     }
     .content-ios{    
-        background-color: rgba(0,0,0,0.7);
+        background-color: rgba(0,0,0,0.4);
     }
 
     .button-md {
@@ -31,11 +31,11 @@ page-wlchourpop {
     }
 
     .rowbtn {  
-    
     margin: auto;
     border: 1px solid #FFFFFF;
     min-height: 6rem;
     border-radius: 25px;
+    margin-left: 1px;  
     }
 
     .p-text {
@@ -45,29 +45,37 @@ page-wlchourpop {
        font-family:"Lato-Regular";    
     }
     .divinner1 {
-        width: 26%;
+        width: 25%;
         float: left;
         text-align: right;
     }
-.divinner2 {
-    width: 50%;
+    .divinner2 {
+    width: 45%;
     float: left;
     }
     .divinner3 {
-        color: #fff;
-    width: 70%;
+    color: #fff;
+    width: 100%; 
     font-size: 18px;
     margin-top: -18px;  
+    font-family: $Lucida-Handwriting-Italic; 
     }
 
     .rowstop {
       padding-top: 18%;
     }
 
+     
     @media only screen and (min-height:732px){     
         .rowstop {
             padding-top: 11.5%; 
           }
+          .div-main {
+            width: 98%;
+            border-radius: 6px;
+            margin: auto;
+            margin-top: 106%;  
+        }
     }
 
 

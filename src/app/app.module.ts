@@ -10,6 +10,8 @@ import { Camera } from '@ionic-native/camera';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { FileChooser } from '@ionic-native/file-chooser';
+import { FileOpener } from '@ionic-native/file-opener';
+import { OneSignal } from '@ionic-native/onesignal';
 
 
 import { MyApp } from './app.component';
@@ -35,8 +37,18 @@ import { UpgradeplanmorePage } from '../pages/upgradeplanmore/upgradeplanmore';
 import { WelcomescreenPage } from '../pages/welcomescreen/welcomescreen'; 
 import { WlchourpopPage } from '../pages/wlchourpop/wlchourpop'; 
 
+import { TaskapprovePage } from '../pages/taskapprove/taskapprove';   
+import { TasksegmentPage } from '../pages/tasksegment/tasksegment'; 
+
 import { SecurityProvider } from '../providers/security/security';   
 import { HtmlbypasPipe } from '../pipes/htmlbypas/htmlbypas';
+import { TaskpopupPage } from '../pages/taskpopup/taskpopup'; 
+
+import { LoginworksurlPage } from '../pages/loginworksurl/loginworksurl';  
+import { FeedbackPage } from '../pages/feedback/feedback';   
+import { BuyadditionalPage } from '../pages/buyadditional/buyadditional';  
+
+import { FilePath } from '@ionic-native/file-path';  
 
 @NgModule({
   declarations: [
@@ -60,7 +72,13 @@ import { HtmlbypasPipe } from '../pipes/htmlbypas/htmlbypas';
     UpgradeplanmorePage,
     WelcomescreenPage,
     WlchourpopPage,
-    HtmlbypasPipe
+    HtmlbypasPipe,
+    TaskapprovePage,
+    TasksegmentPage,
+    TaskpopupPage,
+    LoginworksurlPage,
+    FeedbackPage,
+    BuyadditionalPage
   ],
   imports: [
     BrowserModule,
@@ -86,19 +104,28 @@ import { HtmlbypasPipe } from '../pipes/htmlbypas/htmlbypas';
     TasksearchPage , 
     PaymentPage,
     ProfilePage,
-    UpgradeplanmorePage,
+    UpgradeplanmorePage,  
     WelcomescreenPage ,
-    WlchourpopPage      
+    WlchourpopPage, 
+    TaskapprovePage,
+    TasksegmentPage ,
+    TaskpopupPage  ,
+    LoginworksurlPage  ,
+    FeedbackPage  ,  
+    BuyadditionalPage    
   ],
   providers: [
     StatusBar,
     SplashScreen,
     PayPal,
-    File,
+    File,  
     FileTransfer,
     FileTransferObject,
     Camera,  
-    FileChooser, 
+    FileChooser,
+    FileOpener, 
+    OneSignal, 
+    FilePath,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SecurityProvider
   ]

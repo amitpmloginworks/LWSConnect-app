@@ -25,16 +25,18 @@
     <!-- <div id="chart-container"></div>   -->
   <ion-grid class="gridcl"> 
 
-      <ion-row no-margin no-padding>
-          <ion-col col-7 no-margin no-padding>  
+      <ion-row no-margin no-padding margin-bottom>  
+          <ion-col col-7 no-margin no-padding>      
            </ion-col>       
-          <ion-col col-5 no-margin no-padding> 
+          <ion-col col-5 no-margin no-padding>      
              <button ion-button outline (click)="CreateBtn()" style="border-radius: 8px;">CREATE A TASK</button>       
           </ion-col>    
       </ion-row>  
 
+      <div class="baldiv">{{ BalanceHours }} hours logged</div>
 
-     <canvas #doughnutCanvas class="chartCl" chart-labels="labels"> </canvas>         
+     <canvas #doughnutCanvas class="chartCl" chart-labels="labels"> </canvas>  
+     <div class="totaldiv">{{ TotalHours }} hours left</div>         
 <!-- <div class="timeleft">30 hours</div>  -->
 <!-- <ion-row no-margin no-padding class="rows-hours">
     <ion-col no-margin no-padding col-6 >    
@@ -56,17 +58,17 @@
              <!-- <button ion-button full class="btn-fullbg" (click)="AdditionalBtn()">
                BUY ADDITIONAL HOURS  
               </button>    -->    
-              <button ion-button no-margin no-padding class="btn-img" (click)="navigatetoschooldetails()" >
-                  <img src="assets/imgs/newimg/group652.png" style="width: 77%;" >  
+              <button ion-button no-margin no-padding class="btn-img" (click)="itempending()" >
+                  <img src="assets/imgs/newimg/group652.png" >  
               </button>  
           </ion-col>
       </ion-row>   
-
-      <ion-row no-margin no-padding>
+ 
+      <ion-row no-margin no-padding margin-bottom>  
           <ion-col col-7 no-margin no-padding>
             <p no-margin no-padding class="p-plans">Current plan expires in 5 days</p>
            </ion-col>       
-          <ion-col col-5 no-margin no-padding> 
+          <ion-col col-5 no-margin no-padding>       
              <button ion-button outline (click)="UpgradeBtn()" class="btnOptions">OPTIONS</button>       
           </ion-col>
       </ion-row>    

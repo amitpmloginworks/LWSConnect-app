@@ -42,19 +42,19 @@ page-task {
         width:100%; 
     }
     .col-subdiv1 {
-        width: 28%;
+        width: 27%;
         float: left;
         height: 1px;
         margin-top: 13px;
         background: #ADADAD;
     }
     .col-subdiv2 {
-        width: 47%;
+        width: 49%;
         float: left;
         text-align: center;
     }
     .col-subdiv3 {
-        width: 25%;
+        width: 24%;
         float: left;
         height: 1px;
         margin-top: 13px;
@@ -279,7 +279,7 @@ page-task {
     // bottom: -7.5px;
 }
 .chat-message.right {
-    background-color: #E9F6FF;  
+    background-color: #fff1e6;  
     float: right;
     max-width: 84%;
     margin-left: 51px;
@@ -291,7 +291,7 @@ page-task {
     //transform: rotate(118deg) skew(-5deg);
 }
 .chat-message.left {
-    background-color: #E9F6FF;
+    background-color: #fff1e6;   
     float: left;
     max-width: 100%;
     margin-left: 0px !important;
@@ -369,5 +369,16 @@ page-task {
 ion-footer {
     background: #fff;  
 }
+
+.errormsg {
+    color: #595a79;
+    font-size: 14px;
+    margin-left: 4px;
+}
+.errmsgcl {
+    font-size: 14px;
+    font-family: "Lato-Bold","Lato-Heavy"; 
+} 
+ 
      
 }

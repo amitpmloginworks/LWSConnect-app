@@ -89,6 +89,91 @@ tasklist(){
   },  err => {  console.error('Oops:', err.message);  }
   )
 }
+               
+tasklistsrc(postname,statuswp,categorywp){    
+  let headers = new Headers({ 'content-type': 'application/json'})
+  let requestOptions=new RequestOptions({headers:headers})
+  let param=JSON.stringify({ userid:localStorage['userid'], postname:postname, status:statuswp, category:categorywp })    
+  return this.http.post(ENV.mainApi + '/tasksrc',param,requestOptions).timeout(ENV.timeout).map((data)=>{  
+    return data.json();   
+  },  err => {  console.error('Oops:', err.message);  }
+  )
+}
+
+taskactive(){    
+  let headers = new Headers({ 'content-type': 'application/json'})
+  let requestOptions=new RequestOptions({headers:headers})
+  let param=JSON.stringify({ userid:localStorage['userid'] })    
+  return this.http.post(ENV.mainApi + '/taskactive',param,requestOptions).timeout(ENV.timeout).map((data)=>{  
+    return data.json();   
+  },  err => {  console.error('Oops:', err.message);  }
+  )
+}
+  
+resetpass(emailid){    
+  let headers = new Headers({ 'content-type': 'application/json'})
+  let requestOptions=new RequestOptions({headers:headers})
+  let param=JSON.stringify({ emailid:emailid })    
+  return this.http.post(ENV.mainApi + '/forgetpass',param,requestOptions).timeout(ENV.timeout).map((data)=>{  
+    return data.json();   
+  },  err => {  console.error('Oops:', err.message);  }
+  )
+}
+
+
+dashboard(){       
+  let headers = new Headers({ 'content-type': 'application/json'});
+  let requestOptions=new RequestOptions({headers:headers});
+  let param=JSON.stringify({ userid:localStorage['userid'] });    
+  return this.http.post(ENV.mainApi + '/dashboard',param,requestOptions).timeout(ENV.timeout).map((data)=>{  
+    return data.json();    
+  },  err => {  console.error('Oops:', err.message);  }
+  )
+}   
+
+taskoncomwp(status)  {           
+  let headers = new Headers({ 'content-type': 'application/json'});
+  let requestOptions=new RequestOptions({headers:headers});
+  let param=JSON.stringify({ userid:localStorage['userid'], status:status });       
+  return this.http.post(ENV.mainApi + '/taskoncomp',param,requestOptions).timeout(ENV.timeout).map((data)=>{  
+    return data.json();    
+  },  err => {  console.error('Oops:', err.message);  }
+  )
+}
+
+taskrightside(taskid)  {           
+  let headers = new Headers({ 'content-type': 'application/json'});
+  let requestOptions=new RequestOptions({headers:headers});
+  let param=JSON.stringify({ userid:localStorage['userid'], taskid:taskid });            
+  return this.http.post(ENV.mainApi + '/taskrightside',param,requestOptions).timeout(ENV.timeout).map((data)=>{  
+    return data.json();    
+  },  err => {  console.error('Oops:', err.message);  }
+  )
+}
+
+taskfeedback(taskid,fbrate,fbcontent)  {       
+  let headers = new Headers({ 'content-type': 'application/json'});
+  let requestOptions=new RequestOptions({headers:headers});
+  let param=JSON.stringify({userid:localStorage['userid'],postid:taskid,fbrate:fbrate,fbcontent:fbcontent});
+  return this.http.post(ENV.mainApi + '/taskfeedback',param,requestOptions).timeout(ENV.timeout).map((data)=>{
+    return data.json();    
+  },  err => {  console.error('Oops:', err.message);  }
+  )
+}
+
+taskapprove(taskid)  {          
+  let headers = new Headers({ 'content-type': 'application/json'});
+  let requestOptions=new RequestOptions({headers:headers});
+  let param=JSON.stringify({userid:localStorage['userid'],postid:taskid});   
+  return this.http.post(ENV.mainApi + '/taskapprove',param,requestOptions).timeout(ENV.timeout).map((data)=>{
+    return data.json();    
+  },  err => {  console.error('Oops:', err.message);  }
+  )
+}
+
+
+
+
 
 
 

@@ -19,7 +19,7 @@ page-welcomescreen {
     .content-md { 
         color: map-get($ContentColor, DarkSlate); 
         background-color: map-get($ContentColor,bgcolor);   
-        //background-image: url('../assets/imgs/newimg/books-outline1.png');        
+        background-image: url('../assets/imgs/newimg/books-outline1.png');           
     }
 
   
@@ -241,8 +241,8 @@ page-welcomescreen {
         }
 
         .img-profile  {
-            width: 50%;      
-            margin-bottom: 16px;
+            width: 64%;          
+           // margin-bottom: 16px;
             border-radius: 50%;
         }
 
@@ -256,15 +256,34 @@ page-welcomescreen {
             color:#464646;
             font-family: $Lato-bold;   
         }  
+        
         .toprows {
             margin-bottom: 29px;
         }
+
         .contenttittle1 {
             width: 87%; 
             text-align: center;  
             font-size: 16px;
             color:#464646;
             font-family: $Lato-regular;      
+        }
+
+        .contentview {     
+            padding-top: 14px;
+            padding-bottom: 13px;
+            padding-left: 37px;
+            padding-right: 37px;
+            background-color: rgba(162, 134, 113, 0.1);
+        }
+
+
+        .btnrows {
+            margin-top: 63px; 
+            margin-bottom: 34px;
+        }
+        .list-md { 
+            margin: 60px 0 26px;
         }
            
 }

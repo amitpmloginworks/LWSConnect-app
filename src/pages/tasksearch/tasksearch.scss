@@ -1,8 +1,8 @@
 page-tasksearch {
 
     .toolbar-background-md {
-        border-color: map-get($HeaderList, BackgroundC); 
-        background: map-get($HeaderList, BackgroundC); 
+        border-color: map-get($HeaderList, BackgroundC1);  
+        background: map-get($HeaderList, BackgroundC1); 
     }
 
     .item-md    {
@@ -13,14 +13,17 @@ page-tasksearch {
         background-color: map-get($ContentColor, itemBgWhite);
         font-size: 14px !important;
         text-indent: 50px;   
+        height: 3.8rem;   
     }
-      
+    .item-block {
+        min-height: 3.8rem;    
+     }
 
     .content-md { 
         color: map-get($ContentColor, DarkSlate); 
         background-color: map-get($ContentColor,bgcolor);   
         //background-image: url('../assets/imgs/newimg/books-outline1.png');        
-    }
+    } 
 
   
 
@@ -29,7 +32,7 @@ page-tasksearch {
         font-size: 14px;
         font-weight: bold;
         color: map-get($ContentColor, itemBgWhite);
-        //margin-right: 75px;
+        margin-right: 50px;
     }
    
     .scroll-content{
@@ -67,7 +70,7 @@ page-tasksearch {
         width: 98%;
         margin-left: 4px !important;
        // background-image: linear-gradient($content-btn1,$content-btn2);  
-        height: 4.6rem;
+        height: 3.8rem;
         border-color: $content-btn1;
             color: $content-btnWhite;
             background: $content-btn3;
@@ -136,7 +139,7 @@ page-tasksearch {
         position: absolute;
         z-index: 1000;
         left: 32px;
-        margin-top: 30px;   
+        margin-top: 25px; 
     } 
 
     .select-md .select-icon {
@@ -243,8 +246,17 @@ page-tasksearch {
 
         .p-srctask {
             font-family: $Lato-heavy;
-            font-size: 16px;
+            font-size: 13px;
             color:#464646;
         }
 
+        .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default {
+            color: #fff;
+            background-color: transparent;
+        }
+         
+        .item-cover {
+            border-bottom:none !important; 
+          }
+           
 }

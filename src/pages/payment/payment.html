@@ -15,14 +15,7 @@
 <ion-content >
 
     <ion-grid class="gridcl" > 
-
-        <ion-row no-padding no-margin class="rows-header">
-          <ion-col col-12 no-padding no-margin text-center> 
-            <p no-padding no-margin class="p-title">CHECKOUT</p> 
-            <p no-padding no-margin class="p-desc">Kindly provide the details below and get started:</p>
-          </ion-col>
-        </ion-row>
-
+  
         <ion-row no-padding no-margin class="rows-headersub">   
             <ion-col col-12 no-padding no-margin text-left> 
               <p no-padding no-margin class="p-title">Billing Details</p> 
@@ -47,28 +40,36 @@
         </ion-item>   
 </ion-list> 
 
-        <ion-row no-padding no-margin class="rows-headersub">
+        <ion-row no-padding no-margin  >
             <ion-col col-12 no-padding no-margin text-left> 
-              <p no-padding no-margin class="p-title">Your Orders</p>  
+              <p no-padding no-margin class="p-title">Your Order</p>   
             </ion-col>
         </ion-row>
 
 
         <ion-row no-padding no-margin class="rows-headersub1">  
-          <ion-col col-4 no-padding no-margin text-left><p no-padding no-margin  class="p-headsub">Product</p></ion-col> 
-          <ion-col col-4 no-padding no-margin text-center><p no-padding no-margin class="p-headsub" >Quantity</p></ion-col>
-          <ion-col col-4 no-padding no-margin text-right ><p no-padding no-margin class="p-headsub" >Price</p></ion-col> 
+          <ion-col col-6 no-padding no-margin text-left>
+            <p no-padding no-margin  class="p-headsub">Product</p>
+          </ion-col> 
+         
+          <ion-col col-6 no-padding no-margin text-right padding-right>
+            <p no-padding no-margin class="p-headsub" >Price</p>
+          </ion-col> 
         </ion-row> 
-
+ 
         <ion-row no-padding no-margin style="padding-top:8px;">
-            <ion-col col-4 no-padding no-margin text-left><p no-padding no-margin class="p-headcont" >Per hour</p></ion-col>
-            <ion-col col-4 no-padding no-margin text-center><p no-padding no-margin class="p-headcont" >1</p></ion-col> 
-            <ion-col col-4 no-padding no-margin text-right ><p no-padding no-margin class="p-headcont" >$30.00</p></ion-col> 
+            <ion-col col-6 no-padding no-margin text-left>
+              <p no-padding no-margin class="p-headcont" >{{ title }}</p>
+            </ion-col>    
+              
+            <ion-col col-6 no-padding no-margin text-right padding-right >  
+              <p no-padding no-margin class="p-headcont" >{{ price }}</p>
+            </ion-col> 
         </ion-row>
 
           <ion-row no-padding no-margin>
-              <ion-col col-12 no-padding no-margin text-right class="cols-total">
-                <p no-padding no-margin class="p-paytotal">Total: $30.00</p>  
+              <ion-col col-12 no-padding no-margin text-right class="cols-total" padding-right>
+                <p no-padding no-margin class="p-paytotal">Total: {{ price }}</p>    
               </ion-col>
           </ion-row>
 

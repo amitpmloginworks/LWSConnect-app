@@ -17,7 +17,12 @@ import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal
 export class PaymentPage { 
   Amounts:any;
   currency:any;
+
+  price:any;
+  title:any;   
   constructor( public navCtrl: NavController, public navParams: NavParams,public toastCtrl : ToastController,public payPal: PayPal ) { 
+    this.title=this.navParams.get("title");
+    this.price=this.navParams.get("price");
     this.Amounts=1;
     this.currency="USD"; 
   }

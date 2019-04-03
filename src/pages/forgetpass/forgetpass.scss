@@ -19,9 +19,7 @@ page-forgetpass {
         font-family: "Lato";  
     }
 
-    .contcolorWhite {
-        background-color: #ffffff; 
-    }
+    
 
     .div-footer-rows {
         margin-top: 67px;
@@ -37,6 +35,11 @@ page-forgetpass {
         font-size: 14px !important;
         border-radius: 6px;
         text-indent: 50px; 
+        height: 3.8rem; 
+    }
+
+    .item-block {
+       min-height: 3.8rem;    
     }
     
     .contenttittle  {
@@ -104,8 +107,8 @@ page-forgetpass {
         border-radius: 32px !important;
         width: 98%;
         margin-left: 4px !important;
-        background-color: #0060D3;  
-        height: 4.6rem;
+        background-color: $content-btn3;  
+        height: 3.8rem;
       }
 
       .list-md {
@@ -128,7 +131,7 @@ page-forgetpass {
         position: absolute;
         z-index: 1000;
         left: 32px; 
-        margin-top: 10px; 
+        margin-top: 7px;  
     } 
 
     .item-pass {
@@ -136,7 +139,7 @@ page-forgetpass {
     }
      
     .a-tittle   {  
-        color: #0049A3; 
+        color: map-get($ContentColor , atitle );    
     }
 
     .item-md.item-input.input-has-focus .item-inner {
@@ -170,4 +173,10 @@ page-forgetpass {
       .list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):last-child {  
         box-shadow: none !important;
       }
+
+      .errmsgcl {
+        font-size: 14px;
+        font-family: "Lato-Bold","Lato-Heavy"; 
+    }
+     
 }

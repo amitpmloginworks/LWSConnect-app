@@ -8,7 +8,7 @@
 <ion-header >
     <ion-navbar > 
       <ion-title text-center>TASKS</ion-title>  
-      <ion-buttons end> 
+      <ion-buttons end (click)="srcbtn()">    
           <button ion-button icon-only>     
             <img  class="img-notify" src="assets/imgs/newimg/search.png">
           </button>
@@ -17,20 +17,33 @@
 </ion-header> 
  
 <ion-content>
-    <ion-grid class="gridcl">    
+    <ion-grid class="gridcl">      
         <ion-list>      
             <ion-item (click)="GoToNext(items.PostID,items.PostTitle)" *ngFor="let items of taskallarr;let i = index;">            
                 <ion-avatar item-start>  
                     <img src="assets/icon/deafault_men.jpg">
                   </ion-avatar>
                   <div class="name-maindiv">
-                    <div class="name-subdiv1"><p no-padding no-margin class="name-p">{{ items.Usrauther }}</p> </div>
-                    <div class="name-subdiv2">0</div>
+                    <div class="name-subdiv1">
+                      <!-- <p no-padding no-margin class="name-p">{{ items.Usrauther }}</p> -->
+                      <p no-padding no-margin text-wrap class="p-desc">{{ items.PostTitle }}</p>
+                     </div>
+                    <div class="name-subdiv2" *ngIf="items.NewPost==1">0</div>  
                   </div> <br> 
-                  <p no-padding no-margin text-wrap class="p-desc">{{ items.PostTitle }}</p>
+                  <!-- <p no-padding no-margin text-wrap class="p-desc">{{ items.PostTitle }}</p> -->
                   <p no-padding no-margin class="p-assignto">Assigned to: {{ items.TermName }}</p>  
                   <p no-padding no-margin class="p-lastseen">Last updated: {{ items.PostDate  }}</p>
             </ion-item>
-          </ion-list>   
+          </ion-list>  
+          
+          <div *ngIf = "noarray">        
+              <ion-row  *ngIf="taskallarr==0">  
+                <ion-col col-12 text-center>  
+                    <p no-padding no-margin class="p-norecord"> 0 Found </p>             
+                </ion-col>  
+              </ion-row>
+          </div>  
+
+
     </ion-grid>
 </ion-content>

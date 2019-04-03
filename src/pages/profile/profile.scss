@@ -27,9 +27,9 @@ page-profile {
     .toolbar-title-md   {
         padding: 0 12px;
         font-size: 14px;
-        font-weight: bold;
         color: map-get($ContentColor, itemBgWhite);
-        font-family: $Lato-heavy; 
+        font-family: $Lato-regular; 
+        margin-right: 18%;   
     }
    
     .scroll-content{
@@ -247,6 +247,24 @@ page-profile {
         .item-passhalf {
             margin-top: 24px;
             text-indent: 5px; 
+        }
+
+        .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default {
+            color: #fff;
+        }
+
+        .img-pass {
+            margin-top: 30px;
+        }
+
+        .item-md {
+            height: 3.6rem;
+        }
+        .item-block {
+            min-height: 3.6rem;  
+        }
+        .item-cover {
+             border-bottom: none;   
         }
    
 }

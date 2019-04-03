@@ -27,46 +27,25 @@
  
               <img class="img-pass" src="assets/imgs/newimg/group547.png">      
               <ion-item class="item-pass">     
-                 <ion-input type="text" [(ngModel)]="username" placeholder="Search title and content of tasks"></ion-input>  
+                 <ion-input type="text" [(ngModel)]="postname" placeholder="Search title and content of tasks"></ion-input>  
               </ion-item>   
    
-
-              <!-- <ion-row no-padding no-margin style="margin-top:30px;">  
-                  <ion-col col-12 no-padding no-margin>  
-                    <p no-padding no-margin class="p-srctask">TICKET TAXONOMIES</p>
-                  </ion-col>
-              </ion-row> -->
-
-  
               <img class="img-pass" src="assets/imgs/newimg/group548.png">   
               <ion-item class="item-pass">    
                 <ion-label floating *ngIf="onTaskPower" [ngStyle]="(onTaskPower)?{'display':'none'}:{ }">Status</ion-label> 
-                <ion-label *ngIf="!onTaskPower">Status</ion-label>  
-                 <ion-select [(ngModel)]="PowerSelect" interface="popover" [ngStyle]="(onTaskPower)?{'margin-top':'6px','margin-left':'10px'}:{}" #C (ionChange)="onChangeTaskPower()">   
+                <ion-label *ngIf="!onTaskPower">Status</ion-label>    
+                 <ion-select [(ngModel)]="statuswp" interface="popover" [ngStyle]="(onTaskPower)?{'margin-top':'6px','margin-left':'10px'}:{}" #C (ionChange)="onChangeTaskPower()">   
                    <ion-option value="open">Open</ion-option>
                    <ion-option value="close">Close</ion-option>   
                  </ion-select>
               </ion-item>
 
-              
-              <!-- <img class="img-pass" src="assets/imgs/newimg/group543.png">   
-              <ion-item class="item-pass">    
-                <ion-label floating *ngIf="onTaskPower" [ngStyle]="(onTaskPower)?{'display':'none'}:{ }">Agent</ion-label> 
-                <ion-label *ngIf="!onTaskPower">Agent</ion-label>  
-                 <ion-select [(ngModel)]="PowerSelect" interface="popover" [ngStyle]="(onTaskPower)?{'margin-top':'6px','margin-left':'10px'}:{}" #C (ionChange)="onChangeTaskPower()">   
-                   <ion-option value="IPU">IPU</ion-option>
-                   <ion-option value="ILR">ILR</ion-option>  
-                 </ion-select>
-              </ion-item> -->
-
-              
               <img class="img-pass" src="assets/imgs/newimg/group549.png">   
-              <ion-item class="item-pass">    
-                <ion-label floating *ngIf="onTaskPower" [ngStyle]="(onTaskPower)?{'display':'none'}:{ }">Category</ion-label> 
-                <ion-label *ngIf="!onTaskPower">Category</ion-label>    
-                 <ion-select [(ngModel)]="PowerSelect" interface="popover" [ngStyle]="(onTaskPower)?{'margin-top':'6px','margin-left':'10px'}:{}" #C (ionChange)="onChangeTaskPower()">   
-                   <ion-option value="28">Power BI Visualization</ion-option>
-                   <ion-option value="29">Google Data Studio</ion-option>    
+              <ion-item class="item-pass">       
+                <ion-label floating *ngIf="onTask" [ngStyle]="(onTask)?{'display':'none'}:{ }">Category</ion-label> 
+                <ion-label *ngIf="!onTask">Category</ion-label>    
+                 <ion-select [(ngModel)]="categorywp" interface="popover" [ngStyle]="(onTask)?{'margin-top':'6px','margin-left':'10px'}:{}" #C (ionChange)="onChangeTask()">   
+                    <ion-option [value]="item.term_id" *ngFor="let item of SelectArr">{{ item.name }}</ion-option>   
                  </ion-select>
               </ion-item>
 

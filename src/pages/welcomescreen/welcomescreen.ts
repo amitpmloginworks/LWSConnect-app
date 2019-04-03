@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { WlchourpopPage } from '../wlchourpop/wlchourpop';  
 
+import { AddtaskPage } from '../addtask/addtask';
+
 /**
  * Generated class for the WelcomescreenPage page.
  *
@@ -15,13 +17,15 @@ import { WlchourpopPage } from '../wlchourpop/wlchourpop';
   templateUrl: 'welcomescreen.html',    
 })
 export class WelcomescreenPage {  
-
+  fullname
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl : ModalController) {
       this.modalCtrl.create(WlchourpopPage).present(); 
-  }
+      this.fullname=this.navParams.get("fullname");
+      localStorage['showusrpop']="yes"; 
+  }      
 
   GotoNext(){
-      
+    this.navCtrl.push(AddtaskPage);       
   }
 
   ionViewDidLoad() {
