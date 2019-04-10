@@ -6,6 +6,9 @@ import{SecurityProvider}from'../../providers/security/security'
 import { TaskpopupPage } from '../taskpopup/taskpopup';  
 
 import { TaskapprovePage } from '../taskapprove/taskapprove';   
+import { AddtaskPage } from '../addtask/addtask';
+import { BuyadditionalPage } from '../buyadditional/buyadditional';       
+  
 
 /**
  * Generated class for the TasksegmentPage page.
@@ -54,8 +57,17 @@ export class TasksegmentPage {
 
   }
  
-  NextNav(PostID){
-      this.navCtrl.push(TaskapprovePage,{PostID:PostID});         
+  GotoNext(){ 
+    this.navCtrl.setRoot(AddtaskPage);        
+  }
+
+  UpgradeBtn(){
+    this.navCtrl.push(BuyadditionalPage);        
+  }
+
+
+  NextNav(PostID,PostTitle,PostStatus){       
+      this.navCtrl.push(TaskapprovePage,{PostID:PostID,PostTitle:PostTitle,PostStatus:PostStatus});         
   }
   segmentChanged(event) {   
       console.log(event.value)

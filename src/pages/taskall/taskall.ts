@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController } from 'ionic-angular';
 import { TaskPage } from '../task/task';  
 
 import { Http, Headers, RequestOptions } from '@angular/http';
 import{SecurityProvider}from'../../providers/security/security'
 import { TasksearchPage } from '../tasksearch/tasksearch'; 
 import { HomePage } from '../home/home';
+import { DashboardusrPage } from '../dashboardusr/dashboardusr';   
 
 /**
  * Generated class for the TaskallPage page.
@@ -30,7 +31,7 @@ export class TaskallPage {
   postname
 
   noarray:boolean = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http:Http, public security:SecurityProvider,public modalCtrl:ModalController) {      
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http:Http, public security:SecurityProvider,public modalCtrl:ModalController, public platform:Platform, public viewController:ViewController) {          
     this.tasksrc = this.navParams.get("tasksrc")
     this.taskallarr=[]; 
 
@@ -72,7 +73,19 @@ this.categorywp=this.navParams.get("categorywp");
 }
 
 
+ // Register for android's system back button
+ let backAction =  platform.registerBackButtonAction(() => {
+  // this.navCtrl.pop();   
+   this.navCtrl.setRoot(DashboardusrPage);
+  backAction();    
+ },1)  
 
+
+}
+
+NotifyBtn() { 
+  //this.navCtrl.pop();   
+  this.navCtrl.setRoot(DashboardusrPage);    
 }
 
 gettasklist(){     
@@ -99,6 +112,7 @@ gettasklist(){
 
 
   ionViewDidLoad() {
+    this.viewController.showBackButton(false)  
     console.log('ionViewDidLoad TaskallPage');
   }
 

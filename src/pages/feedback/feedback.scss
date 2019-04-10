@@ -145,5 +145,91 @@ page-feedback {
         font-family: "Lato-Bold","Lato-Heavy"; 
     }  
            
+
+
+    .text-input::-moz-placeholder {
+        color: #d8d8d8 !important;    
+      }
+      
+      .text-input:-ms-input-placeholder {
+        color: #d8d8d8 !important;   
+      }
+      
+      .text-input::-webkit-input-placeholder {
+        text-indent: 0;
+        color: #d8d8d8 !important;   
+      }
+
+
+      textarea::-webkit-input-placeholder {
+        color: #464646 !important;  
+        text-indent: 10px;
+        }
+         
+        textarea:-moz-placeholder { /* Firefox 18- */
+        color: #464646 !important;  
+        text-indent: 10px;
+        }
+         
+        textarea::-moz-placeholder {  /* Firefox 19+ */
+        color: #464646 !important;  
+        text-indent: 10px;
+        }  
+          
+        textarea:-ms-input-placeholder {  
+        color: #464646 !important;   
+        text-indent: 10px;  
+        }
+
+        textarea.text-input {
+            display: block;
+            margin-top: 10px;
+            margin-left: 22px;
+        }
+
+        .item-md.item-input.input-has-focus .item-inner {
+            box-shadow: none !important;
+            color: #464646 !important; 
+          }
+          
+          .list-md .item-input.input-has-focus:last-child {
+            box-shadow: none !important;
+            color: #464646 !important;
+          }
+          
+          .list-md .item-input.input-has-focus:last-child .item-inner {
+            box-shadow: none;
+            color: #464646 !important;
+          }
+          
+          .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner {
+            box-shadow: none !important;
+            color: #464646 !important;
+          }
+          
+          .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child {
+            box-shadow: none !important;
+            color: #464646 !important;
+          }
+          
+          .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child .item-inner {
+            box-shadow: none;
+            color: #464646 !important;
+          }
+          
+          .item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus) .item-inner {
+            box-shadow: none !important;
+            color: #464646 !important;
+          }
+          
+          .list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):last-child {  
+            box-shadow: none !important;
+            color: #464646 !important;
+          }
+          .item-md.item-block .item-inner {
+            border-bottom: none !important;
+         
+        }
+
     
 }

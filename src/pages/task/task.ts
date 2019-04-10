@@ -38,7 +38,7 @@ export class TaskPage {
   imgUrl:any;
 
   imgmetatitle:any ="";
-  txtboolean:boolean=false;
+  txtboolean:boolean=true;
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl : ViewController,public loadingCtrl: LoadingController, public toastCtrl:ToastController, public security :SecurityProvider, public http:Http,public filetransfer: FileTransfer,public camera:Camera,public actionSheetCtrl:ActionSheetController,private fileChooser: FileChooser,public file:File,private fileOpener: FileOpener,public events: Events,public filePath: FilePath) {
     this.imgUrl=this.security.ImageUrlLink();  
     this.taskID=this.navParams.get("taskID");          
@@ -234,17 +234,17 @@ ProfileImageUp(imgData,commentID) {
 
  MobCheck(vale) {
    if(vale.length==0) {
-    this.txtboolean=false;
+    //this.txtboolean=false;
     return; 
    }
    else{
-    this.txtboolean=true;  
+    //this.txtboolean=true;  
    }
  }   
 
- SendServer(){
+ SendServer() {  
   if(this.replyarea =="" || this.replyarea == undefined){
-    this.txtboolean=false; 
+    //this.txtboolean=false;   
     //this.toastCtrl.create({ message: `Please enter your message.`, duration: 4000, position: 'top' }).present();
     return; 
     }  

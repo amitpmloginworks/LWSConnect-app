@@ -11,7 +11,7 @@ import { TaskallPage } from '../taskall/taskall';
 import { FileChooser } from '@ionic-native/file-chooser';  
 import { HomePage } from '../home/home';
 import { FileOpener } from '@ionic-native/file-opener';
-import { DashboardusrPage } from '../dashboardusr/dashboardusr'; 
+import { DashboardusrPage } from '../dashboardusr/dashboardusr';     
 import { FilePath } from '@ionic-native/file-path';
 
 import{FormBuilder,FormGroup,Validators}from'@angular/forms'
@@ -48,11 +48,11 @@ export class AddtaskPage {
   console.log("profilepic==",this.profilepic); 
     this.imgUrl=this.security.ImageUrlLink();
 
-    this.validation=formbuilder.group({      
+    this.validation=formbuilder.group({       
       PowerSelect:['',Validators.compose([Validators.maxLength(500), Validators.required])], 
-      title:['',Validators.compose([Validators.required, Validators.maxLength(20),this.noWhitespaceValidator ])], 
-      contents:['',Validators.compose([Validators.required, Validators.maxLength(500),this.noWhitespaceValidator ])]
-      })
+      title:['',Validators.compose([Validators.required, Validators.maxLength(65535) ])], 
+      contents:['',Validators.compose([Validators.required, Validators.maxLength(4294967295) ])] 
+      })  
 
       this.security.Categorylist().subscribe(result => {      
           if (result.status === 200) { 
@@ -65,7 +65,7 @@ export class AddtaskPage {
 
           // Register for android's system back button
           let backAction =  platform.registerBackButtonAction(() => {
-            this.navCtrl.pop(); 
+           // this.navCtrl.pop();   
             this.navCtrl.setRoot(DashboardusrPage);
            backAction();    
           },1)   
@@ -127,6 +127,8 @@ export class AddtaskPage {
       let filePath: string = file;
       this.profilepic=filePath;   
       this.imgmetatitle=file.split('file:///storage/emulated/0/Download/')[1]; 
+      this.imgmetatitle=file.split('file:///storage/emulated/0/WhatsApp/Media/WhatsApp Images/')[1]; 
+      this.imgmetatitle=file.split('file:///storage/emulated/0/DCIM/ScreenRecorder/')[1]; 
 		})
     .catch(err => console.log(err));
     })  
@@ -190,9 +192,9 @@ export class AddtaskPage {
       }
 
       NotifyBtn() { 
-        this.navCtrl.pop(); 
+        //this.navCtrl.pop();   
         this.navCtrl.setRoot(DashboardusrPage);    
-      }
+      } 
        
   GotoNext()  {
     if(this.title =="" || this.title == undefined || this.PowerSelect == "" || this.PowerSelect==undefined || this.contents =="" || this.contents == undefined) 
@@ -209,8 +211,8 @@ export class AddtaskPage {
          this.title="";
          this.PowerSelect="";
          this.contents=""; 
-         this.navCtrl.pop();   
-         this.navCtrl.push(TaskallPage,{ createtask:"createtask" }); 
+         //this.navCtrl.pop();     
+         this.navCtrl.setRoot(TaskallPage,{ createtask:"createtask" }); 
       }    
      else {    }
    }, err => {  console.log("err", err);   }

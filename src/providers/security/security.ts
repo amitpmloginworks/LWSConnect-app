@@ -110,12 +110,12 @@ taskactive(){
   )
 }
   
-resetpass(emailid){    
+resetpass(emailid){     
   let headers = new Headers({ 'content-type': 'application/json'})
   let requestOptions=new RequestOptions({headers:headers})
-  let param=JSON.stringify({ emailid:emailid })    
+  let param=JSON.stringify({ emailid:emailid })      
   return this.http.post(ENV.mainApi + '/forgetpass',param,requestOptions).timeout(ENV.timeout).map((data)=>{  
-    return data.json();   
+    return data.json();    
   },  err => {  console.error('Oops:', err.message);  }
   )
 }

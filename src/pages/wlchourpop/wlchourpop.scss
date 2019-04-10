@@ -62,14 +62,13 @@ page-wlchourpop {
     }
 
     .rowstop {
-      padding-top: 18%;
+        padding-top: 27.6%; 
     }
-
      
     @media only screen and (min-height:732px){     
-        .rowstop {
-            padding-top: 11.5%; 
-          }
+          .rowstop {
+            padding-top: 27.6%;
+        }    
           .div-main {
             width: 98%;
             border-radius: 6px;

@@ -25,7 +25,7 @@ export class WelcomescreenPage {
   }      
 
   GotoNext(){
-    this.navCtrl.push(AddtaskPage);       
+    this.navCtrl.setRoot(AddtaskPage);        
   }
 
   ionViewDidLoad() {

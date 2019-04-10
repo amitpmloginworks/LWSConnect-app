@@ -4,49 +4,49 @@
 <ion-menu  id="authenticated" side="left" type="overlay" persistent="true" [content]="content">    
         <ion-content >
 
-            <ion-item no-lines style="height: 3.3rem;">
+            <ion-item no-lines style="height: 3.8rem;margin-top: 16px;">       
                 <button menuClose="authenticated" clear ion-button (click)="CreateBtn()"> 
-                   <img src="assets/imgs/newimg/path369.png" style="width: 6%;    margin-left: -118px;" /> 
+                   <img src="assets/imgs/newimg/path369.png" style="width: 6%;margin-left: -37px;" /> 
                   <label style="margin-left: 10px; color: #fff; font-family: Lato-Regular;">Create a Task</label>
                 </button>
             </ion-item>
    
-            <ion-item no-lines style="height: 3.3rem;">   
+            <ion-item no-lines style="height: 3.8rem;">   
                     <button menuClose="authenticated" clear ion-button (click)="AllTaskBtn()"> 
-                       <img src="assets/imgs/newimg/move.png" style="width: 6%;     margin-left: -76px;" /> 
+                       <img src="assets/imgs/newimg/move.png" style="width: 6%;     margin-left: 5px;" /> 
                       <label style="margin-left: 10px; color: #fff; font-family: Lato-Regular;">Tasks</label> 
                       <div class="notification2"><div class="notification1">{{ newpost }}</div></div> 
                       <div class="notification4"><div class="notification3">{{ TotalPost }}</div></div>
                     </button> 
             </ion-item>   
 
-            <ion-item no-lines style="height: 3.3rem;">
+            <ion-item no-lines style="height: 3.8rem;">
               <button menuClose="authenticated" clear ion-button (click)="ProfileBtn()"> 
-                 <img src="assets/imgs/newimg/settings.png" style="width: 6%;margin-left: -112px;" /> 
+                 <img src="assets/imgs/newimg/settings.png" style="width: 6%;    margin-left: -31px;" /> 
                 <label style="margin-left: 10px; color: #fff; font-family: Lato-Regular;">Profile Settings</label>
               </button>
           </ion-item>
 
    
-          <ion-item no-lines style="height: 3.3rem;">
+          <ion-item no-lines style="height: 3.8rem;">
                         <button menuClose="authenticated" clear ion-button (click)="ProfileBtn()"> 
-                           <img src="assets/imgs/newimg/credit-cards-payment.png" style="width: 6%;     margin-left: -102px;" />  
+                           <img src="assets/imgs/newimg/credit-cards-payment.png" style="width: 6%;       margin-left: -21px;" />  
                           <label style="margin-left: 10px; color: #fff; font-family: Lato-Regular;">Payment History</label>
                         </button>
                 </ion-item>
 
-                <ion-item no-lines style="height: 3.3rem;">
+                <ion-item no-lines style="height: 3.8rem;">
                       <button menuClose="authenticated" clear ion-button (click)="ProfileBtn()"> 
-                         <img src="assets/imgs/newimg/history-clock-button.png" style="width: 6%;             margin-left: -123px;" /> 
+                         <img src="assets/imgs/newimg/history-clock-button.png" style="width: 6%;             margin-left: -44px;" /> 
                         <label style="margin-left: 10px; color: #fff; font-family: Lato-Regular;">Hours Report</label>
                       </button>
                   </ion-item>
 
                    
-
-                  <ion-item no-lines style="height: 3.3rem;">    
+  
+                  <ion-item no-lines style="height: 3.8rem;">    
                             <button menuClose="authenticated" clear ion-button (click)="LogoutBtn()">     
-                               <img src="assets/imgs/newimg/exits.png" style="width: 6%;margin-left: -163px;" />  
+                               <img src="assets/imgs/newimg/exits.png" style="width: 6%;    margin-left: -90px;" />  
                               <label style="margin-left: 10px; color: #fff; font-family: Lato-Regular;">Logout</label>
                             </button>
                         </ion-item>
@@ -71,7 +71,7 @@
                 }
                 ion-menu[type=overlay] {
                   z-index: 80;
-                  margin-top: 56px;
+                  margin-top: 56px;   
               } 
               .md ion-menu[type=overlay] .menu-inner {
                   width: 72%;    
@@ -100,7 +100,7 @@
               
           .notification2 {
               background: #ffc01d;
-              width: 7%;
+              width: 10%;
               border: 1px solid #fff;
               margin-left: 17px;
               border-radius: 92px;
@@ -116,7 +116,7 @@
           
               .notification4 {
               background: #0049A3;  
-              width: 7%;
+              width: 10%;
               border: 1px solid #fff;
               margin-left: 17px;
               border-radius: 92px;
@@ -177,11 +177,11 @@
                         <div style="margin-top: -22px;margin-left: 52px;" class="txtright">Updated <br>{{ updateTaskd }}</div>     
                       </button> 
 
-                      <button menuClose="menu2" ion-item (click)="openPage()" >    
+                      <!-- <button menuClose="menu2" ion-item (click)="openPage()" >    
                         <img src="assets/imgs/newimg/sent-mail.png" style="margin-bottom: -4px;  width: 24px !important;margin-right: 20px;margin-left: 16px;">   
                         <div style="margin-top: -22px;margin-left: 52px;color:#CBB2A0" class="txtright" (click)="sendEmail()">Send Transcript to your<br>Email</div>    
-                      </button> 
-                      
+                      </button>  -->
+                         
                        
         </ion-list>  
  
@@ -229,6 +229,10 @@
     padding-left: 18px;
     padding-top: 8px;
     padding-bottom: 8px;
+}
+
+.menu-inner {
+    width: 221px !important;  
 }
      
     </style>

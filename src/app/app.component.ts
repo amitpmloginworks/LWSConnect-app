@@ -62,7 +62,7 @@ export class MyApp {
   PowerBI:any;
   OpenTask:any;   
 
-  onTaskPower:boolean = false;
+  onTaskPower:boolean = false;  
   onTaskStatus:boolean = false;      
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public security :SecurityProvider, public http:Http,public events: Events,private oneSignal: OneSignal) {
@@ -81,7 +81,7 @@ export class MyApp {
              this.CatFun(); 
             // this.NotificationApp();             
         }
-        events.subscribe('userrole:usrrole', (user, time) => {
+        events.subscribe('userrole:usrrole', (user, time) => {   
           this.activepost();
           this.CatFun();
         });      
@@ -181,7 +181,7 @@ export class MyApp {
 
 
   activepost(){
-    this.security.taskactive().subscribe(result => {      
+    this.security.taskactive().subscribe(result => {       
       if (result.status === 200) { this.newpost=result.newpost; this.TotalPost=result.TotalPost;  }    
       else {    } 
    }, err => {  console.log("err", err);   }
@@ -191,7 +191,7 @@ export class MyApp {
   CatFun(){
     this.security.Categorylist().subscribe(result => {      
       if (result.status === 200) { 
-        this.CatArr=result.final_array;  
+        this.CatArr=result.final_array;    
         }    
      else {    }
    }, err => {  console.log("err", err);   }
@@ -208,7 +208,7 @@ export class MyApp {
     this.nav.push(TaskallPage);  
   }
   LogoutBtn(){
-    localStorage.clear();      
+    localStorage.clear();           
     localStorage['showusrpop'] = "yes";      
     this.nav.setRoot(SigninPage);  
   }

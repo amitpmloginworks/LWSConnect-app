@@ -45,8 +45,8 @@ page-dashboardusr {
       }
        
       .img-notify {
-        width: 24px;
-        margin-right: 9px;
+        width: 17px;
+        margin-right: 9px;  
       }
 
       .btn-fullbg { 
@@ -112,11 +112,11 @@ page-dashboardusr {
         margin-top: 21px;
         } 
    
-        .p-plans { 
-            color: map-get($ContentColor,PColorc);  
+        .p-plans {   
+          color: #a28671; 
             font-family: $Lato-heavy; 
-            font-size: 13px; 
-            margin-top: 22px; 
+            font-size: 12px;
+            margin-top: 25px;  
         }
            
     .rows-btnlog { 
@@ -156,5 +156,27 @@ page-dashboardusr {
   }
  
 
+  @media only screen and (min-height:615px){       
+    .rows-btnlog {
+        margin-top: 40px;
+        margin-bottom: 29px;
+    }
+    .rows-buttomm {  
+      margin-bottom: 0px !important;   
+ }
+}
+
+@media only screen and (min-height:732px){       
+  .rows-btnlog {
+      margin-top: 40px;
+      margin-bottom: 29px;
+  }
+  .rows-buttomm {    
+    margin-bottom: 16px !important;   
+}
+ 
+}
+
+ 
 
 }

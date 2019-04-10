@@ -266,14 +266,15 @@ page-welcomescreen {
             text-align: center;  
             font-size: 16px;
             color:#464646;
-            font-family: $Lato-regular;      
+            font-family: $Lato-regular;  
+            margin-left: 21px;    
         }
 
         .contentview {     
             padding-top: 14px;
-            padding-bottom: 13px;
-            padding-left: 37px;
-            padding-right: 37px;
+            padding-bottom: 12px;
+            padding-left: 0px;    
+            padding-right: 0px;
             background-color: rgba(162, 134, 113, 0.1);
         }
 
@@ -285,5 +286,21 @@ page-welcomescreen {
         .list-md { 
             margin: 60px 0 26px;
         }
-           
+                 
+         
+    @media only screen and (min-height:615px){       
+        .img-profile {
+            width: 74%;
+            border-radius: 50%;
+        }
+      
+    }
+
+     
+
+
+ 
+    //Width: 360               Height: 615
+
+      
 }

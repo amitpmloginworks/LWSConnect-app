@@ -12,8 +12,8 @@ page-tasksearch {
         color: map-get($ContentColor, itemColor);
         background-color: map-get($ContentColor, itemBgWhite);
         font-size: 14px !important;
-        text-indent: 50px;   
-        height: 3.8rem;   
+        text-indent: 45px;   
+        height: 4.0rem;
     }
     .item-block {
         min-height: 3.8rem;    
@@ -30,7 +30,6 @@ page-tasksearch {
     .toolbar-title-md   {
         padding: 0 12px;
         font-size: 14px;
-        font-weight: bold;
         color: map-get($ContentColor, itemBgWhite);
         margin-right: 50px;
     }
@@ -257,6 +256,10 @@ page-tasksearch {
          
         .item-cover {
             border-bottom:none !important; 
+          }
+
+          .text-input-md {
+              margin: 0px !important; 
           }
            
 }

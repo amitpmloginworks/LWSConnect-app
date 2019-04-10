@@ -68,19 +68,19 @@ export class SigninPage {
           //loading.dismiss();   
           if (result.wpstatus === 1) {
               console.log(result.getdata[0].ID)    
-              this.events.publish('userrole:usrrole',result.getdata[0].ID, Date.now());
-              localStorage['loginactive']="loginusr";
-                localStorage['userid']=result.getdata[0].ID; 
+              localStorage['userid']=result.getdata[0].ID; 
+              localStorage['loginactive']="loginusr";  
                 let fullname=result.getdata[0].display_name;  
+              this.events.publish('userrole:usrrole',result.getdata[0].ID, Date.now());
                 if(localStorage['showusrpop'] == "yes") {
-                  this.navCtrl.push(AddtaskPage);       
+                  this.navCtrl.setRoot(AddtaskPage);           
                 }
                 else { 
                   this.navCtrl.setRoot(WelcomescreenPage,{ fullname:fullname });  
                 }            
          } 
          else {  
-           this.ErrMsg="Please Enter Valid credentials!";  
+           this.ErrMsg="Please enter valid credentials!";       
           // this.toastCtrl.create({ message: `Please Enter Valid credentials!`, duration: 4000, position: 'top' }).present(); return;
          }
        }, err => {  

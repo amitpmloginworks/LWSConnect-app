@@ -37,13 +37,14 @@ export class TaskapprovePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,private fileChooser: FileChooser,public file:File,private fileOpener: FileOpener,public filetransfer: FileTransfer,public modalCtrl:ModalController, public http:Http, public security:SecurityProvider) {
 
     this.PostID=this.navParams.get("PostID");
-    this.PostStatus=this.navParams.get("PostStatus");
+    this.PostStatus=this.navParams.get("PostStatus");     
      
     if(this.PostStatus == "open") {  this.btnstaus = false;   }
     if(this.PostStatus == "closed") {  this.btnstaus = true;  }
 
-    this.taskName ="TASK NAME";  
-    this.GetData();    
+    this.taskName =this.navParams.get("PostTitle");  
+    this.GetData();
+          
   }
 
   GetData() {
@@ -62,7 +63,7 @@ export class TaskapprovePage {
   }
 
       
-  GotoNext1(filepaths,titles,extensions)  {  
+  GotoNext1(filepaths,titles,extensions)  {      
     let fileName=''
     let apptypes=''; 
     fileName=titles; 
