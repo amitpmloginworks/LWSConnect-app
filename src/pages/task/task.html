@@ -44,10 +44,10 @@
         </ion-col>     
             <ion-col col-10 no-padding no-margin *ngIf="message.hands == 1" [ngStyle]="(i != 0) ? { 'margin-top': '17px' } : {  } " >     
                 <p no-padding no-margin class="Rightheadermsg"> {{ message.posttime }}</p> <br>      
-            <ion-item no-padding no-margin [ngClass]="message.styleClass">
+            <ion-item no-padding no-margin [ngClass]="message.styleClass"> 
                 <!-- <p text-wrap class="message-detail" no-padding no-margin >         </p>  -->  
                 <!-- <div id="content_data" class="message-detail" [innerHTML]="message.comment_content | htmlbypas:message.comment_content:true">   </div>    -->  
-               <div  class="message-detail" [innerHTML]="message.comment_content | htmlbypas:'html'" text-wrap></div>         
+               <div  class="message-detail" [innerHTML]="message.comment_content | htmlbypas:'html'" text-wrap></div>          
                <p text-wrap class="message-detail" no-padding no-margin  margin-top (click)="GotoNext1(message.wpurl,message.wptitle,message.wpextension)" style="color: blue;" *ngIf="message.wptitle !=''">{{ message.wptitle }}</p>      
             </ion-item>
             </ion-col>    
@@ -76,7 +76,7 @@
 
      </ion-grid> 
 </ion-content>
-<ion-footer no-padding no-margin>  
+<ion-footer no-padding no-margin no-shadow no-border>    
     <ion-row no-margin no-padding class="gridcl" style="margin-bottom: 5px;" >  
         <ion-col col-12 no-margin no-padding>  
     

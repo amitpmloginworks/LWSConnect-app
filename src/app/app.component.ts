@@ -45,7 +45,7 @@ import { BuyadditionalPage } from '../pages/buyadditional/buyadditional';
   templateUrl: 'app.html'
 })
 export class MyApp {  
-  @ViewChild(Nav)nav:Nav   
+  @ViewChild(Nav)nav:Nav      
   
   //  https://xd.adobe.com/spec/65ae4756-638a-4422-75bf-25cbe38ea275-139f/   // user  dev
 
@@ -56,7 +56,7 @@ export class MyApp {
   CatArr:any =[]; 
 
   createDate:any;
-  TicketID:any;
+  TicketID:any; 
   updateTaskd:any;
 
   PowerBI:any;

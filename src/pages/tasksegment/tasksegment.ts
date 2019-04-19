@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController } from 'ionic-angular';
 
 import { Http, Headers, RequestOptions } from '@angular/http';
 import{SecurityProvider}from'../../providers/security/security'
@@ -7,7 +7,8 @@ import { TaskpopupPage } from '../taskpopup/taskpopup';
 
 import { TaskapprovePage } from '../taskapprove/taskapprove';   
 import { AddtaskPage } from '../addtask/addtask';
-import { BuyadditionalPage } from '../buyadditional/buyadditional';       
+import { BuyadditionalPage } from '../buyadditional/buyadditional';   
+import { DashboardusrPage } from '../dashboardusr/dashboardusr';     
   
 
 /**
@@ -37,7 +38,14 @@ export class TasksegmentPage {
   onTaskPower:boolean=false; 
 
   chooseOptions:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http:Http, public security:SecurityProvider,public modalCtrl:ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http:Http, public security:SecurityProvider,public modalCtrl:ModalController, public platform: Platform, public viewController:ViewController) {   
+
+       // Register for android's system back button
+       let backAction =  platform.registerBackButtonAction(() => {
+         this.navCtrl.pop();       
+         this.navCtrl.setRoot(DashboardusrPage);
+        backAction();    
+       },1) 
 
     this.chooseOptions="gotask";   
 
@@ -47,16 +55,21 @@ export class TasksegmentPage {
     this.taskcomp=[]; 
    
     this.gettasklist("open");   
-
-    let successModal=this.modalCtrl.create(TaskpopupPage);   
-    successModal.onDidDismiss(data => {     
-    
-    })      
-    successModal.present();
-
+ if(this.navParams.get("ShowPopup") !=undefined)   {
+  let successModal=this.modalCtrl.create(TaskpopupPage);   
+  successModal.onDidDismiss(data => {     
+  })         
+  successModal.present();
+ }
+       
 
   }
  
+     
+  NotifyBtn() {     
+    this.navCtrl.setRoot(DashboardusrPage);    
+  } 
+
   GotoNext(){ 
     this.navCtrl.setRoot(AddtaskPage);        
   }
@@ -100,6 +113,7 @@ export class TasksegmentPage {
   }
 
   ionViewDidLoad() {
+    this.viewController.showBackButton(false)  
     console.log('ionViewDidLoad TasksegmentPage');
   }
 

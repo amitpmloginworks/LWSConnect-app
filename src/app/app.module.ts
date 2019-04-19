@@ -12,6 +12,7 @@ import { File } from '@ionic-native/file';
 import { FileChooser } from '@ionic-native/file-chooser';
 import { FileOpener } from '@ionic-native/file-opener';
 import { OneSignal } from '@ionic-native/onesignal';
+import { VideoPlayer } from '@ionic-native/video-player';
 
 
 import { MyApp } from './app.component';
@@ -49,6 +50,8 @@ import { FeedbackPage } from '../pages/feedback/feedback';
 import { BuyadditionalPage } from '../pages/buyadditional/buyadditional';  
 
 import { FilePath } from '@ionic-native/file-path';  
+import { PhotoViewer } from '@ionic-native/photo-viewer';
+import { PaymentpopupPage } from '../pages/paymentpopup/paymentpopup'; 
 
 @NgModule({
   declarations: [
@@ -78,7 +81,8 @@ import { FilePath } from '@ionic-native/file-path';
     TaskpopupPage,
     LoginworksurlPage,
     FeedbackPage,
-    BuyadditionalPage
+    BuyadditionalPage,
+    PaymentpopupPage
   ],
   imports: [
     BrowserModule,
@@ -112,7 +116,8 @@ import { FilePath } from '@ionic-native/file-path';
     TaskpopupPage  ,
     LoginworksurlPage  ,
     FeedbackPage  ,  
-    BuyadditionalPage    
+    BuyadditionalPage ,
+    PaymentpopupPage      
   ],
   providers: [
     StatusBar,
@@ -125,7 +130,9 @@ import { FilePath } from '@ionic-native/file-path';
     FileChooser,
     FileOpener, 
     OneSignal, 
-    FilePath,
+    FilePath, 
+    PhotoViewer,
+    VideoPlayer, 
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SecurityProvider
   ]

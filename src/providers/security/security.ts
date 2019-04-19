@@ -103,14 +103,14 @@ tasklistsrc(postname,statuswp,categorywp){
 taskactive(){    
   let headers = new Headers({ 'content-type': 'application/json'})
   let requestOptions=new RequestOptions({headers:headers})
-  let param=JSON.stringify({ userid:localStorage['userid'] })    
+  let param=JSON.stringify({ userid:localStorage['userid'] })     
   return this.http.post(ENV.mainApi + '/taskactive',param,requestOptions).timeout(ENV.timeout).map((data)=>{  
     return data.json();   
   },  err => {  console.error('Oops:', err.message);  }
   )
 }
   
-resetpass(emailid){     
+resetpass(emailid){      
   let headers = new Headers({ 'content-type': 'application/json'})
   let requestOptions=new RequestOptions({headers:headers})
   let param=JSON.stringify({ emailid:emailid })      
@@ -171,7 +171,60 @@ taskapprove(taskid)  {
   )
 }
 
+    
+payment(PaypalTxnID,OrderItem,BalHours,TotalHours,OrderAmt,PaidDate,fullname,mob,emailid)  {         
+  let headers = new Headers({ 'content-type': 'application/json'});
+  let requestOptions=new RequestOptions({headers:headers});
+  let param=JSON.stringify({userid:localStorage['userid'],PaypalTxnID:PaypalTxnID,OrderItem:OrderItem,BalHours:BalHours,TotalHours:TotalHours,OrderAmt:OrderAmt,PaidDate:PaidDate,fullname:fullname,mobno:mob,emailid:emailid});          
+  return this.http.post(ENV.mainApi + '/payment',param,requestOptions).timeout(ENV.timeout).map((data)=>{
+    return data.json();    
+  },  err => {  console.error('Oops:', err.message);  }
+  )
+}
 
+buyadditional()  {                 
+  let headers = new Headers({ 'content-type': 'application/json'});
+  let requestOptions=new RequestOptions({headers:headers});
+  let param=JSON.stringify({userid:localStorage['userid']});   
+  return this.http.post(ENV.mainApi + '/buyadditional',param,requestOptions).timeout(ENV.timeout).map((data)=>{
+    return data.json();    
+  },  err => {  console.error('Oops:', err.message);  }
+  )
+}
+
+
+getprofile()  {                     
+  let headers = new Headers({ 'content-type': 'application/json'});
+  let requestOptions=new RequestOptions({headers:headers});
+  let param=JSON.stringify({userid:localStorage['userid']});   
+  return this.http.post(ENV.mainApi + '/getprofile',param,requestOptions).timeout(ENV.timeout).map((data)=>{
+    return data.json();    
+  },  err => {  console.error('Oops:', err.message);  }
+  )
+}
+
+
+upprofileimg()  {                     
+  let headers = new Headers({ 'content-type': 'application/json'});
+  let requestOptions=new RequestOptions({headers:headers});
+  let param=JSON.stringify({userid:localStorage['userid']});      
+  return this.http.post(ENV.mainApi + '/profileimg',param,requestOptions).timeout(ENV.timeout).map((data)=>{
+    return data.json();    
+  },  err => {  console.error('Oops:', err.message);  }
+  )
+}
+
+     
+
+updateprofile(billAdd,billCountry,billState,billPin,billingPhone)  {                      
+  let headers = new Headers({ 'content-type': 'application/json'});
+  let requestOptions=new RequestOptions({headers:headers});
+  let param=JSON.stringify({userid:localStorage['userid'],billAdd:billAdd,billCountry:billCountry,billState:billState,billPin:billPin,billingPhone:billingPhone});      
+  return this.http.post(ENV.mainApi + '/upprofile',param,requestOptions).timeout(ENV.timeout).map((data)=>{
+    return data.json();    
+  },  err => {  console.error('Oops:', err.message);  }
+  )
+}
 
 
 

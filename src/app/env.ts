@@ -27,4 +27,4 @@ const HTTP_TIMEOUT: number = 60000;
     }
 
       
-    export const ENV:Enviroment=Livefinal;                             
+    export const ENV:Enviroment=Livefinal;                                                             

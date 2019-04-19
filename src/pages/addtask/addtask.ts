@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController, ModalController, Platform, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, ModalController, Platform, ViewController, MenuController, LoadingController } from 'ionic-angular';
 
 import { Http, Headers, RequestOptions } from '@angular/http';
 import{SecurityProvider}from'../../providers/security/security'
@@ -16,6 +16,9 @@ import { FilePath } from '@ionic-native/file-path';
 
 import{FormBuilder,FormGroup,Validators}from'@angular/forms'
 import { FormControl, AbstractControl } from '@angular/forms' 
+
+import { PhotoViewer } from '@ionic-native/photo-viewer';  
+import { VideoPlayer } from '@ionic-native/video-player';
 
 
 /**
@@ -43,8 +46,14 @@ export class AddtaskPage {
 
   imgUrl:any;
   profilepic;
-  imgmetatitle:any="";
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http:Http, public security:SecurityProvider,public filetransfer: FileTransfer,public camera:Camera,public actionSheetCtrl:ActionSheetController,private fileChooser: FileChooser, public modalCtrl: ModalController, public file:File,private fileOpener: FileOpener, public platform:Platform,public viewController: ViewController,public filePath: FilePath,public formbuilder:FormBuilder) {
+  imgmetatitle:any="";  
+
+  ErrMsg:any;
+
+  isEnabled:boolean=true;
+  imageshow 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http:Http, public security:SecurityProvider,public filetransfer: FileTransfer,public camera:Camera,public actionSheetCtrl:ActionSheetController,private fileChooser: FileChooser, public modalCtrl: ModalController, public file:File,private fileOpener: FileOpener, public platform:Platform,public viewController: ViewController,public filePath: FilePath,public formbuilder:FormBuilder, public menuCtrl: MenuController,private photoViewer: PhotoViewer,private videoPlayer: VideoPlayer,public loadingCtrl: LoadingController) { 
+    this.menuCtrl.enable(false, 'menu2');     
   console.log("profilepic==",this.profilepic); 
     this.imgUrl=this.security.ImageUrlLink();
 
@@ -58,6 +67,7 @@ export class AddtaskPage {
           if (result.status === 200) { 
             console.log("result.final_array==",result.final_array)  
             this.SelectArr=result.final_array;  
+            this.isEnabled=false; 
             }    
          else {    }
        }, err => {  console.log("err", err);   }
@@ -115,27 +125,113 @@ export class AddtaskPage {
   //   .catch(e => console.log(e));
   // }
 
+  txtextension(text) {
+    var index = text.lastIndexOf('.');
+    return [text.slice(0, index), text.slice(index + 1)]
+}
+
+
+  OpenViewer(titles)  {
+    console.log("titles==",titles)  
+    var filepaths=this.profilepic; 
+    console.log("titles==",filepaths)    
+    var splitByLastDot = this.txtextension(titles);   
+    let extensions= "."+splitByLastDot[1];
+    if(extensions ==".jpg" || extensions ==".png" || extensions ==".jpeg" ) {
+      console.log("If cond..",this.imageshow)
+      var options = {
+        share: true, // default is false
+        closeButton: true, // default is true 
+        copyToReference: true // default is false
+    };
+      this.photoViewer.show(this.imageshow, titles,options);   
+      
+    }    
+    // if(extensions == ".mp4" || extensions == ".MP4")  {
+    //   // Playing a video.
+    //   this.videoPlayer.play(filepaths).then(() => {
+    //       console.log('video completed');
+    //   }).catch(err => {
+    //       console.log(err);
+    //   });  
+    // } 
+else  {
+  console.log("ELSE cond..")  
+    let fileName=''
+    let apptypes=''; 
+    fileName=titles; 
+    if(extensions==".pdf")      {      apptypes= 'application/pdf';     }
+    if(extensions==".doc")      {     apptypes = 'application/msword';  }
+    if(extensions==".docx")     {   
+       apptypes ='application/vnd.openxmlformats-officedocument.wordprocessingml.document'   
+    }
+    if(extensions==".apk")     {   
+      apptypes ='application/vnd.android.package-archive'   
+   }
+    let filespath=this.file.dataDirectory 
+    const fileTransfer: FileTransferObject = this.filetransfer.create();       
+    fileTransfer.download(filepaths,filespath + fileName, true).then((entry) => {
+      let url1 =entry.toURL();
+      this.fileOpener.open(url1, apptypes).then(() =>  {   }
+    ).catch(e => {   } );
+    }, (error) => {   
+    });
+  }
+  }
+
   uploadFile()  {  
     this.fileChooser.open()
     .then(uri => { 
-      console.log("uri",uri);    
+      console.log("uri",uri);     
         // get file path
+        this.imageshow=uri;
 		this.filePath.resolveNativePath(uri)
 		.then(file => {
-      console.log("file==",file)    
-			//alert('file'+JSON.stringify(file));
+      console.log("file==",file)       
       let filePath: string = file;
-      this.profilepic=filePath;   
-      this.imgmetatitle=file.split('file:///storage/emulated/0/Download/')[1]; 
-      this.imgmetatitle=file.split('file:///storage/emulated/0/WhatsApp/Media/WhatsApp Images/')[1]; 
-      this.imgmetatitle=file.split('file:///storage/emulated/0/DCIM/ScreenRecorder/')[1]; 
+      this.profilepic=file;      
+
+
+      var url = file;
+      var parts = url.split("/");
+      this.imgmetatitle=parts[parts.length-1];
+      console.log("this.imgmetatitle1==",this.imgmetatitle)  
+  
+      //this.ErrMsg="Please upload file except .bat/.exe file";
+
+      /*
+      if(file.split('file:///storage/emulated/0/Android/data/io.lws.connect/cache/')[1] != undefined){
+        this.imgmetatitle=file.split('file:///storage/emulated/0/Android/data/io.lws.connect/cache/')[1]; 
+        console.log("this.imgmetatitle1==",this.imgmetatitle)  
+      }
+   
+      if(file.split('file:///storage/emulated/0/Download/')[1] != undefined){
+        this.imgmetatitle=file.split('file:///storage/emulated/0/Download/')[1]; 
+        console.log("this.imgmetatitle2==",this.imgmetatitle)  
+      }
+      if(file.split('file:///storage/emulated/0/WhatsApp/Media/WhatsApp Images/')[1] != undefined){
+        this.imgmetatitle=file.split('file:///storage/emulated/0/WhatsApp/Media/WhatsApp Images/')[1]; 
+        console.log("this.imgmetatitle3==",this.imgmetatitle)  
+      }
+      if(file.split('file:///storage/emulated/0/DCIM/ScreenRecorder/')[1] != undefined){
+        this.imgmetatitle=file.split('file:///storage/emulated/0/DCIM/ScreenRecorder/')[1];  
+        console.log("this.imgmetatitle4==",this.imgmetatitle)  
+      }
+
+      if(file.split('file:///storage/emulated/0/WhatsApp/Media/WhatsApp Video/')[1] != undefined){
+        this.imgmetatitle=file.split('file:///storage/emulated/0/WhatsApp/Media/WhatsApp Video/')[1];  
+        console.log("this.imgmetatitle4==",this.imgmetatitle)   
+      }  
+      */
+
+
 		})
     .catch(err => console.log(err));
     })  
     .catch(e => console.log(e));
   }
 
-  gallery() {
+  gallery()   {  
     this.camera.getPicture({
       quality: 75,
       destinationType: this.camera.DestinationType.FILE_URI,
@@ -147,14 +243,50 @@ export class AddtaskPage {
       correctOrientation: true
     }).then((imageData) => {  
       console.log(imageData);
-      this.profilepic=imageData
+      this.imageshow=imageData;
+      this.filePath.resolveNativePath(imageData)
+      .then(file => {
+        console.log("file==",file)       
+        //alert('file'+JSON.stringify(file));  
+        let filePath: string = file;
+        this.profilepic=filePath; 
+
+        var url = file;
+        var parts = url.split("/");
+        this.imgmetatitle=parts[parts.length-1];
+        console.log("this.imgmetatitle1==",this.imgmetatitle)  
+
+        /*
+        if(file.split('file:///storage/emulated/0/Android/data/io.lws.connect/cache/')[1] != undefined){
+          this.imgmetatitle=file.split('file:///storage/emulated/0/Android/data/io.lws.connect/cache/')[1]; 
+          console.log("this.imgmetatitle1==",this.imgmetatitle)  
+        }
+    
+        if(file.split('file:///storage/emulated/0/Download/')[1] != undefined){
+          this.imgmetatitle=file.split('file:///storage/emulated/0/Download/')[1]; 
+          console.log("this.imgmetatitle2==",this.imgmetatitle)  
+        }
+        if(file.split('file:///storage/emulated/0/WhatsApp/Media/WhatsApp Images/')[1] != undefined){
+          this.imgmetatitle=file.split('file:///storage/emulated/0/WhatsApp/Media/WhatsApp Images/')[1]; 
+          console.log("this.imgmetatitle3==",this.imgmetatitle)  
+        }
+        if(file.split('file:///storage/emulated/0/DCIM/ScreenRecorder/')[1] != undefined){
+          this.imgmetatitle=file.split('file:///storage/emulated/0/DCIM/ScreenRecorder/')[1];  
+          console.log("this.imgmetatitle4==",this.imgmetatitle)  
+        }
+        */
+        
+      })
+      .catch(err => console.log(err));
+      //this.profilepic=imageData  
+      //this.imgmetatitle=imageData.split('file:///storage/emulated/0/Android/data/io.lws.connect/cache/')[1];   
     }, (err) => { 
     })
   }
   
   
   
-  camera1(){
+  camera1() { 
   this.camera.getPicture({
     quality: 75,
     destinationType:this.camera.DestinationType.FILE_URI,
@@ -166,7 +298,24 @@ export class AddtaskPage {
     correctOrientation: true
   }).then((imageData) => {
     console.log(imageData);
-    this.profilepic=imageData
+    this.imageshow=imageData;
+    this.filePath.resolveNativePath(imageData)  
+    .then(file => {
+      console.log("file==",file)       
+      //alert('file'+JSON.stringify(file));
+      let filePath: string = file;
+      this.profilepic=filePath;  
+      
+      var url = file;
+        var parts = url.split("/");
+        this.imgmetatitle=parts[parts.length-1];
+        console.log("this.imgmetatitle1==",this.imgmetatitle)  
+
+     // this.imgmetatitle=file.split('file:///storage/emulated/0/Android/data/io.lws.connect/cache/')[1]; 
+      console.log("this.imgmetatitle1==",this.imgmetatitle)     
+    })
+    .catch(err => console.log(err));  
+    //this.profilepic=imageData
   }, (err) => {
   })
   }
@@ -196,27 +345,35 @@ export class AddtaskPage {
         this.navCtrl.setRoot(DashboardusrPage);    
       } 
        
-  GotoNext()  {
+  GotoNext()  {   
     if(this.title =="" || this.title == undefined || this.PowerSelect == "" || this.PowerSelect==undefined || this.contents =="" || this.contents == undefined) 
-    return;
+    return; 
+
     let postcontent="<p>"+this.contents+"<p>";
+
+    const loader = this.loadingCtrl.create({ content: "Please wait..." });    
+    loader.present();
     this.security.CreateTask(postcontent,this.title,this.PowerSelect).subscribe(result => {      
-      if (result.status === 200) { 
+      if (result.wpstatus === 1) { 
         console.log(result);
-        console.log("this.profilepic=",this.profilepic); 
         if(this.profilepic != undefined){    
           this.ProfileImageUp(this.profilepic,result.commentID);    
         }  
+        loader.dismiss();  
          this.onTaskPower=false;
          this.title="";
          this.PowerSelect="";
-         this.contents=""; 
-         //this.navCtrl.pop();     
+         this.contents="";   
          this.navCtrl.setRoot(TaskallPage,{ createtask:"createtask" }); 
-      }    
-     else {    }
-   }, err => {  console.log("err", err);   }
-  );      
+      } 
+      else if (result.wpstatus === 2)   {   loader.dismiss();  this.ErrMsg=result.message;     }   
+     else   {   loader.dismiss(); this.ErrMsg=result.message;    }
+   }, err => {       
+     loader.dismiss(); 
+     console.log("err", err);  
+       this.ErrMsg="Please check your internet connection and try again";  
+       }
+  );  
 }
 
 GotoNext1(){

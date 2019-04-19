@@ -99,5 +99,7 @@
     </plugin>
     <plugin name="onesignal-cordova-plugin" spec="^2.4.6" />
     <plugin name="cordova-plugin-filepath" spec="^1.5.1" />
+    <plugin name="com-sarriaroman-photoviewer" spec="^1.1.18" />
+    <plugin name="cordova-plugin-videoplayer" spec="^0.1.4" />
     <engine name="android" spec="7.0.0" />
 </widget>

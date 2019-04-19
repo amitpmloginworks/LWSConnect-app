@@ -33,10 +33,10 @@
           </ion-col>    
       </ion-row>  
 
-      <div class="baldiv">{{ BalanceHours }} hours logged</div>
+      <div class="baldiv">{{ TotalHours }} hours logged</div> 
 
-     <canvas #doughnutCanvas class="chartCl" chart-labels="labels"> </canvas>  
-     <div class="totaldiv">{{ TotalHours }} hours left</div>         
+     <canvas #doughnutCanvas class="chartCl" chart-labels="labels" (click)="itempending()"> </canvas>    
+     <div class="totaldiv">{{ BalanceHours }} hours left</div>         
 <!-- <div class="timeleft">30 hours</div>  -->
 <!-- <ion-row no-margin no-padding class="rows-hours">
     <ion-col no-margin no-padding col-6 >    

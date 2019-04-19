@@ -18,13 +18,19 @@
     
   <ion-grid class="gridcl">
      
-      <ion-list style="margin-top: 36px;margin-bottom: 73px;">   
+      <ion-list style="margin-top: 36px;margin-bottom: 73px;">  
+           
+          <ion-row no-margin no-padding>       
+              <ion-col col-12 no-margin no-padding text-center><p no-margin no-padding class="errmsgcl">{{ErrMsg}}</p></ion-col>
+            </ion-row>
 
 <ion-row no-padding no-margin >
-<ion-col col-12 no-padding no-margin text-center>    
-<img src="assets/imgs/newimg/group550.png" class="img-profile" >
+<ion-col col-12 no-padding no-margin text-center>            
+<img src="{{ pimg }}" class="img-profile" [ngStyle]="(pimg != 'assets/imgs/newimg/group550.png')?{ 'border-radius' : '50%'} : {  }">   
 </ion-col>
 </ion-row>
+
+
 
           <img class="img-pass" src="assets/imgs/newimg/group540.png">           
           <ion-item class="item-pass">     

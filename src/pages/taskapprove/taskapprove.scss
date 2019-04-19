@@ -183,12 +183,18 @@ page-taskapprove {
     font-family: $Lato-regular;
     font-size: 12px; 
     text-align: justify; 
-    line-height: 0.5;
+  
   }
   .rowsdes {   
     color: map-get($ContentColor,DarkSlate);  
     font-family: $Lato-heavy;
     font-size: 11px; 
+  }
+
+  .p-nodata {     
+    color: map-get($ContentColor,DarkSlate);  
+    font-family: $Lato-heavy;
+    font-size: 12px; 
   }
 
   .rowsdes p {  

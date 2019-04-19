@@ -118,7 +118,7 @@ page-payment {
         position: absolute;
         z-index: 1000;
         left: 32px;
-        margin-top: 11px; 
+        margin-top: 7px;   
     } 
  
     .img-pass {  
@@ -242,5 +242,22 @@ page-payment {
         .list-md {
             margin: -5px 0 32px;
         } 
+
+        .btn-img:hover { 
+            background-color: #fff !important;  
+        }
    
+        .errmsgcl {
+            font-size: 14px;
+            font-family: "Lato-Bold","Lato-Heavy"; 
+        }
+
+        
+    .errormsg {
+        color: #595a79;
+        font-size: 14px;
+        margin-left: 4px;
+    }
+     
+               
 }

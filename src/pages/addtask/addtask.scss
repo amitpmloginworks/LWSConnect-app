@@ -289,9 +289,14 @@ page-addtask {
         margin-left: 4px;
     }
     .errmsgcl {
+        padding-top: 10px;
+        color: red;
         font-size: 14px;
         font-family: "Lato-Bold","Lato-Heavy"; 
     }   
-       
-
+     
+    .popover-md .popover-content {
+        left: 80px !important;
+    }  
+ 
 }

@@ -7,6 +7,12 @@
 
 <ion-header no-shadow no-border> 
   <ion-navbar > 
+        <ion-buttons left> 
+                <button ion-button icon-only (click)="NotifyBtn()">       
+                  <!-- <img  class="img-notify" src="assets/imgs/newimg/notification.png"> -->
+                  <ion-icon name="md-arrow-back"></ion-icon> 
+                </button>
+        </ion-buttons>        
     <ion-title text-center>TASKS</ion-title>             
   </ion-navbar>
 </ion-header> 
@@ -30,9 +36,9 @@
     <ion-row no-padding no-margin class="rows-outer" margin-top (click)="NextNav(itemgo.PostID,itemgo.PostTitle,itemgo.status)" *ngIf="odd"   style="border-top: 5px solid #FC5F45 !important;">                    
         <ion-col col-8 no-padding no-margin margin-bottom *ngIf="i == 0">     
           <p no-padding no-margin class="p-top">Task Name: {{ itemgo.PostTitle }}</p>
-          <p no-padding no-margin class="p-middle">Hours Spent: 02:00 hrs</p> 
+          <p no-padding no-margin class="p-middle">Hours Spent: {{ itemgo.comment_hour }}</p> 
         </ion-col>
-        <ion-col col-4 no-padding no-margin margin-bottom  *ngIf="i == 0">    
+        <ion-col col-4 no-padding no-margin margin-bottom  *ngIf="i == 0">       
             <div class="divtxtimg" > 
                 <div class="divtxt">
                     <p no-padding no-margin class="p-divtxt">For review</p>
@@ -52,14 +58,14 @@
         </ion-col>
         <ion-col col-12 no-padding no-margin margin-bottom *ngIf="i != 0">     
             <p no-padding no-margin class="p-top">Task Name:  {{ itemgo.PostTitle }}</p>
-            <p no-padding no-margin class="p-middle">Hours Spent: 02:00 hrs</p>   
+            <p no-padding no-margin class="p-middle">Hours Spent: {{ itemgo.comment_hour }}</p>   
           </ion-col>
       </ion-row>
    
       <ion-row no-padding no-margin class="rows-outer" margin-top (click)="NextNav(itemgo.PostID,itemgo.PostTitle,itemgo.status)" *ngIf="even" style="border-top: 5px solid #AE29E6 !important;" >                          
           <ion-col col-8 no-padding no-margin margin-bottom *ngIf="i == 0">       
             <p no-padding no-margin class="p-top">Task Name: {{ itemgo.PostTitle }}</p>
-            <p no-padding no-margin class="p-middle">Hours Spent: 02:00 hrs</p> 
+            <p no-padding no-margin class="p-middle">Hours Spent: {{ itemgo.comment_hour }}</p> 
           </ion-col>
           <ion-col col-4 no-padding no-margin margin-bottom  *ngIf="i == 0">  
              
@@ -83,7 +89,7 @@
           </ion-col>
           <ion-col col-12 no-padding no-margin margin-bottom *ngIf="i != 0">     
               <p no-padding no-margin class="p-top">Task Name:  {{ itemgo.PostTitle }}</p>
-              <p no-padding no-margin class="p-middle">Hours Spent: 02:00 hrs</p>   
+              <p no-padding no-margin class="p-middle">Hours Spent: {{ itemgo.comment_hour }}</p>   
             </ion-col>
         </ion-row>
 
@@ -99,13 +105,13 @@
     <ion-row no-padding no-margin class="rows-outer" (click)="NextNav(itemcom.PostID,itemcom.PostTitle,itemcom.status)" margin-top *ngIf="odd" style="border-top: 5px solid #FC5F45 !important;" >  
         <ion-col col-12 no-padding no-margin margin-bottom>     
             <p no-padding no-margin class="p-top">Task Name: {{ itemcom.PostTitle }}</p>  
-             <p no-padding no-margin class="p-middle">Hours Spent: 02:00 hrs</p>   
+             <p no-padding no-margin class="p-middle">Hours Spent: {{ itemcom.comment_hour }}</p>     
           </ion-col>
       </ion-row>
     <ion-row no-padding no-margin class="rows-outer" (click)="NextNav(itemcom.PostID,itemcom.PostTitle,itemcom.status)" margin-top *ngIf="even" style="border-top: 5px solid #AE29E6 !important;" >  
         <ion-col col-12 no-padding no-margin margin-bottom>     
             <p no-padding no-margin class="p-top">Task Name: {{ itemcom.PostTitle }}</p>        
-             <p no-padding no-margin class="p-middle">Hours Spent: 02:00 hrs</p>   
+             <p no-padding no-margin class="p-middle">Hours Spent: {{ itemcom.comment_hour }}</p>   
           </ion-col>
       </ion-row>
     </div>
@@ -122,18 +128,22 @@
           </ion-col>
       </ion-row> -->
 </div>   
-        
-<ion-row no-margin no-padding style="display: flex;position: absolute;bottom: 10px;width: 86%;background: #fff;">     
-  <ion-col col-7 no-margin no-padding>      
-      <button ion-button outline (click)="GotoNext()" class="btnOptions" style="width: 95%;"> CREATE A TASK</button>     
-   </ion-col>  
-          
-  <ion-col col-5 no-margin no-padding>       
-     <button ion-button outline (click)="UpgradeBtn()" class="btnOptions">OPTIONS</button>       
-  </ion-col>
-</ion-row>  
-
+       
   
   </ion-grid>
+  
+
 </ion-content>
+
+<ion-footer no-padding no-margin no-shadow no-border>    
+    <ion-row no-margin no-padding style="width: 85%;background: #fff; margin: 0px auto;">        
+        <ion-col col-7 no-margin no-padding>      
+            <button ion-button outline (click)="GotoNext()" class="btnOptions" style="width: 95%;"> CREATE A TASK</button>     
+         </ion-col>  
+                
+        <ion-col col-5 no-margin no-padding>       
+           <button ion-button outline (click)="UpgradeBtn()" class="btnOptions">OPTIONS</button>       
+        </ion-col>
+      </ion-row>  
+</ion-footer>
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, MenuController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 
 import { Http, Headers, RequestOptions } from '@angular/http';
@@ -31,7 +31,7 @@ export class ForgetpassPage {
 
   ErrMsg:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,  public modal: ModalController, public security :SecurityProvider, public http:Http,public formbuilder:FormBuilder) {
-
+   
     let emailRegex =/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;  // Email validation 
 
 

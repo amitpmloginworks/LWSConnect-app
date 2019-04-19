@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams , ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams , ModalController, Platform , ViewController } from 'ionic-angular';
 
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
@@ -10,6 +10,9 @@ import { FeedbackPage } from '../feedback/feedback';
 
 import { Http, Headers, RequestOptions } from '@angular/http';
 import{SecurityProvider}from'../../providers/security/security'
+
+import { TasksegmentPage } from '../tasksegment/tasksegment';   
+
 
 /**
  * Generated class for the TaskapprovePage page.
@@ -34,7 +37,16 @@ export class TaskapprovePage {
 
   PostStatus:any;     
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private fileChooser: FileChooser,public file:File,private fileOpener: FileOpener,public filetransfer: FileTransfer,public modalCtrl:ModalController, public http:Http, public security:SecurityProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private fileChooser: FileChooser,public file:File,private fileOpener: FileOpener,public filetransfer: FileTransfer,public modalCtrl:ModalController, public http:Http, public security:SecurityProvider, public platform: Platform, public viewController:ViewController) {
+
+
+     // Register for android's system back button
+     let backAction =  platform.registerBackButtonAction(() => {
+      // this.navCtrl.pop();   
+       this.navCtrl.setRoot(TasksegmentPage);
+      backAction();    
+     },1) 
+
 
     this.PostID=this.navParams.get("PostID");
     this.PostStatus=this.navParams.get("PostStatus");     
@@ -46,6 +58,11 @@ export class TaskapprovePage {
     this.GetData();
           
   }
+
+  NotifyBtn() {     
+    this.navCtrl.setRoot(TasksegmentPage);    
+  } 
+
 
   GetData() {
     this.security.taskapprove(this.PostID).subscribe(result => {            
@@ -94,6 +111,7 @@ export class TaskapprovePage {
 
 
   ionViewDidLoad() {
+    this.viewController.showBackButton(false)     
     console.log('ionViewDidLoad TaskapprovePage');
   }
 

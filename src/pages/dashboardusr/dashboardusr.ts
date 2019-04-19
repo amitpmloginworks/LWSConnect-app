@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, Events } from 'ionic-angular';
 import { Chart } from 'chart.js'; 
 
 import { UpgradeplanmorePage } from '../upgradeplanmore/upgradeplanmore';  
@@ -19,7 +19,8 @@ import { TimerObservable } from 'rxjs/observable/TimerObservable';
 
 import { TasksegmentPage } from '../tasksegment/tasksegment'; 
 import { TaskpopupPage } from '../taskpopup/taskpopup'; 
-import { BuyadditionalPage } from '../buyadditional/buyadditional';   
+import { BuyadditionalPage } from '../buyadditional/buyadditional';  
+ 
 
 /**
  * Generated class for the DashboardusrPage page.
@@ -37,19 +38,30 @@ export class DashboardusrPage {
     
   @ViewChild('doughnutCanvas') doughnutCanvas;
   doughnutChart: any;  
-
+  
   BalanceHours
   TotalHours
-  constructor(public navCtrl: NavController, public navParams: NavParams, public security :SecurityProvider, public http:Http) {
- 
-    
- 
 
+  public n : number = 1;
+  public chattimes:any;     
+  constructor(public navCtrl: NavController, public navParams: NavParams, public security :SecurityProvider, public http:Http, public menuCtrl: MenuController,public events: Events) {   
+    this.menuCtrl.enable(true, 'authenticated'); 
+    this.menuCtrl.enable(false, 'menu2'); 
 
+   
+    this.chattimes=TimerObservable.create(0, (3*1000)).subscribe(t => { 
+      this.events.publish('userrole:usrrole',localStorage['userid'], Date.now())  
+    });        
+  
+        
   }
   
+  ionViewWillLeave() {   
+    this.chattimes.unsubscribe();  
+  }
+
   itempending() {
-    this.navCtrl.push(TasksegmentPage);     
+    this.navCtrl.push(TasksegmentPage,{ ShowPopup:true });     
   }
 
   btnOptions(){
@@ -125,7 +137,6 @@ var chartInstance = new FusionCharts({
 // render the chart
 chartInstance.render();
   }
-
 
   ionViewDidLoad() {
      

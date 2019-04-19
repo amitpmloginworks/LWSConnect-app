@@ -48,14 +48,14 @@
        [class.invalid]="!validation.controls.EmailID.valid && (validation.controls.EmailID.dirty|| submitAttempt)"></ion-input>  
     </ion-item> 
 
-    <p *ngIf="!validation.controls.EmailID.valid && (validation.controls.EmailID.dirty|| submitAttempt)" class="errormsg">*Please enter a valid email address.</p>
+    <p *ngIf="!validation.controls.EmailID.valid && (validation.controls.EmailID.dirty|| submitAttempt)" class="errormsg">*Please enter a valid email address.</p> 
  
     <img src="assets/imgs/newimg/group542.png"  class="img-pass"  [ngStyle]="{'margin-top': !validation.controls.EmailID.valid && (validation.controls.EmailID.dirty|| submitAttempt) ? '16px' : '29px'}">         
     <ion-item  class="item-pass" >     
        <ion-input type="password" [(ngModel)]="Password" placeholder="Password" formControlName="Password"
        [class.invalid]="!validation.controls.Password.valid && (validation.controls.Password.dirty|| submitAttempt)"></ion-input> 
     </ion-item>  
-    <p *ngIf="!validation.controls.Password.valid && (validation.controls.Password.dirty|| submitAttempt)" class="errormsg">*Please enter a password.</p> 
+    <p *ngIf="!validation.controls.Password.valid && (validation.controls.Password.dirty|| submitAttempt)" class="errormsg">*Please enter a password.</p>    
   </ion-list>     
  
 </form>

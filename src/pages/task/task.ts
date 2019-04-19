@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, LoadingController, ToastController, Content, ActionSheetController, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, LoadingController, ToastController, Content, ActionSheetController, Events, MenuController } from 'ionic-angular';
 
 import { Http, Headers, RequestOptions } from '@angular/http';
 import{SecurityProvider}from'../../providers/security/security'  
@@ -12,6 +12,7 @@ import { FileChooser } from '@ionic-native/file-chooser';
 import { FileOpener } from '@ionic-native/file-opener'; 
 
 import { FilePath } from '@ionic-native/file-path';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 /**
  * Generated class for the TaskPage page.
@@ -39,7 +40,8 @@ export class TaskPage {
 
   imgmetatitle:any ="";
   txtboolean:boolean=true;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl : ViewController,public loadingCtrl: LoadingController, public toastCtrl:ToastController, public security :SecurityProvider, public http:Http,public filetransfer: FileTransfer,public camera:Camera,public actionSheetCtrl:ActionSheetController,private fileChooser: FileChooser,public file:File,private fileOpener: FileOpener,public events: Events,public filePath: FilePath) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl : ViewController,public loadingCtrl: LoadingController, public toastCtrl:ToastController, public security :SecurityProvider, public http:Http,public filetransfer: FileTransfer,public camera:Camera,public actionSheetCtrl:ActionSheetController,private fileChooser: FileChooser,public file:File,private fileOpener: FileOpener,public events: Events,public filePath: FilePath,public photoViewer:PhotoViewer, public menuCtrl: MenuController) {    
+    this.menuCtrl.enable(true, 'menu2');  
     this.imgUrl=this.security.ImageUrlLink();  
     this.taskID=this.navParams.get("taskID");          
     this.PostTitle = this.navParams.get("PostTitle");
@@ -99,10 +101,38 @@ export class TaskPage {
        this.filePath.resolveNativePath(uri)
        .then(file => {
          console.log("file==",file)    
-         //alert('file'+JSON.stringify(file));
          let filePath: string = file;
-         this.profilepic=filePath;   
-         this.imgmetatitle=file.split('file:///storage/emulated/0/Download/')[1]; 
+         this.profilepic=filePath;
+         
+         var url = file;
+         var parts = url.split("/");
+         this.imgmetatitle=parts[parts.length-1];
+         console.log("this.imgmetatitle1==",this.imgmetatitle)  
+
+         /*
+         if(file.split('file:///storage/emulated/0/Android/data/io.lws.connect/cache/')[1] != undefined){
+          this.imgmetatitle=file.split('file:///storage/emulated/0/Android/data/io.lws.connect/cache/')[1]; 
+          console.log("this.imgmetatitle1==",this.imgmetatitle)  
+        }
+     
+        if(file.split('file:///storage/emulated/0/Download/')[1] != undefined){
+          this.imgmetatitle=file.split('file:///storage/emulated/0/Download/')[1]; 
+          console.log("this.imgmetatitle2==",this.imgmetatitle)  
+        }
+        if(file.split('file:///storage/emulated/0/WhatsApp/Media/WhatsApp Images/')[1] != undefined){
+          this.imgmetatitle=file.split('file:///storage/emulated/0/WhatsApp/Media/WhatsApp Images/')[1]; 
+          console.log("this.imgmetatitle3==",this.imgmetatitle)  
+        }
+        if(file.split('file:///storage/emulated/0/DCIM/ScreenRecorder/')[1] != undefined){
+          this.imgmetatitle=file.split('file:///storage/emulated/0/DCIM/ScreenRecorder/')[1];  
+          console.log("this.imgmetatitle4==",this.imgmetatitle)  
+        }
+        if(file.split('file:///storage/emulated/0/WhatsApp/Media/WhatsApp Video/')[1] != undefined){
+          this.imgmetatitle=file.split('file:///storage/emulated/0/WhatsApp/Media/WhatsApp Video/')[1];  
+          console.log("this.imgmetatitle4==",this.imgmetatitle)   
+        } 
+        */
+
        })
        .catch(err => console.log(err));
   
@@ -123,7 +153,40 @@ export class TaskPage {
       saveToPhotoAlbum: false,
       correctOrientation: true
     }).then((imageData) => {
-      this.profilepic=imageData
+      this.filePath.resolveNativePath(imageData)
+      .then(file => {
+        console.log("file==",file)       
+
+        let filePath: string = file;
+        this.profilepic=filePath; 
+
+        var url = file;
+        var parts = url.split("/");
+        this.imgmetatitle=parts[parts.length-1];
+        console.log("this.imgmetatitle1==",this.imgmetatitle)  
+
+        /*
+        if(file.split('file:///storage/emulated/0/Android/data/io.lws.connect/cache/')[1] != undefined){
+          this.imgmetatitle=file.split('file:///storage/emulated/0/Android/data/io.lws.connect/cache/')[1]; 
+          console.log("this.imgmetatitle1==",this.imgmetatitle)  
+        }
+    
+        if(file.split('file:///storage/emulated/0/Download/')[1] != undefined){
+          this.imgmetatitle=file.split('file:///storage/emulated/0/Download/')[1]; 
+          console.log("this.imgmetatitle2==",this.imgmetatitle)  
+        }
+        if(file.split('file:///storage/emulated/0/WhatsApp/Media/WhatsApp Images/')[1] != undefined){
+          this.imgmetatitle=file.split('file:///storage/emulated/0/WhatsApp/Media/WhatsApp Images/')[1]; 
+          console.log("this.imgmetatitle3==",this.imgmetatitle)  
+        }
+        if(file.split('file:///storage/emulated/0/DCIM/ScreenRecorder/')[1] != undefined){
+          this.imgmetatitle=file.split('file:///storage/emulated/0/DCIM/ScreenRecorder/')[1];  
+          console.log("this.imgmetatitle4==",this.imgmetatitle)  
+        }
+        */
+         
+      })
+      .catch(err => console.log(err));
     }, (err) => {
     })
   }
@@ -141,11 +204,28 @@ export class TaskPage {
     saveToPhotoAlbum: false,
     correctOrientation: true
   }).then((imageData) => {
-    this.profilepic=imageData
+   
+    this.filePath.resolveNativePath(imageData)  
+    .then(file => {
+      console.log("file==",file)       
+      let filePath: string = file;
+      this.profilepic=filePath; 
+      
+      var url = file;
+        var parts = url.split("/");
+        this.imgmetatitle=parts[parts.length-1];
+        console.log("this.imgmetatitle1==",this.imgmetatitle)   
+
+      //this.imgmetatitle=file.split('file:///storage/emulated/0/Android/data/io.lws.connect/cache/')[1]; 
+      console.log("this.imgmetatitle1==",this.imgmetatitle)     
+    })
+    .catch(err => console.log(err));   
+
   }, (err) => {
   })
   }
 
+      
 ProfileImageUp(imgData,commentID) {
 /*
     const filetransfers: FileTransferObject = this.filetransfer.create();
@@ -275,9 +355,28 @@ ProfileImageUp(imgData,commentID) {
 
   ionViewWillLeave() {   
     this.chattimes.unsubscribe();
+    this.menuCtrl.enable(false, 'menu2');     
   }
 
-  GotoNext1(filepaths,titles,extensions){
+  txtextension(text) {
+    var index = text.lastIndexOf('.');
+    return [text.slice(0, index), text.slice(index + 1)]
+}
+  
+  
+  GotoNext1(filepaths,titles,ext){
+    console.log("filepaths==",filepaths);   
+    var splitByLastDot = this.txtextension(titles);   
+    let extensions= "."+splitByLastDot[1];
+    // if(extensions ==".jpg" || extensions ==".png" || extensions ==".jpeg" ){
+    //   var options = { 
+    //     share: true, // default is false 
+    //     closeButton: true, // default is true 
+    //     copyToReference: true // default is false
+    // };
+    //   this.photoViewer.show(filepaths, titles,options);  
+    // } 
+
     let fileName=''
     let apptypes=''; 
     fileName=titles; 
@@ -286,6 +385,22 @@ ProfileImageUp(imgData,commentID) {
     if(extensions==".docx")     {   
        apptypes ='application/vnd.openxmlformats-officedocument.wordprocessingml.document'   
     }
+    if(extensions==".apk")     {   
+      apptypes ='application/vnd.android.package-archive'   
+   }
+
+   if(extensions==".png")     {   
+    apptypes ='image/png'   
+ }
+
+ if(extensions==".jpg")     {   
+  apptypes ='image/jpeg'   
+}
+
+if(extensions==".bmp")     {   
+  apptypes ='image/bmp'   
+}  
+
     let filespath=this.file.dataDirectory
     const fileTransfer: FileTransferObject = this.filetransfer.create();       
     fileTransfer.download(filepaths,filespath + fileName, true).then((entry) => {
@@ -294,7 +409,12 @@ ProfileImageUp(imgData,commentID) {
     ).catch(e => {   } );
     }, (error) => {   
     });
+  
   }
+
+
+    
+   
 
   ionViewDidLoad() {   
     console.log('ionViewDidLoad TaskPage');

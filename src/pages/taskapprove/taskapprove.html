@@ -7,7 +7,12 @@
 
 <ion-header >       
     <ion-navbar >      
-  
+        <ion-buttons left> 
+            <button ion-button icon-only (click)="NotifyBtn()">       
+              <!-- <img  class="img-notify" src="assets/imgs/newimg/notification.png"> -->
+              <ion-icon name="md-arrow-back"></ion-icon> 
+            </button>
+    </ion-buttons>      
       <ion-title text-center>{{ taskName }}</ion-title>      
  
     </ion-navbar>
@@ -35,7 +40,7 @@
           <ion-col col-12 no-padding no-margin> 
             <div  *ngFor="let items of final_array">
               <div class="divdesc" [innerHTML]="items.comment_content | htmlbypas:'html'" text-wrap ></div>
-              <p no-padding no-margin class="divdesc" *ngIf="items.wptitle !=''" (click)="GotoNext1(items.wpurl,items.wptitle,items.wpextension)">Attachments: <span style="color:#FC5F45;">{{ items.wptitle }}</span></p>        
+              <p no-padding no-margin class="divdesc" *ngIf="items.wptitle !=undefined" (click)="GotoNext1(items.wpurl,items.wptitle,items.wpextension)">Attachments:<span style="color:#FC5F45;margin-left: 10px;">{{ items.wptitle }}</span></p>           
             </div>
          
           </ion-col>   
@@ -47,15 +52,20 @@
           <ion-col col-6 no-padding no-margin> <p no-padding no-margin class="rowsp">Comment</p> </ion-col>
         </ion-row>  
     
-        <ion-row style="border-bottom: 1px solid #d6d6d6;padding-bottom: 12px;" no-padding no-margin margin-top *ngFor="let item of final_array">    
+        <!-- <ion-row style="border-bottom: 1px solid #d6d6d6;padding-bottom: 12px;" no-padding no-margin margin-top *ngFor="let item of final_array">    
           <ion-col col-3 no-padding no-margin><p no-padding no-margin class="rowsdes">{{ item.datecurrent }}</p> </ion-col>  
           <ion-col col-3 no-padding no-margin text-center><p no-padding no-margin class="rowsdes">{{ item.comment_hour }}</p> </ion-col>  
           <ion-col col-6 no-padding no-margin>  
             <div [innerHTML]="item.comment_content | htmlbypas:'html'" text-wrap class="rowsdes" ></div>  
-            <!-- <p no-padding no-margin class="rowsdes">{{ item.datecurrent }}</p>  -->
           </ion-col>
-        </ion-row>  
+        </ion-row>   -->
 
+        <ion-row style="border-bottom: 1px solid #d6d6d6;padding-bottom: 12px;" no-padding no-margin margin-top >    
+          <ion-col col-12 no-padding no-margin text-center>
+            <p no-padding no-margin class="p-nodata">No Data found</p>  
+           </ion-col>  
+        </ion-row>  
+  
     </ion-grid>
   </ion-content>
   

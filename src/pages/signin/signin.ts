@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, Events, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, Events, Platform, MenuController } from 'ionic-angular';
 import { ForgetpassPage } from '../forgetpass/forgetpass';
 import { AddlogPage } from '../addlog/addlog'; 
 import { DashboardusrPage } from '../dashboardusr/dashboardusr';    
@@ -34,10 +34,11 @@ export class SigninPage {
   EmailID
   Password
   ErrMsg:any=""; 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl:ToastController,public loadingCtrl: LoadingController, public http:Http, public security:SecurityProvider, public alertCtrl:AlertController,public events: Events, public platform: Platform,public formbuilder:FormBuilder) {   
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl:ToastController,public loadingCtrl: LoadingController, public http:Http, public security:SecurityProvider, public alertCtrl:AlertController,public events: Events, public platform: Platform,public formbuilder:FormBuilder, public menuCtrl: MenuController) {   
     // this.EmailID="chetan.singh@loginworks.com";
     // this.Password="wC$tb#Q%%ou%"; 
-    
+    this.menuCtrl.enable(false, 'authenticated'); 
+    this.menuCtrl.enable(false, 'menu2');      
     platform.ready().then((readySource) => {   
       console.log('Width: ' + platform.width()); 
       console.log('Height: ' + platform.height());
@@ -48,13 +49,13 @@ export class SigninPage {
     this.validation=formbuilder.group({
       EmailID:['',Validators.compose([Validators.maxLength(50),this.noWhitespaceValidator, Validators.pattern(emailRegex), Validators.required])], 
       Password:['',Validators.compose([Validators.required, Validators.maxLength(20),this.noWhitespaceValidator ])]
-      })
+    })
 
 
   }
 
 
-  ForgetNext(){
+  ForgetNext() {
     this.navCtrl.push(ForgetpassPage); 
   }
 
@@ -72,12 +73,17 @@ export class SigninPage {
               localStorage['loginactive']="loginusr";  
                 let fullname=result.getdata[0].display_name;  
               this.events.publish('userrole:usrrole',result.getdata[0].ID, Date.now());
-                if(localStorage['showusrpop'] == "yes") {
+              if(result.postlen > 0)  {
+                  this.navCtrl.setRoot(DashboardusrPage);  
+              }  
+              else  {
+                if(localStorage['showusrpop'] == "yes")  {
                   this.navCtrl.setRoot(AddtaskPage);           
                 }
-                else { 
+                else   { 
                   this.navCtrl.setRoot(WelcomescreenPage,{ fullname:fullname });  
-                }            
+                } 
+              }          
          } 
          else {  
            this.ErrMsg="Please enter valid credentials!";       
@@ -85,6 +91,7 @@ export class SigninPage {
          }
        }, err => {  
          console.log("err", err); 
+         this.ErrMsg="Please check your internet connection and try again";         
         // loading.dismiss();    
          //this.toastCtrl.create({ message: `Please Enter valid credentials!`, duration: 4000, position: 'top' }).present(); return;
        }); 
