@@ -261,5 +261,12 @@ page-tasksearch {
           .text-input-md {
               margin: 0px !important; 
           }
+
+          .button-md.activated  {   
+            background: #eac8ae !important;  
+            border-color:  #eac8ae !important;  
+            box-shadow: none;
+            -webkit-box-shadow:none; 
+          }  
            
 }

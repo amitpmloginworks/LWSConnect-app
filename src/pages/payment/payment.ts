@@ -33,10 +33,14 @@ export class PaymentPage {
   BalHours
   TotalHours
 
-  fullname
-  mobno
-  emailid
+  fullname:any="";
+  mobno:any="";
+  emailid:any="";  
+  
+  loadingImg
   constructor( public navCtrl: NavController, public navParams: NavParams,public toastCtrl : ToastController,public payPal: PayPal, public http:Http, public security:SecurityProvider,public formbuilder:FormBuilder , public modal:ModalController, public loadingCtrl:LoadingController) {   
+
+    this.loadingImg= this.security.LoadingURL()
 
     this.title=this.navParams.get("title"); 
     this.price=this.navParams.get("ItemPrice"); 
@@ -45,15 +49,16 @@ export class PaymentPage {
     this.TotalHours=this.navParams.get("total");
     this.currency="USD"; 
 
-    let emailRegex =/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;  // Email validation 
+    // let emailRegex =/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;  // Email validation 
 
-    this.validation=formbuilder.group({    
-      fullname:['',Validators.compose([Validators.maxLength(300),Validators.pattern('[a-zA-Z ]*'), Validators.required])],    
-      EmailID:['',Validators.compose([Validators.maxLength(100),this.noWhitespaceValidator, Validators.pattern(emailRegex), Validators.required])],  
-      mobno:['',Validators.compose([Validators.maxLength(12),this.noWhitespaceValidator,Validators.required])] 
-    })  
+    // this.validation=formbuilder.group({    
+    //   fullname:['',Validators.compose([Validators.maxLength(300),Validators.pattern('[a-zA-Z ]*'), Validators.required])],    
+    //   EmailID:['',Validators.compose([Validators.maxLength(100),this.noWhitespaceValidator, Validators.pattern(emailRegex), Validators.required])],  
+    //   mobno:['',Validators.compose([Validators.maxLength(12),this.noWhitespaceValidator,Validators.required])] 
+    // })  
  
-       
+
+          
   }
    
 
@@ -71,8 +76,10 @@ export class PaymentPage {
   }
 
     
-navigatetoschooldetails()  {      
+navigatetoschooldetails()  { 
+
 this.ErrMsg="";
+
   this.payPal.init({        
     //PayPalEnvironmentProduction: 'AZ0pKY1B0TdV2NvtihDgaanO22BIHjydaUc55DWGQ8nakr_GQXVJr7Hagr2oStosIinKioa71MB2vQfb',
    // PayPalEnvironmentSandbox: 'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R'
@@ -107,7 +114,7 @@ this.ErrMsg="";
         //     "intent": "sale"
         //   }
         // }  
-        const loader = this.loadingCtrl.create({  content: "Please wait..."   });
+        const loader = this.loadingCtrl.create({ spinner: 'hide', content: this.loadingImg , cssClass: 'transparent' });         
         loader.present();
         this.security.payment(paymentid,this.title,this.BalHours,this.TotalHours,this.Amounts,PaidDate,this.fullname,this.mobno,this.emailid).subscribe(result => {    
           console.log("result==",result);
@@ -120,22 +127,29 @@ this.ErrMsg="";
                   this.navCtrl.setRoot(DashboardusrPage);
             })
             firewallTypeModal.present();      
-           //this.toastCtrl.create({ message: result.message, duration: 3000, position: 'top' }).present();
             return;
            }
           else { 
-            loader.dismiss();   
-            this.ErrMsg=result.message;              
+            this.ErrMsg=result.message;
+            
+            this.security.PayFailure("Paypal",this.ErrMsg,this.Amounts,this.title,"success",paymentid,PaidDate).subscribe(result => {        
+              console.log("result==",result);
+              this.toastCtrl.create({ message: 'Payment cancelled by you', duration: 3000, position: 'top' }).present();
+               }); 
+                
+            loader.dismiss();           
           }
         }, err => {  
           loader.dismiss();  
           console.log("err", err); 
+          //this.toastCtrl.create({ message: `Please check your internet connection and try again`, duration: 4000, position: 'top' }).present(); 
+          return;  
         }); 
       }, (errdialog) => {
         // payment cancelled   
         console.log("errdialog == ", errdialog);
         //this.ErrMsg='Payment cancelled ';  
-        this.toastCtrl.create({ message: 'Payment cancelled ', duration: 3000, position: 'top' }).present();
+        this.toastCtrl.create({ message: 'Payment cancelled by you', duration: 3000, position: 'top' }).present();
         return;
         // Error or render dialog closed without being successful
       });
@@ -153,6 +167,7 @@ this.ErrMsg="";
     this.toastCtrl.create({ message: "Error in initialization, maybe PayPal isn't supported or something else", duration: 3000, position: 'top' }).present();   
     return;
   }); 
+
   }
 
    

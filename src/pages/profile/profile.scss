@@ -83,42 +83,42 @@ page-profile {
 
     .item-md.item-input.input-has-focus .item-inner {
         box-shadow: none !important;
-        color:#ADADAD;
+        color:#444;  
       }
       
       .list-md .item-input.input-has-focus:last-child {
         box-shadow: none !important;
-        color:#ADADAD;
+        color:#444; 
       }
       
       .list-md .item-input.input-has-focus:last-child .item-inner {
         box-shadow: none;
-        color:#ADADAD;
+        color:#444; 
       }
       
       .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner {
         box-shadow: none !important;
-        color:#ADADAD;
+        color:#444; 
       }
       
       .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child {
         box-shadow: none !important;
-        color:#ADADAD;
+        color:#444; 
       }
       
       .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child .item-inner {
         box-shadow: none;
-        color:#ADADAD;
+        color:#444; 
       }
       
       .item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus) .item-inner {
         box-shadow: none !important;
-        color:#ADADAD;
+        color:#444; 
       }
       
       .list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):last-child {  
         box-shadow: none !important;
-        color:#ADADAD; 
+        color:#444; 
       }
 
           
@@ -127,7 +127,7 @@ page-profile {
         position: absolute;
         z-index: 1000;
         left: 32px;
-        margin-top: 11px; 
+        margin-top: 7px;   
     } 
  
     .img-pass {  
@@ -241,8 +241,7 @@ page-profile {
         }
 
         .img-profile  {
-            width: 41%;
-            margin-bottom: 16px;
+            width: 41%;  
         }
 
         .item-passhalf {
@@ -273,5 +272,20 @@ page-profile {
             font-family: "Lato-Bold","Lato-Heavy"; 
         }
          
+                
+    .errormsg {
+        color: #595a79;
+        font-size: 14px;
+        margin-left: 4px;
+    }  
+
+    .button-md.activated  {   
+        background: #eac8ae !important;  
+        border-color:  #eac8ae !important;  
+        box-shadow: none;
+        -webkit-box-shadow:none; 
+      }  
+
+    
    
 }

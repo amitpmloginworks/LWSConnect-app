@@ -25,7 +25,8 @@ page-dashboardusr {
 
     .gridcl{
         padding-left: 24px !important;
-        padding-right: 24px !important;  
+        padding-right: 24px !important; 
+        margin-top: 6px !important;   
     }
 
     .item-md {
@@ -61,7 +62,8 @@ page-dashboardusr {
       } 
 
       .btnOptions { 
-        width: 99%;
+        //width: 99%;  
+        width: 50%;
         margin-top: 10px;
         border-color: $content-btn3;
         color: $content-btnWhite;
@@ -69,10 +71,15 @@ page-dashboardusr {
       }
 
       .chartCl {
-        height: 250px !important;
-        width: 525px !important;  
+        //height: 250px !important;
+       // width: 525px !important; 
+        
+       height: 262px !important;
+    width: 530px !important;
+
         margin-left: -109px;
-        margin-top: -17px;  
+        //margin-top: -17px;  
+        margin-top: -61px;
       }
       .timeleft {
         position: absolute;
@@ -125,7 +132,23 @@ page-dashboardusr {
     }
 
     .btn-img {      
-      box-shadow:none;background-color: #fff; -webkit-box-shadow:none;
+      box-shadow:none;background-color: #fa9f02; -webkit-box-shadow:none;
+      width: 65%;
+      height: 4.0rem;  
+      text-transform: none !important;
+  }
+
+  .itemsreview {
+    padding-left: 12px;
+    width: 82%;
+    font-size: 10px;
+  color: #fff;
+  font-family:$Lato-medium;
+  }
+
+  .pendingimg {
+    width: 16%;
+    margin-right: 2px;
   }
 
   .baldiv {
@@ -149,16 +172,18 @@ page-dashboardusr {
     margin-top: -38px;
   }
 
-  .button-md.activated {
-    background-color: #fff !important;  
+  .button-md.activated  {  
+    background: #eac8ae !important;  
     box-shadow: none;
     -webkit-box-shadow:none; 
   }
  
 
+
   @media only screen and (min-height:615px){       
     .rows-btnlog {
-        margin-top: 40px;
+        //margin-top: 40px;
+        margin-top: 60px;
         margin-bottom: 29px;
     }
     .rows-buttomm {  
@@ -166,16 +191,52 @@ page-dashboardusr {
  }
 }
 
+@media only screen and (max-height:640px) {           
+  .baldiv {  
+    margin-top: 36px !important;
+}
+.rows-btnlog {
+ // margin-top: 35px !important;
+  margin-top: 55px !important;
+  margin-bottom: 21px !important; 
+}   
+}
+
+
+
 @media only screen and (min-height:732px){       
   .rows-btnlog {
-      margin-top: 40px;
+     // margin-top: 40px;
+     margin-top: 60px;
       margin-bottom: 29px;
   }
   .rows-buttomm {    
     margin-bottom: 16px !important;   
 }
- 
 }
+
+@media only screen and (min-height:715px){     
+  .rows-btnlog {
+   // margin-top: 40px; 
+    margin-top: 60px;
+    margin-bottom: 69px;
+  }
+  .rows-buttomm  { 
+    margin-bottom: 40px !important;
+  }  
+  .totaldiv {
+    display: inline-block;
+    float: right;
+    text-align: end;
+    color: #A28671;
+    font-size: 12px;
+    font-family: $Lato-heavy;  
+    width: 100%;
+    margin-top: -25px;
+    padding-right: 3px;
+}
+}
+ 
 
  
 

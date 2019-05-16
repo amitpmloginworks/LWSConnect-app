@@ -21,13 +21,26 @@
             </ion-item>   
 
             <ion-item no-lines style="height: 3.8rem;">
-              <button menuClose="authenticated" clear ion-button (click)="ProfileBtn()"> 
+              <button menuClose="authenticated" clear ion-button (click)="ProfileBtn()">   
                  <img src="assets/imgs/newimg/settings.png" style="width: 6%;    margin-left: -31px;" /> 
                 <label style="margin-left: 10px; color: #fff; font-family: Lato-Regular;">Profile Settings</label>
               </button>
           </ion-item>
+
+          <ion-item no-lines style="height: 3.8rem;">   
+                <button menuClose="authenticated" clear ion-button (click)="taskdetail()">      
+                   <img src="assets/imgs/newimg/move.png" style="width: 6%;   margin-left: -51px;" /> 
+                  <label style="margin-left: 10px; color: #fff; font-family: Lato-Regular;">Tasks Detail</label>
+                </button>
+        </ion-item>
+  
+        <!-- <ion-item no-lines style="height: 3.8rem;">  
+            <button menuClose="authenticated" clear ion-button (click)="taskreview()">      
+               <img src="assets/imgs/newimg/move.png" style="width: 6%;margin-left: -56px;" /> 
+              <label style="margin-left: 10px; color: #fff; font-family: Lato-Regular;">For Review</label>
+            </button>
+    </ion-item> -->
  
-     
           <!-- <ion-item no-lines style="height: 3.8rem;">
                         <button menuClose="authenticated" clear ion-button (click)="ProfileBtn()"> 
                            <img src="assets/imgs/newimg/credit-cards-payment.png" style="width: 6%;       margin-left: -21px;" />  
@@ -41,15 +54,13 @@
                         <label style="margin-left: 10px; color: #fff; font-family: Lato-Regular;">Hours Report</label>
                       </button>
                   </ion-item> -->
-
-                   
-  
-                  <ion-item no-lines style="height: 3.8rem;">    
-                            <button menuClose="authenticated" clear ion-button (click)="LogoutBtn()">     
-                               <img src="assets/imgs/newimg/exits.png" style="width: 6%;    margin-left: -90px;" />  
-                              <label style="margin-left: 10px; color: #fff; font-family: Lato-Regular;">Logout</label>
-                            </button>
-                        </ion-item>
+   
+                <ion-item no-lines style="height: 3.8rem;">    
+                        <button menuClose="authenticated" clear ion-button (click)="LogoutBtn()">     
+                            <img src="assets/imgs/newimg/exits.png" style="width: 6%; margin-left: -82px;" />  
+                            <label style="margin-left: 10px; color: #fff; font-family: Lato-Regular;">Logout</label>
+                        </button>
+                </ion-item>
    
         </ion-content>
 

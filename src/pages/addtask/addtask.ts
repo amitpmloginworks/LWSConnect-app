@@ -20,6 +20,11 @@ import { FormControl, AbstractControl } from '@angular/forms'
 import { PhotoViewer } from '@ionic-native/photo-viewer';  
 import { VideoPlayer } from '@ionic-native/video-player';
 
+import { TasksegmentsPage } from '../tasksegments/tasksegments';   
+import { TasksegmentPage } from '../tasksegment/tasksegment';  
+
+
+
 
 /**
  * Generated class for the AddtaskPage page.
@@ -41,7 +46,7 @@ export class AddtaskPage {
   onTaskPower:boolean = false; 
   SelectArr:any=[];
   title:any;  
-  contents:any;
+  contents:any="";
   PowerSelect:any;
 
   imgUrl:any;
@@ -52,15 +57,25 @@ export class AddtaskPage {
 
   isEnabled:boolean=true;
   imageshow 
+  loadingImg:any;
+
+  pagenavTO
+  LangPageTag
   constructor(public navCtrl: NavController, public navParams: NavParams, public http:Http, public security:SecurityProvider,public filetransfer: FileTransfer,public camera:Camera,public actionSheetCtrl:ActionSheetController,private fileChooser: FileChooser, public modalCtrl: ModalController, public file:File,private fileOpener: FileOpener, public platform:Platform,public viewController: ViewController,public filePath: FilePath,public formbuilder:FormBuilder, public menuCtrl: MenuController,private photoViewer: PhotoViewer,private videoPlayer: VideoPlayer,public loadingCtrl: LoadingController) { 
-    this.menuCtrl.enable(false, 'menu2');     
+    this.menuCtrl.enable(false, 'menu2');      
+
+    this.pagenavTO=this.navParams.get("pagenav"); // Landing Page
+    this.LangPageTag=this.navParams.get("LangPageTag"); // Landing Page tag  
+
+    this.loadingImg= this.security.LoadingURL()
+
   console.log("profilepic==",this.profilepic); 
     this.imgUrl=this.security.ImageUrlLink();
 
     this.validation=formbuilder.group({       
       PowerSelect:['',Validators.compose([Validators.maxLength(500), Validators.required])], 
       title:['',Validators.compose([Validators.required, Validators.maxLength(65535) ])], 
-      contents:['',Validators.compose([Validators.required, Validators.maxLength(4294967295) ])] 
+      contents:[ Validators.compose([Validators.required, Validators.maxLength(4294967295) ])] 
       })  
 
       this.security.Categorylist().subscribe(result => {      
@@ -75,8 +90,15 @@ export class AddtaskPage {
 
           // Register for android's system back button
           let backAction =  platform.registerBackButtonAction(() => {
-           // this.navCtrl.pop();   
-            this.navCtrl.setRoot(DashboardusrPage);
+           if(this.pagenavTO == "tasksegments"){
+            this.navCtrl.setRoot(TasksegmentsPage);
+           } 
+           else if(this.pagenavTO == "tasksegment"){
+            this.navCtrl.setRoot(TasksegmentPage,{LangPageTag:this.LangPageTag});
+           }      
+            else {
+              this.navCtrl.setRoot(DashboardusrPage);
+            }
            backAction();    
           },1)   
 
@@ -136,17 +158,16 @@ export class AddtaskPage {
     var filepaths=this.profilepic; 
     console.log("titles==",filepaths)    
     var splitByLastDot = this.txtextension(titles);   
-    let extensions= "."+splitByLastDot[1];
-    if(extensions ==".jpg" || extensions ==".png" || extensions ==".jpeg" ) {
-      console.log("If cond..",this.imageshow)
-      var options = {
-        share: true, // default is false
-        closeButton: true, // default is true 
-        copyToReference: true // default is false
-    };
-      this.photoViewer.show(this.imageshow, titles,options);   
-      
-    }    
+    let extensions= "."+splitByLastDot[1]; 
+    // if(extensions ==".jpg" || extensions ==".png" || extensions ==".jpeg" ) {
+    //   console.log("If cond..",this.imageshow)
+    //   var options = {
+    //     share: true, // default is false
+    //     closeButton: true, // default is true 
+    //     copyToReference: true // default is false
+    // };
+    //   this.photoViewer.show(this.imageshow, titles,options);   
+    // }    
     // if(extensions == ".mp4" || extensions == ".MP4")  {
     //   // Playing a video.
     //   this.videoPlayer.play(filepaths).then(() => {
@@ -155,7 +176,7 @@ export class AddtaskPage {
     //       console.log(err);
     //   });  
     // } 
-else  {
+
   console.log("ELSE cond..")  
     let fileName=''
     let apptypes=''; 
@@ -168,6 +189,19 @@ else  {
     if(extensions==".apk")     {   
       apptypes ='application/vnd.android.package-archive'   
    }
+   
+   if(extensions==".png")     {   
+    apptypes ='image/png'   
+ }
+
+ if(extensions==".jpg")     {   
+  apptypes ='image/jpeg'   
+}
+
+if(extensions==".bmp")     {    
+  apptypes ='image/bmp'   
+} 
+ 
     let filespath=this.file.dataDirectory 
     const fileTransfer: FileTransferObject = this.filetransfer.create();       
     fileTransfer.download(filepaths,filespath + fileName, true).then((entry) => {
@@ -176,7 +210,7 @@ else  {
     ).catch(e => {   } );
     }, (error) => {   
     });
-  }
+  
   }
 
   uploadFile()  {  
@@ -331,7 +365,7 @@ else  {
             commentID : commentID,
             image : imgData
           }  
-        }
+        }  
         filetransfers.upload(imgData,this.imgUrl+'/taskcreateimg',options).then((data) => {
           console.log(data)
           console.log(JSON.parse(data.response))
@@ -341,23 +375,38 @@ else  {
       }
 
       NotifyBtn() { 
-        //this.navCtrl.pop();   
-        this.navCtrl.setRoot(DashboardusrPage);    
+        if(this.pagenavTO == "tasksegments"){
+          this.navCtrl.setRoot(TasksegmentsPage,{LangPageTag:this.LangPageTag});
+         } 
+         else if(this.pagenavTO == "tasksegment"){
+          this.navCtrl.setRoot(TasksegmentPage,{LangPageTag:this.LangPageTag});
+         } 
+          else {
+            this.navCtrl.setRoot(DashboardusrPage);
+          }  
       } 
        
   GotoNext()  {   
-    if(this.title =="" || this.title == undefined || this.PowerSelect == "" || this.PowerSelect==undefined || this.contents =="" || this.contents == undefined) 
-    return; 
+   // if(this.title =="" || this.title == undefined || this.PowerSelect == "" || this.PowerSelect==undefined || this.contents =="" || this.contents == undefined) 
+    //return; 
 
-    let postcontent="<p>"+this.contents+"<p>";
-
-    const loader = this.loadingCtrl.create({ content: "Please wait..." });    
+    let postcontent="";
+  
+    if(this.contents !="" || this.contents != undefined) {
+      postcontent="<p>"+this.contents+"<p>";   
+    }
+ 
+     
+    const loader = this.loadingCtrl.create({ spinner: 'hide', content: this.loadingImg , cssClass: 'transparent' });         
     loader.present();
+
     this.security.CreateTask(postcontent,this.title,this.PowerSelect).subscribe(result => {      
       if (result.wpstatus === 1) { 
         console.log(result);
-        if(this.profilepic != undefined){    
-          this.ProfileImageUp(this.profilepic,result.commentID);    
+        if(this.profilepic != undefined){ 
+          if(this.contents !="") {   
+          this.ProfileImageUp(this.profilepic,result.commentID); 
+          }   
         }  
         loader.dismiss();  
          this.onTaskPower=false;
@@ -374,6 +423,8 @@ else  {
        this.ErrMsg="Please check your internet connection and try again";  
        }
   );  
+
+
 }
 
 GotoNext1(){

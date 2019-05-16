@@ -1,4 +1,4 @@
-page-tasksegment {
+page-tasksegments {
 
     .toolbar-background-md {
         border-color: map-get($HeaderList, BackgroundC1);  
@@ -30,8 +30,7 @@ page-tasksegment {
     .img-notify {
         width: 24px;
         margin-right: 9px;
-    }  
-   
+    }
        .list-md {
         margin-top: 19px !important;
        }
@@ -188,6 +187,7 @@ page-tasksegment {
     padding:0px;
     opacity: 1;
     height:5.2rem;
+    text-transform: none !important;
     }
     
     .segment-ios .segment-button{
@@ -196,6 +196,7 @@ page-tasksegment {
         padding:0px;
         opacity: 1;
         height:5.2rem;
+        text-transform: none !important;
         }
     
     .segment-md-primary .segment-button.activated, .segment-md-primary .segment-button.segment-activated{
@@ -263,7 +264,7 @@ page-tasksegment {
     font-family: $Lato-regular;
     color:#464646;  
   }
-
+  
   .divimg {
     width: 11%;
     float: left;
@@ -274,20 +275,21 @@ page-tasksegment {
   .toolbar-md {
     padding: 4px;
     min-height: 57px;
-  }  
-
+  } 
+  
   .button-md.activated  {   
     background: #eac8ae !important;  
     border-color:  #eac8ae !important;  
     box-shadow: none;
     -webkit-box-shadow:none; 
   }  
+
+  .text-header {
+      font-family: $Lato-semiBold;  
+  }
+
   .p-txt {
-      text-align: center !important;
-  }
-
-  .segment-md .segment-button {  
-    text-transform: none !important;
-  }
-
+    text-align: center !important;
+}
+  
 }

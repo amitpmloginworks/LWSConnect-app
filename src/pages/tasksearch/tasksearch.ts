@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { TaskallPage } from '../taskall/taskall'; 
 
 import { Http, Headers, RequestOptions } from '@angular/http';
@@ -27,15 +27,14 @@ export class TasksearchPage {
 
   onTask:boolean = false;
   onTaskPower:boolean = false;    
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http:Http, public security:SecurityProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http:Http, public security:SecurityProvider, public toastCtrl: ToastController)   {     
     this.security.Categorylist().subscribe(result => {      
       if (result.status === 200) {  
         this.SelectArr=result.final_array;  
         }    
      else {    }
-   }, err => {  console.log("err", err);   }
-  ); 
-
+   }, err => {  console.log("err", err);    this.toastCtrl.create({ message: `Please check your internet connection and try again`, duration: 4000, position: 'top' }).present(); return;    }
+  );   
   }
 
   onChangeTask()  { this.onTask=true;    }  

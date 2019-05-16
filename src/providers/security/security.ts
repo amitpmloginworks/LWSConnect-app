@@ -26,6 +26,10 @@ export class SecurityProvider {
     return ENV.mainApi;
   }
 
+  LoadingURL()  {  
+    return '<img src="assets/LW-Connect-1.gif" style="width: 50%;" class="loadingimg">';       
+  }      
+
 loginCheck(username,password)  {  
   
   let headers = new Headers({ 'content-type': 'application/json'})
@@ -95,6 +99,16 @@ tasklistsrc(postname,statuswp,categorywp){
   let requestOptions=new RequestOptions({headers:headers})
   let param=JSON.stringify({ userid:localStorage['userid'], postname:postname, status:statuswp, category:categorywp })    
   return this.http.post(ENV.mainApi + '/tasksrc',param,requestOptions).timeout(ENV.timeout).map((data)=>{  
+    return data.json();   
+  },  err => {  console.error('Oops:', err.message);  }
+  )
+}
+
+taskactiveDash(){      
+  let headers = new Headers({ 'content-type': 'application/json'})
+  let requestOptions=new RequestOptions({headers:headers})
+  let param=JSON.stringify({ userid:localStorage['userid'] })     
+  return this.http.post(ENV.mainApi + '/taskactivedash',param,requestOptions).timeout(ENV.timeout).map((data)=>{  
     return data.json();   
   },  err => {  console.error('Oops:', err.message);  }
   )
@@ -171,6 +185,8 @@ taskapprove(taskid)  {
   )
 }
 
+
+
     
 payment(PaypalTxnID,OrderItem,BalHours,TotalHours,OrderAmt,PaidDate,fullname,mob,emailid)  {         
   let headers = new Headers({ 'content-type': 'application/json'});
@@ -180,7 +196,21 @@ payment(PaypalTxnID,OrderItem,BalHours,TotalHours,OrderAmt,PaidDate,fullname,mob
     return data.json();    
   },  err => {  console.error('Oops:', err.message);  }
   )
+}  
+ 
+
+
+PayFailure(paymode,failreson,amount,planname,paystatus,paymentid,PaidDate)  {                            
+  let headers = new Headers({ 'content-type': 'application/json'});
+  let requestOptions=new RequestOptions({headers:headers});
+  let param=JSON.stringify({userid:localStorage['userid'], paymode:paymode,failreson:failreson,amount:amount,planname:planname,paystatus:paystatus, paymentid:paymentid , PaidDate:PaidDate });        
+  return this.http.post(ENV.mainApi + '/payfail',param,requestOptions).timeout(ENV.timeout).map((data)=>{
+    return data.json();      
+  },  err => {  console.error('Oops:', err.message);  }
+  )
 }
+
+
 
 buyadditional()  {                 
   let headers = new Headers({ 'content-type': 'application/json'});
@@ -204,7 +234,7 @@ getprofile()  {
 }
 
 
-upprofileimg()  {                     
+upprofileimg()  {                         
   let headers = new Headers({ 'content-type': 'application/json'});
   let requestOptions=new RequestOptions({headers:headers});
   let param=JSON.stringify({userid:localStorage['userid']});      
@@ -227,6 +257,47 @@ updateprofile(billAdd,billCountry,billState,billPin,billingPhone)  {
 }
 
 
+upplayerID()  {                             
+  let headers = new Headers({ 'content-type': 'application/json'});
+  let requestOptions=new RequestOptions({headers:headers});
+  let param=JSON.stringify({userid:localStorage['userid'], playerID:localStorage["pushusrid"]});        
+  return this.http.post(ENV.mainApi + '/uponesignal',param,requestOptions).timeout(ENV.timeout).map((data)=>{
+    return data.json();          
+  },  err => {  console.error('Oops:', err.message);  }
+  )
+}
+
+getnotify()  {                             
+  let headers = new Headers({ 'content-type': 'application/json'});
+  let requestOptions=new RequestOptions({headers:headers});
+  let param=JSON.stringify({userid:localStorage['userid'] });      
+  return this.http.post(ENV.mainApi + '/getnotify',param,requestOptions).timeout(ENV.timeout).map((data)=>{
+    return data.json();    
+  },  err => {  console.error('Oops:', err.message);  }
+  )
+}
+
+getcountry()  {                             
+  let headers = new Headers({ 'content-type': 'application/json'});
+  let requestOptions=new RequestOptions({headers:headers});
+  let param=JSON.stringify({userid:localStorage['userid'] });        
+  return this.http.post(ENV.mainApi + '/getcountry',param,requestOptions).timeout(ENV.timeout).map((data)=>{
+    return data.json();    
+  },  err => {  console.error('Oops:', err.message);  }
+  )
+}
+
+
+tasknotifyup(postid,notifystatus)   {         
+  let headers = new Headers({ 'content-type': 'application/json'});
+  let requestOptions=new RequestOptions({headers:headers});
+  let param=JSON.stringify({userid:localStorage['userid'],postid:postid, notifystatus:notifystatus});        
+  return this.http.post(ENV.mainApi + '/tasknotifyup',param,requestOptions).timeout(ENV.timeout).map((data)=>{
+    return data.json();    
+  },  err => {  console.error('Oops:', err.message);  }
+  )
+}
+ 
 
 
 

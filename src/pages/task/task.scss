@@ -1,3 +1,5 @@
+
+
 page-task {
     .toolbar-background-md {
         border-color: map-get($HeaderList, BackgroundC); 
@@ -72,9 +74,11 @@ page-task {
         background:$content-btn3;    
        // background-image: linear-gradient($content-btn3,$content-btn3);  
         height: 4.4rem; 
-        z-index: -1;
+        //z-index: -1;
         margin-left: 5px;
     }
+
+
     .img-btnfooter {
            display: block;
     width: 77%;
@@ -293,7 +297,7 @@ page-task {
 .chat-message.left {
     background-color: #fff1e6;   
     float: left;
-    max-width: 100%;
+    max-width: 76%; 
     margin-left: 0px !important;
     padding-left: 9px !important;
     margin-right: 0px !important;
@@ -328,11 +332,13 @@ page-task {
     margin-bottom: 3px;  
 }
 .img-profile  {
-    width: 80%;
-    border-radius: 50%; 
+    width: 91%;
+    border-radius: 56%;
+    height: 4.9rem;
+    border: 2px solid #464646;        
 }
-.list-md {
-    margin: 10px 0 11px;
+.list-md { 
+    margin: 0px 0 0px;
 }
    
 
@@ -343,7 +349,7 @@ page-task {
 }
 
 
-.text-input {
+.text-input { 
     display: block;
     margin-top: 10px;
     text-indent: 3px;
@@ -380,5 +386,30 @@ ion-footer {
     font-family: "Lato-Bold","Lato-Heavy"; 
 } 
  
+
+.img-leftarrow  {  
+    padding: 0 0.1em;
+    min-width: 28px;
+    width: 17px;
+    font-size: 1.8em;
+    line-height: .67;
+    pointer-events: none;     
+}
+ 
+.button-md.activated  {   
+    background: #eac8ae !important;  
+    border-color:  #eac8ae !important;  
+    box-shadow: none;
+    -webkit-box-shadow:none; 
+  }   
+
+  .item-md p { 
+    color: #444;
+}
+  
+.p-txt {
+    text-align: center !important;
+}
+
      
 }

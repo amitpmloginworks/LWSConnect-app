@@ -7,7 +7,13 @@
 
 
 <ion-header no-shadow no-border> 
-  <ion-navbar >   
+  <ion-navbar >  
+      <ion-buttons left> 
+          <button ion-button icon-only (click)="NotifyBtn()">       
+            <!-- <img  class="img-notify" src="assets/imgs/newimg/notification.png"> -->
+            <ion-icon name="md-arrow-back"></ion-icon> 
+          </button>
+  </ion-buttons>       
     <ion-title text-center>BUY ADDITIONAL HOURS</ion-title>             
   </ion-navbar>
 </ion-header> 

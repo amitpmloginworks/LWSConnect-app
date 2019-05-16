@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, LoadingController, ToastController } from 'ionic-angular';
 
 import{FormBuilder,FormGroup,Validators}from'@angular/forms'
 import { FormControl, AbstractControl } from '@angular/forms'
@@ -38,14 +38,13 @@ contents:any;
 
 ErrMsg:any="";
 ErrMsgvalidator:boolean = false;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl : ViewController,public formbuilder:FormBuilder, public http:Http, public security:SecurityProvider) {
+loadingImg  
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl : ViewController,public formbuilder:FormBuilder, public http:Http, public security:SecurityProvider, public toastCtrl:ToastController,public loadingCtrl: LoadingController) {
     this.PostID=this.navParams.get("PostID");
-
+    this.loadingImg= this.security.LoadingURL()
     this.validation=formbuilder.group({
       EmailID:['',Validators.compose([Validators.required, Validators.maxLength(1000),this.noWhitespaceValidator ])] 
-    })    
-
+    }) 
   }
 
   public noWhitespaceValidator(control: FormControl) {
@@ -96,10 +95,13 @@ ok() {
     this.ratevalidator = true;  
     return;
   }  
-  this.security.taskfeedback(this.PostID,this.rate,this.contents).subscribe(result => {    
+  const loader = this.loadingCtrl.create({ spinner: 'hide', content: this.loadingImg , cssClass: 'transparent' });         
+  loader.present();  
+  this.security.taskfeedback(this.PostID,this.rate,this.contents).subscribe(result => { 
+    loader.dismiss();     
      if(result.wpstatus === 1) {   this.viewCtrl.dismiss("setclosed");  }   
     else  {     this.ErrMsg=result.message;  this.ErrMsgvalidator=true;  }
-  }, err => {  
+  }, err => {     loader.dismiss();  
     console.log("err", err);  
     this.ErrMsg="No internet connection, Please connect to internet !";  
     this.ErrMsgvalidator=true;      

@@ -1,7 +1,7 @@
 
 const HTTP_TIMEOUT: number = 60000;
 
-    export interface Enviroment{
+    export interface Enviroment{ 
         mainApi:string,
         timeout:number
     }
@@ -21,10 +21,14 @@ const HTTP_TIMEOUT: number = 60000;
 	    timeout: HTTP_TIMEOUT  
     }
    
-    export const Livefinal:Enviroment={   
-	    mainApi:'http://ec2-13-58-246-109.us-east-2.compute.amazonaws.com:3555',  
+    export const Livetest:Enviroment={   
+	    mainApi:'http://ec2-18-223-235-36.us-east-2.compute.amazonaws.com:3555',   
 	    timeout: HTTP_TIMEOUT  
     }
 
-      
-    export const ENV:Enviroment=Livefinal;                                                             
+    export const Livefinal:Enviroment={    
+	    mainApi:'http://ec2-3-15-11-19.us-east-2.compute.amazonaws.com:3555',   
+	    timeout: HTTP_TIMEOUT  
+    }
+    
+    export const ENV:Enviroment=Livefinal;   

@@ -53,6 +53,10 @@ import { FilePath } from '@ionic-native/file-path';
 import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { PaymentpopupPage } from '../pages/paymentpopup/paymentpopup'; 
 
+import { TasksegmentsPage } from '../pages/tasksegments/tasksegments';  
+
+import { IonicStorageModule } from '@ionic/storage';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -82,12 +86,14 @@ import { PaymentpopupPage } from '../pages/paymentpopup/paymentpopup';
     LoginworksurlPage,
     FeedbackPage,
     BuyadditionalPage,
-    PaymentpopupPage
+    PaymentpopupPage,
+    TasksegmentsPage
   ],
   imports: [
     BrowserModule,
     HttpModule,  
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()   
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -117,7 +123,8 @@ import { PaymentpopupPage } from '../pages/paymentpopup/paymentpopup';
     LoginworksurlPage  ,
     FeedbackPage  ,  
     BuyadditionalPage ,
-    PaymentpopupPage      
+    PaymentpopupPage ,
+    TasksegmentsPage     
   ],
   providers: [
     StatusBar,

@@ -20,14 +20,15 @@
         <ion-col col-12 no-margin no-padding text-center><p no-margin no-padding class="errmsgcl">{{ErrMsg}}</p></ion-col>
       </ion-row>
 
-        <ion-row no-padding no-margin class="rows-headersub">   
+      
+        <!-- <ion-row no-padding no-margin class="rows-headersub">   
             <ion-col col-12 no-padding no-margin text-left> 
               <p no-padding no-margin class="p-title">Billing Details</p> 
             </ion-col>
-        </ion-row> 
+        </ion-row>  -->
         
-           
-  <form [formGroup]="validation"> 
+               
+  <!-- <form [formGroup]="validation"> 
    <ion-list >     
         <img class="img-user" src="assets/imgs/newimg/group543.png">        
         <ion-item class="item-pass">         
@@ -36,7 +37,7 @@
         </ion-item>   
     <p *ngIf="!validation.controls.fullname.valid && (validation.controls.fullname.dirty|| submitAttempt)" class="errormsg" >*Please enter a name.</p>      
         <img class="img-pass" src="assets/imgs/newimg/group544.png" [ngStyle]="{'margin-top': !validation.controls.fullname.valid && (validation.controls.fullname.dirty|| submitAttempt) ? '16px' : '29px'}">         
-        <ion-item class="item-pass">     
+        <ion-item class="item-pass">      
            <ion-input type="number" [(ngModel)]="mobno" placeholder="Mobile Number" formControlName="mobno"
            [class.invalid]="!validation.controls.mobno.valid && (validation.controls.mobno.dirty|| submitAttempt)" #mobid (keypress)="MobCheck(mobid.value)" ></ion-input>      
         </ion-item> 
@@ -48,7 +49,7 @@
         </ion-item>    
         <p *ngIf="!validation.controls.EmailID.valid && (validation.controls.EmailID.dirty|| submitAttempt)" class="errormsg">*Please enter a valid email address.</p> 
 </ion-list> 
-</form>
+</form> -->
      
         <ion-row no-padding no-margin  >
             <ion-col col-12 no-padding no-margin text-left> 
@@ -86,9 +87,14 @@
 
         <ion-row no-padding no-margin >   
             <ion-col col-12 no-padding no-margin text-left> 
-                <button ion-button no-margin no-padding class="btn-img" (click)="navigatetoschooldetails()" [disabled]="!validation.valid" >
+                <button ion-button no-margin no-padding class="btn-img" (click)="navigatetoschooldetails()" >
                     <img src="assets/imgs/newimg/group622.png" >  
                 </button>  
+
+                <!-- <button ion-button no-margin no-padding class="btn-img" (click)="navigatetoschooldetails()" [disabled]="!validation.valid" >
+                  <img src="assets/imgs/newimg/group622.png" >  
+              </button>  -->
+
             </ion-col>
         </ion-row>
 

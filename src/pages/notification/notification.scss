@@ -1,15 +1,14 @@
-page-notification {
-
-      
+page-notification { 
     .toolbar-background-md { 
-        border-color: map-get($HeaderList, BorderColor);    
+        border-color: map-get($HeaderList, BackgroundC);  
         background: map-get($HeaderList, BackgroundC);  
     }
 
     .content-md { 
         color: map-get($ContentColor, DarkSlate); 
-        background-color: map-get($ContentColor,bgcolor);      
-    }
+        background-color: map-get($ContentColor,itemBgWhite);   
+        //background-image: url('../assets/imgs/newimg/books-outline1.png');        
+    } 
     .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default {
         color: #fff;
         background-color: transparent;

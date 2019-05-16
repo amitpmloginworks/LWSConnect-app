@@ -178,5 +178,18 @@ page-forgetpass {
         font-size: 14px;
         font-family: "Lato-Bold","Lato-Heavy"; 
     }
+    //Width: 393
+     
+    @media only screen and (min-height:715px) { 
+           
+        .div-footer {
+            margin-top: 130px; 
+            font-family: "Lato-Bold","Lato-Heavy";
+        }
+    } 
+
+
+  
+
      
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, MenuController, LoadingController, ToastController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 
 import { Http, Headers, RequestOptions } from '@angular/http';
@@ -30,8 +30,9 @@ export class ForgetpassPage {
   emailid:any;
 
   ErrMsg:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,  public modal: ModalController, public security :SecurityProvider, public http:Http,public formbuilder:FormBuilder) {
-   
+  loadingImg
+  constructor(public navCtrl: NavController, public navParams: NavParams,  public modal: ModalController, public security :SecurityProvider, public http:Http,public formbuilder:FormBuilder, public toastCtrl:ToastController,public loadingCtrl: LoadingController) {
+    this.loadingImg= this.security.LoadingURL()
     let emailRegex =/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;  // Email validation 
 
 
@@ -48,18 +49,21 @@ export class ForgetpassPage {
     return isValid ? null : { 'whitespace': true }
   }
 
-  GotoNext() {   
+  GotoNext() {
+    const loader = this.loadingCtrl.create({ spinner: 'hide', content: this.loadingImg , cssClass: 'transparent' });         
+    loader.present();   
     this.security.resetpass(this.emailid).subscribe(result => {      
       if (result.status === 200) { 
         if(result.wpstatus == 1){
+          loader.dismiss(); 
           let firewallTypeModal=this.modal.create(HomePage, { ParamsTXT:"forgetpass" }); 
           firewallTypeModal.onDidDismiss(data => {  if(data=="forgetpass"){  this.navCtrl.pop(); }  })
           firewallTypeModal.present();  
         }  
-        else {  this.ErrMsg=result.message;   }     
+        else {     loader.dismiss();  this.ErrMsg=result.message;   }     
       }    
-     else {  this.ErrMsg=result.message;   }     
-   }, err => {  console.log("err", err); this.ErrMsg="No internet connection, Please connect to internet.";  }
+     else {     loader.dismiss();  this.ErrMsg=result.message;   }       
+   }, err => {    loader.dismiss();   console.log("err", err); this.ErrMsg="Please check your internet connection and try again";  }
   ); 
 }
  

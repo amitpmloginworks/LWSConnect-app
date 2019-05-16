@@ -72,3 +72,22 @@ border-bottom: 1px solid #707070;
 .popover-md .popover-content {
     left: 80px !important; 
 } 
+
+ion-loading.transparent {
+    .loading-wrapper {
+      background: transparent;
+      box-shadow: none;
+  
+      .spinner-crescent circle {
+        stroke-width: 8px;
+      }
+    }
+  }
+
+  .loading-content {
+    text-align: center;  
+  }
+
+  .loadingimg {
+      width: 50%; 
+  }

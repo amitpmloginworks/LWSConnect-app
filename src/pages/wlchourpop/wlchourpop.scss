@@ -65,7 +65,7 @@ page-wlchourpop {
         padding-top: 27.6%; 
     }
      
-    @media only screen and (min-height:732px){     
+    @media only screen and (min-height:732px) {     
           .rowstop {
             padding-top: 27.6%;
         }    
@@ -76,6 +76,16 @@ page-wlchourpop {
             margin-top: 106%;  
         }
     }
+
+    
+    @media only screen and (min-height:715px) { 
+        .div-main {
+            width: 98% !important;   
+            border-radius: 6px;
+            margin: auto;
+            margin-top: 107%;
+        }
+    }   
 
 
 }

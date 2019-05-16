@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, Events, ToastController, LoadingController } from 'ionic-angular';
 import { Chart } from 'chart.js'; 
 
 import { UpgradeplanmorePage } from '../upgradeplanmore/upgradeplanmore';  
@@ -9,7 +9,7 @@ import { NotificationPage } from '../notification/notification';
 import FusionCharts from 'fusioncharts/core'
  
 // include chart from viz folder - import ChartType from fusioncharts/viz/[ChartType];
-import Column2D from 'fusioncharts/viz/column2d'; 
+import Column2D from 'fusioncharts/viz/column2d';    
 import Doughnut2d from 'fusioncharts/viz/doughnut2d'; 
 import { AddtaskPage } from '../addtask/addtask';
 
@@ -20,6 +20,7 @@ import { TimerObservable } from 'rxjs/observable/TimerObservable';
 import { TasksegmentPage } from '../tasksegment/tasksegment'; 
 import { TaskpopupPage } from '../taskpopup/taskpopup'; 
 import { BuyadditionalPage } from '../buyadditional/buyadditional';  
+import { TasksegmentsPage } from '../tasksegments/tasksegments';  
  
 
 /**
@@ -43,25 +44,35 @@ export class DashboardusrPage {
   TotalHours
 
   public n : number = 1;
-  public chattimes:any;     
-  constructor(public navCtrl: NavController, public navParams: NavParams, public security :SecurityProvider, public http:Http, public menuCtrl: MenuController,public events: Events) {   
+  public chattimes:any;   
+  
+  NotifyStatus:number=0;
+  NewReviews:number = 0; 
+  isenabled:boolean = false;
+  loadingImg
+  constructor(public navCtrl: NavController, public navParams: NavParams, public security :SecurityProvider, public http:Http, public menuCtrl: MenuController,public events: Events, public toastCtrl:ToastController,public loadingCtrl: LoadingController) {    
+    this.loadingImg= this.security.LoadingURL();
     this.menuCtrl.enable(true, 'authenticated'); 
-    this.menuCtrl.enable(false, 'menu2'); 
+    this.menuCtrl.enable(false, 'menu2');    
+  }
 
-   
+  ionViewWillEnter() {         
     this.chattimes=TimerObservable.create(0, (3*1000)).subscribe(t => { 
-      this.events.publish('userrole:usrrole',localStorage['userid'], Date.now())  
-    });        
-  
-        
+     this.events.publish('userrole:usrrole',localStorage['userid'], Date.now())  
+    });           
+   this.events.subscribe('usernotify:usrnotify', (user, time) => {   this.NotifyStatus =user;  }); 
+   this.events.subscribe('userreviews:usrreview', (user, time) => {   this.NewReviews =user;
+     if(user==0)  {  this.isenabled = true;  }
+     if(user!=0)  {  this.isenabled = false; }      
+     });    
   }
   
-  ionViewWillLeave() {   
-    this.chattimes.unsubscribe();  
+  ionViewWillLeave() {     
+    this.chattimes.unsubscribe();   
   }
 
-  itempending() {
-    this.navCtrl.push(TasksegmentPage,{ ShowPopup:true });     
+  itempending() {  
+    this.navCtrl.push(TasksegmentsPage);           
   }
 
   btnOptions(){
@@ -129,20 +140,18 @@ var chartInstance = new FusionCharts({
   //       { label: "China", value: "30000" }
   //     ]
   //   }
-
-
-
-
 });
 // render the chart
 chartInstance.render();
   }
 
   ionViewDidLoad() {
-     
     console.log('ionViewDidLoad DashboardusrPage'); 
+    const loader = this.loadingCtrl.create({ spinner: 'hide', content: this.loadingImg , cssClass: 'transparent' });         
+    loader.present();
     this.security.dashboard().subscribe(result => {      
       if (result.status === 200) {
+        loader.dismiss();    
         this.TotalHours=result.TotalHours; this.BalanceHours=result.BalanceHours;
         let firstlbl=" Hours left";
         let secondlbl=" Hours logged";          
@@ -162,16 +171,17 @@ chartInstance.render();
                backgroundColor:["#EFEFEF",gradient]  
              }]    
            },
-           options: {
-             legend: {
-               display: true, 
+           options: {  
+            hover: {mode: null},
+             legend: {  
+               display: false,   
                position :top
              },
              tooltips: { 
                enabled: false
              },
-             title: {
-               display: false,
+             title: { 
+               display: true,
                fontStyle: 'bold',
                fontSize: 9    
              },
@@ -179,8 +189,11 @@ chartInstance.render();
            },
          }); 
         }    
-      else {    } 
-   }, err => {  console.log("err", err);   }
+      else {  loader.dismiss();     } 
+   }, err => {  console.log("err", err); 
+   loader.dismiss();      
+   this.toastCtrl.create({ message: `Please check your internet connection and try again`, duration: 4000, position: 'top' }).present(); return; 
+   }
   );
 
   

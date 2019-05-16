@@ -41,6 +41,10 @@ import { FeedbackPage } from '../pages/feedback/feedback';
 
 import { BuyadditionalPage } from '../pages/buyadditional/buyadditional';  
 
+import { TasksegmentsPage } from '../pages/tasksegments/tasksegments';  
+
+import { Storage } from '@ionic/storage';
+
 @Component({   
   templateUrl: 'app.html'
 })
@@ -65,38 +69,63 @@ export class MyApp {
   onTaskPower:boolean = false;  
   onTaskStatus:boolean = false;      
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public security :SecurityProvider, public http:Http,public events: Events,private oneSignal: OneSignal) {
-    platform.ready().then(() => {
+  constructor(public platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public security :SecurityProvider, public http:Http,public events: Events,private oneSignal: OneSignal, public str:Storage) {
+    platform.ready().then((readySource) => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      console.log('Platform ready from', readySource);
+      if (platform.is('cordova')){  
+
+        //Subscribe on pause
+        platform.pause.subscribe(() => {
+          //Hello pause
+        });
+
+        //Subscribe on resume
+        platform.resume.subscribe(() => {  
+        });
+       }
+
+
+      var date = new Date('2019-04-23T13:41:57.000Z');  
+date.toString() // "Wed Jun 29 2011 09:52:48 GMT-0700 (PDT)"
+console.log("mmm=22=",date.toString());   
+ 
+     console.log("mmm==",moment('2019-04-23T13:41:57.000Z').format("DD MMM YYYY hh:mm A")); 
+
       statusBar.styleDefault();
       splashScreen.hide();    
-       
         if(localStorage['loginactive']=="" || localStorage['loginactive']==null ) { 
            this.nav.setRoot(SigninPage);   
         }
-        else  {  
-             this.nav.setRoot(DashboardusrPage);                                  
-             this.activepost();   
+        else  {   
+             this.nav.setRoot(DashboardusrPage);   
+             this.NotificationApp();                                     
+             this.activepost();      
              this.CatFun(); 
-            // this.NotificationApp();             
+             this.NotifyUpdate();   
         }
         events.subscribe('userrole:usrrole', (user, time) => {   
           this.activepost();
-          this.CatFun();
-        });      
-        events.subscribe('taskid:tskid', (user, time) => {
+        });
+
+        events.subscribe('usrrole:notify', (user, time) => {   
+          this.NotificationApp();    
+          this.CatFun(); 
+          this.NotifyUpdate();       
+        });  
+
+        events.subscribe('taskid:tskid', (user, time) => { 
           this.TicketID=user;
           console.log("event entry");     
-          console.log("this.TicketID ==",user)       
+          console.log("this.TicketID ==",user) 
+          this.CatFun(); 
           this.security.taskrightside(user).subscribe(result => {          
             if (result.status === 200) { 
                    this.onTaskPower =true;
                    this.onTaskStatus =true;
               this.PowerBI=result.TermCat;  
-              this.OpenTask=result.TermStatus;   
-             // this.createDate=moment(result.post_date).format("DD MMM YYYY HH:mm:ss");   
-            //this.updateTaskd=moment(result.post_date_gmt).format("DD MMM YYYY HH:mm:ss");
+              this.OpenTask=result.TermStatus;    
               var endtime=this.LocalDatetime();
               var Starttime = this.ServerTimestamp(result.post_date_gmt);
               let daytime=[];
@@ -129,7 +158,7 @@ export class MyApp {
               let daytime1=[];
               daytime1=this.DiffTimestamp(Starttime1,endtime1);
               if(daytime1[0].days !=0){  
-                if(daytime1[0].days == 1){
+                if(daytime1[0].days == 1){ 
                     this.createDate="Yesterday at "+moment(result.post_date).format("hh:mm A");   
                 }  
                 else {   this.createDate=moment(result.post_date).format("DD MMM YYYY hh:mm A");  }     
@@ -140,23 +169,46 @@ export class MyApp {
          }, err => {  console.log("err", err);   }
         ); 
     }); 
-
-
-    });
+    });    
   }
 
 
-  NotificationApp() {            
+
+  NotificationApp() {
+    console.log("NotificationApp==");  
+    if (this.platform.is('cordova')) { 
+      console.log("cordova platform==");     
     this.oneSignal.startInit('88c090db-e908-4c22-857c-ba9025a471a8', '204995402175');           
     this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
     this.oneSignal.setSubscription(true);  
-    this.oneSignal.handleNotificationReceived().subscribe((jsonData) => { });
-    this.oneSignal.handleNotificationOpened().subscribe((jsonData) => { });
+    this.oneSignal.handleNotificationReceived().subscribe((jsonData) => { console.log("jsonData==",jsonData);      });
+    this.oneSignal.handleNotificationOpened().subscribe((jsonData) => { console.log("jsonData 1==",jsonData);
+  this.nav.push(NotificationPage); 
+  });  
     this.oneSignal.endInit(); 
-      //if(localStorage["userid"]=="" || localStorage["userid"]==undefined){ 
-     // this.oneSignal.getIds().then(data => { localStorage["userid"]=data.userId; })
-    //}     
+    if(localStorage["pushusrid"]=="" || localStorage["pushusrid"]==undefined) {  
+      this.oneSignal.getIds().then(data => {
+        console.log("data==",data)
+         localStorage["pushusrid"]=data.userId;  
+         this.str.set('signalID',data.userId);
+         this.security.upplayerID().subscribe(result => { 
+          console.log("one signal",result) 
+        }, err => {  console.log("err one signal", err);   }  
+        );  
+      })       
     }
+  }        
+  }   
+
+  NotifyUpdate() {     
+    if(this.platform.is('cordova')) { 
+    console.log("cordova platform==");                      
+     this.security.upplayerID().subscribe(result => { 
+       console.log("one signal",result) 
+     }, err => {  console.log("err one signal", err);   }  
+     );
+    }      
+  }
 
   ServerTimestamp(nowDate) {
     return moment(nowDate).format("DD/MM/YYYY HH:mm:ss");
@@ -166,31 +218,41 @@ export class MyApp {
       return moment().format("DD/MM/YYYY HH:mm:ss");
       }
 
-      DiffTimestamp(Starttime,endtime){
+    DiffTimestamp(Starttime,endtime) {    
         let datetime=[];
         var ms = moment(endtime,"DD/MM/YYYY HH:mm:ss").diff(moment(Starttime,"DD/MM/YYYY HH:mm:ss"));
         var d = moment.duration(ms);
         datetime.push({days:d.days(),hours:d.hours(),minutes:d.minutes(),seconds:d.seconds()});
         return datetime;
-      }
+    }
 
 
   sendEmail(){
-
+ 
   }
 
 
-  activepost(){
+  activepost() {    
     this.security.taskactive().subscribe(result => {       
-      if (result.status === 200) { this.newpost=result.newpost; this.TotalPost=result.TotalPost;  }    
+      if (result.status === 200) { 
+        this.newpost=result.newpost; this.TotalPost=result.TotalPost; 
+       }    
       else {    } 
    }, err => {  console.log("err", err);   }
   );
-  }
+  this.security.taskactiveDash().subscribe(result => {       
+    if (result.status === 200) { 
+      this.events.publish('usernotify:usrnotify',result.NewNotify, Date.now()); 
+      this.events.publish('userreviews:usrreview',result.NewReviews, Date.now());  
+     }    
+    else {    } 
+ }, err => {  console.log("err", err);   }
+);
+}
 
   CatFun(){
     this.security.Categorylist().subscribe(result => {      
-      if (result.status === 200) { 
+      if (result.status === 200) {  
         this.CatArr=result.final_array;    
         }    
      else {    }
@@ -198,7 +260,7 @@ export class MyApp {
   ); 
   }
 
-  ProfileBtn(){ 
+  ProfileBtn() { 
     this.nav.push(ProfilePage);    
   }
   CreateBtn(){
@@ -207,9 +269,23 @@ export class MyApp {
   AllTaskBtn(){ 
     this.nav.push(TaskallPage);  
   }
-  LogoutBtn(){
-    localStorage.clear();           
-    localStorage['showusrpop'] = "yes";      
+
+  taskdetail() {   
+    this.nav.push(TasksegmentPage,{ ShowPopup:true });  
+    //this.nav.push(TasksegmentsPage);     
+  }
+
+  taskreview() {
+    this.nav.push(TasksegmentsPage);        
+  }
+
+  LogoutBtn() {  
+    localStorage.clear(); 
+    this.str.get('signalID').then(res => {   if(res != null ) { 
+      localStorage["pushusrid"]=res; }
+     })  
+     localStorage['showtaskpopup']="yes";                
+    //localStorage['showusrpop'] = "yes";      
     this.nav.setRoot(SigninPage);  
   }
 

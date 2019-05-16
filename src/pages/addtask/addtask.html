@@ -60,10 +60,10 @@
           </div> -->      
   
           <div class="MainDiv1"> 
-  
-            <div >  
+   
+            <div >    
                 <ion-item class="item-txtarea">    
-                    <ion-textarea rows="5" [(ngModel)]="contents" placeholder="Please add task details here." formControlName="contents"
+                    <ion-textarea rows="5" [(ngModel)]="contents" placeholder="Please add task details here.(Optional)" formControlName="contents"
                     [class.invalid]="!validation.controls.contents.valid && (validation.controls.contents.dirty|| submitAttempt)"></ion-textarea>
                 </ion-item> 
                 <img class="icon-imgtxtarea" src="assets/imgs/newimg/group553_18px.png" (click)="uploadpicture()">       

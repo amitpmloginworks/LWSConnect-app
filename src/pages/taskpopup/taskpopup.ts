@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, Platform } from 'ionic-angular';
 
 /**
  * Generated class for the TaskpopupPage page.
@@ -15,7 +15,11 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class TaskpopupPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public platform: Platform) {  
+    let backAction =  platform.registerBackButtonAction(() => {
+      this.viewCtrl.dismiss("complete"); 
+      backAction();      
+    },1) 
      
   }
    

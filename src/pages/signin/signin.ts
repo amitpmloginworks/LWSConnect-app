@@ -34,7 +34,11 @@ export class SigninPage {
   EmailID
   Password
   ErrMsg:any=""; 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl:ToastController,public loadingCtrl: LoadingController, public http:Http, public security:SecurityProvider, public alertCtrl:AlertController,public events: Events, public platform: Platform,public formbuilder:FormBuilder, public menuCtrl: MenuController) {   
+  loadingImg  
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl:ToastController,public loadingCtrl: LoadingController, public http:Http, public security:SecurityProvider, public alertCtrl:AlertController,public events: Events, public platform: Platform,public formbuilder:FormBuilder, public menuCtrl: MenuController) { 
+    
+    this.loadingImg= this.security.LoadingURL()
+
     // this.EmailID="chetan.singh@loginworks.com";
     // this.Password="wC$tb#Q%%ou%"; 
     this.menuCtrl.enable(false, 'authenticated'); 
@@ -62,41 +66,47 @@ export class SigninPage {
 
   GotoNext(EmailID,Pass) {
     this.ErrMsg="";            
-    //let loading=this.loadingCtrl.create({ spinner: 'hide', content: `<img src="assets/imgs/loading1.gif" style="height:100px!important">`, cssClass: 'transparent' })  
-    //loading.present();    
+    const loader = this.loadingCtrl.create({ spinner: 'hide', content: this.loadingImg , cssClass: 'transparent' });         
+    loader.present();   
        this.security.loginCheck(EmailID,Pass).subscribe(result => {    
          console.log("result==",result);
-          //loading.dismiss();   
           if (result.wpstatus === 1) {
               console.log(result.getdata[0].ID)    
               localStorage['userid']=result.getdata[0].ID; 
               localStorage['loginactive']="loginusr";  
-                let fullname=result.getdata[0].display_name;  
+                let fullname=result.getdata[0].display_name;     
               this.events.publish('userrole:usrrole',result.getdata[0].ID, Date.now());
+              this.events.publish('usrrole:notify',result.getdata[0].ID, Date.now());
+              loader.dismiss(); 
               if(result.postlen > 0)  {
                   this.navCtrl.setRoot(DashboardusrPage);  
               }  
               else  {
-                if(localStorage['showusrpop'] == "yes")  {
-                  this.navCtrl.setRoot(AddtaskPage);           
-                }
-                else   { 
-                  this.navCtrl.setRoot(WelcomescreenPage,{ fullname:fullname });  
-                } 
+                this.navCtrl.setRoot(WelcomescreenPage,{ fullname:fullname });    
+                // if(localStorage['showusrpop'] == "yes")  {
+                //   this.navCtrl.setRoot(AddtaskPage);           
+                // }
+                // else   { 
+                //   this.navCtrl.setRoot(WelcomescreenPage,{ fullname:fullname });  
+                // } 
               }          
          } 
          else {  
+          loader.dismiss(); 
            this.ErrMsg="Please enter valid credentials!";       
           // this.toastCtrl.create({ message: `Please Enter Valid credentials!`, duration: 4000, position: 'top' }).present(); return;
          }
        }, err => {  
+        loader.dismiss();   
          console.log("err", err); 
          this.ErrMsg="Please check your internet connection and try again";         
         // loading.dismiss();    
          //this.toastCtrl.create({ message: `Please Enter valid credentials!`, duration: 4000, position: 'top' }).present(); return;
+
+      
+
        }); 
   }
-
 
   public noWhitespaceValidator(control: FormControl) {
     let isWhitespace = (control.value || '').trim().length === 0;
@@ -104,7 +114,7 @@ export class SigninPage {
     return isValid ? null : { 'whitespace': true }
   }
 
-  GotoLoginworks(){ 
+  GotoLoginworks() {  
     this.navCtrl.push(LoginworksurlPage);
   }
 
